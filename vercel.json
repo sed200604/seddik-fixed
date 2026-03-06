@@ -1,0 +1,26 @@
+{
+    "scripts": [
+        {
+            "where": "head",
+            "src": "https://www.googletagmanager.com/gtag/js?id=AW-17998077641",
+            "attributes": {
+                "async": ""
+            }
+        },
+        {
+            "where": "head",
+            "content": "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-17998077641');"
+        },
+        {
+            "where": "head",
+            "src": "https://www.googletagmanager.com/gtag/js?id=AW-17998153005",
+            "attributes": {
+                "async": ""
+            }
+        },
+        {
+            "where": "head",
+            "content": "gtag('config', 'AW-17998153005');"
+        }
+    ]
+}
