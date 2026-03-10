@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   title: 'Go LLC - أسس شركتك الأمريكية بسهولة',
   description: 'أسس شركتك الأمريكية LLC في 7 أيام فقط. ادفع 39$ فقط الآن، وأكمل الباقي بعد تأسيس شركتك.',
   icons: {
-    icon: '/favicon.png?v=2',
-    shortcut: '/favicon.png?v=2',
-    apple: '/favicon.png?v=2',
+    icon: '/favicon.png?v=3',
+    shortcut: '/favicon.png?v=3',
+    apple: '/favicon.png?v=3',
   },
 };
 
@@ -22,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
-        <link rel="icon" type="image/png" href="/favicon.png?v=2" />
-        <link rel="shortcut icon" type="image/png" href="/favicon.png?v=2" />
-        <link rel="apple-touch-icon" href="/favicon.png?v=2" />
+        <link rel="icon" type="image/png" href="/favicon.png?v=3" />
+        <link rel="shortcut icon" type="image/png" href="/favicon.png?v=3" />
+        <link rel="apple-touch-icon" href="/favicon.png?v=3" />
         {/* Google tag 1 (gtag.js) - AW-17998077641 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-17998077641"
