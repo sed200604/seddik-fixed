@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(grep -n \"^  {$\\\\|  id:\" \"c:/Users/star/Desktop/seddik-fixed/src/data/articles.ts\")"
+    ]
+  }
+}

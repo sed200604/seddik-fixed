@@ -2,13 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Shield } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,6 +49,7 @@ export default function Header() {
   const navLinks = [
     { name: 'الرئيسية', href: '/' },
     { name: 'الإقرار الضريبي', href: '/tax-filing' },
+    { name: 'المدونة', href: '/blog' },
     { name: 'الأسعار', href: '/#pricing' },
     { name: 'من نحن', href: '/#about' },
   ];
