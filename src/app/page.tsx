@@ -2,14 +2,20 @@ import { Metadata } from 'next';
 import Hero from '../components/Hero';
 import TrustBar from '../components/TrustBar';
 import ProblemSolution from '../components/ProblemSolution';
-import Pricing from '../components/Pricing';
+import WhyDifferent from '../components/WhyDifferent';
+import PricingSection from '../components/PricingSection';
 import Process from '../components/Process';
-import BookingForm from '../components/BookingForm';
+import SolutionSystem from '../components/SolutionSystem';
 import FinalCTA from '../components/FinalCTA';
 import Footer from '../components/Footer';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
 import ReadingProgress from '../components/ReadingProgress';
 import Header from '../components/Header';
+
+// New Components replacing CTA flow
+import StickyCTABar from '../components/StickyCTABar/StickyCTABar';
+import FloatingSidebar from '../components/FloatingSidebar/FloatingSidebar';
+import ConsultationSection from '../components/ConsultationSection/ConsultationSection';
 
 export const metadata: Metadata = {
   title: 'Go LLC - أسس شركتك الأمريكية بسهولة',
@@ -32,20 +38,28 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen font-cairo">
+    <div className="min-h-screen font-cairo overflow-x-hidden relative">
       <ReadingProgress />
       <Header />
+      
+      {/* Absolute fixed layer for extra UI pieces */}
+      <StickyCTABar />
+      <FloatingSidebar />
+      <FloatingWhatsApp />
+
       <main>
         <Hero />
+        <WhyDifferent />
         <TrustBar />
         <ProblemSolution />
-        <Pricing />
+        <SolutionSystem />
+        <PricingSection />
         <Process />
-        <BookingForm />
-        <FinalCTA />
+        
+        {/* We place ConsultationSection just below the Calendly interactive form, replacing FinalCTA */}
+        <ConsultationSection />
       </main>
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 }

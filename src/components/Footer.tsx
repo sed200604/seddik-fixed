@@ -41,7 +41,7 @@ export default function Footer() {
             <h4 className="text-white font-bold text-lg mb-6">الشركة</h4>
             <ul className="space-y-3">
               <li><Link href="/#about" className="hover:text-gold transition-colors">من نحن</Link></li>
-              <li><Link href="/" className="hover:text-gold transition-colors">لماذا Go LLC</Link></li>
+              <li><Link href="/why-choose-us" className="hover:text-gold transition-colors">لماذا Go LLC</Link></li>
               <li><Link href="/blog" className="hover:text-gold transition-colors">المدونة</Link></li>
               <li><Link href="/" className="hover:text-gold transition-colors">أسئلة شائعة</Link></li>
               <li><Link href="/" className="hover:text-gold transition-colors">سياسة الخصوصية</Link></li>

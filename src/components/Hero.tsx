@@ -1,217 +1,295 @@
 'use client';
-import { motion, useScroll, useTransform } from 'motion/react';
-import { Trophy, CheckCircle2, ArrowLeft, ShieldCheck, Zap, Lock } from 'lucide-react';
+import { motion } from 'motion/react';
+import {
+  Building2, Banknote, Shield, MessageCircle, CheckCircle2, Star, Play,
+  Landmark, ShieldCheck, Users, Calculator, FileCheck, Globe,
+} from 'lucide-react';
+import Image from 'next/image';
 
-const fadeUpBlur = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } }
+/* ── Animation helpers ──────────────────────────────── */
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 28 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const, delay },
+});
+
+const gridVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07 } },
+};
+const cardVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.96 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: 'easeOut' as const } },
 };
 
-export default function Hero() {
-  const { scrollY } = useScroll();
-  const backgroundY = useTransform(scrollY, [0, 1000], [0, 500]);
-  const foregroundY = useTransform(scrollY, [0, 1000], [0, -100]);
+/* ── Shared inline styles ───────────────────────────── */
+// Glass card on dark background — spec-compliant
+const glassCard = {
+  background: 'rgba(255,255,255,0.05)',
+  border: '1px solid rgba(244,196,48,0.2)',
+  backdropFilter: 'blur(10px)',
+  WebkitBackdropFilter: 'blur(10px)',
+} as const;
 
+// Highlighted glass card (gold border)
+const glassCardHighlight = {
+  background: 'rgba(255,255,255,0.07)',
+  border: '1px solid rgba(244,196,48,0.55)',
+  backdropFilter: 'blur(10px)',
+  WebkitBackdropFilter: 'blur(10px)',
+} as const;
+
+/* ── Data ────────────────────────────────────────────── */
+const valueItems = [
+  { icon: <Landmark className="w-8 h-8" style={{ color: '#F4C430' }} />, text: 'فتح بنوك أمريكية بنسبة قبول عالية' },
+  { icon: <ShieldCheck className="w-8 h-8" style={{ color: '#F4C430' }} />, text: 'تقليل نسبة الإغلاق العشوائي للبنوك' },
+  { icon: <Users className="w-8 h-8" style={{ color: '#F4C430' }} />, text: 'مرافقة كاملة بعد التأسيس' },
+  { icon: <Calculator className="w-8 h-8" style={{ color: '#F4C430' }} />, text: 'استشارات ضريبية متخصصة' },
+  { icon: <FileCheck className="w-8 h-8" style={{ color: '#F4C430' }} />, text: 'مساعدتك في تقديم الإقرار الضريبي' },
+  { icon: <Globe className="w-8 h-8" style={{ color: '#F4C430' }} />, text: 'Community خاصة بالتجارة في أوروبا وأمريكا' },
+];
+
+const proofCards = [
+  {
+    icon: <Building2 className="w-8 h-8" style={{ color: '#F4C430' }} />,
+    title: 'مكاتب حقيقية',
+    desc: 'الجزائر العاصمة + قسنطينة',
+    strong: 'تعال قابلنا شخصياً',
+    link: '#offices',
+    linkText: 'شاهد موقع المكاتب ←',
+    highlight: true,
+  },
+  {
+    icon: <Banknote className="w-8 h-8" style={{ color: '#F4C430' }} />,
+    title: 'عملاء حقيقيون',
+    desc: 'صور من داخل حسابات',
+    strong: 'Wise Business شغّالة',
+    link: 'https://www.facebook.com/permalink.php?story_fbid=pfbid0VRBdn6xG7Z4RKX2oFm3zf3F6qBtfaiBoh4ko7AUk1g9sDnvBFyMMRQCDNrRgbcjGl&id=61585622459776',
+    linkText: 'شاهد النتائج ←',
+    highlight: false,
+  },
+  {
+    icon: <Star className="w-8 h-8" style={{ color: '#F4C430' }} />,
+    title: 'تقييمات حقيقية',
+    desc: 'تقييمات على Facebook',
+    strong: 'من عملاء حقيقيين',
+    link: 'https://www.facebook.com/permalink.php?story_fbid=pfbid0VRBdn6xG7Z4RKX2oFm3zf3F6qBtfaiBoh4ko7AUk1g9sDnvBFyMMRQCDNrRgbcjGl&id=61585622459776',
+    linkText: 'اقرأ التقييمات ←',
+    highlight: false,
+  },
+];
+
+const trustBarItems = [
+  { icon: <Building2 className="w-8 h-8" style={{ color: '#F4C430' }} />, strong: 'مكاتب حقيقية', small: 'الجزائر + قسنطينة' },
+  { icon: <CheckCircle2 className="w-8 h-8" style={{ color: '#F4C430' }} />, strong: '30+ عميل ناجح', small: 'نتائج حقيقية' },
+  { icon: <Shield className="w-8 h-8" style={{ color: '#F4C430' }} />, strong: 'ضمان قانوني', small: 'استرجاع 100%' },
+  { icon: <MessageCircle className="w-8 h-8" style={{ color: '#F4C430' }} />, strong: 'دعم دائم', small: 'معك حتى تنجح' },
+];
+
+/* ── Component ───────────────────────────────────────── */
+export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-navy text-white min-h-[90vh] flex items-center">
-      {/* Animated Glowing Orbs Background with Parallax */}
-      <motion.div style={{ y: backgroundY }} className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-            x: [0, 50, 0],
-            y: [0, -50, 0]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-gold/20 blur-[120px]"
+    <section
+      dir="rtl"
+      className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden text-white"
+      style={{ background: 'linear-gradient(145deg, #0A1628 0%, #1A3A52 60%, #0F2A3E 100%)' }}
+    >
+      {/* ── Background decoration ── */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{ scale: [1, 1.25, 1], opacity: [0.25, 0.45, 0.25], x: [0, 60, 0], y: [0, -60, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-[10%] -left-[5%] w-[540px] h-[540px] rounded-full blur-[130px]"
+          style={{ background: 'rgba(244,196,48,0.18)' }}
         />
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.5, 1],
-            opacity: [0.2, 0.4, 0.2],
-            x: [0, -50, 0],
-            y: [0, 50, 0]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-blue-500/20 blur-[150px]"
+        <motion.div
+          animate={{ scale: [1, 1.5, 1], opacity: [0.15, 0.3, 0.15], x: [0, -50, 0], y: [0, 60, 0] }}
+          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+          className="absolute -bottom-[10%] -right-[10%] w-[600px] h-[600px] rounded-full blur-[150px]"
+          style={{ background: 'rgba(59,130,246,0.15)' }}
         />
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
-      </motion.div>
-      
-      <div className="max-w-7xl mx-auto px-5 md:px-10 relative z-10 w-full">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        {/* Dot grid */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, white 1.5px, transparent 0)',
+            backgroundSize: '36px 36px',
+          }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-5 md:px-10 relative z-10 flex flex-col gap-16">
+
+        {/* ── Top Section: 2 Column Layout (Text + Image) ── */}
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
           
-          {/* Left Content */}
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.1 } }
-            }}
-            className="space-y-8"
-          >
-            <motion.div variants={fadeUpBlur}>
-              <motion.div 
-                animate={{ 
-                  boxShadow: ['0 0 20px rgba(244,196,48,0.1)', '0 0 40px rgba(244,196,48,0.3)', '0 0 20px rgba(244,196,48,0.1)'],
-                  y: [0, -5, 0]
+          {/* TEXT CONTENT (Right Side in RTL) */}
+          <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-right gap-6">
+            {/* 1. Office Badge */}
+            <motion.div {...fadeUp(0)}>
+              <motion.div
+                animate={{
+                  boxShadow: [
+                    '0 4px 20px rgba(244,196,48,0.35)',
+                    '0 4px 35px rgba(244,196,48,0.65)',
+                    '0 4px 20px rgba(244,196,48,0.35)',
+                  ],
                 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md text-white px-6 py-3 rounded-full text-base md:text-lg font-bold border border-gold/30"
+                transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full font-bold shadow-lg cursor-default"
+                style={{ background: 'linear-gradient(135deg, #C49B1A, #F4C430)', color: '#1A3A52' }}
               >
-                <motion.div
-                  animate={{ rotate: [-5, 5, -5], scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Trophy className="w-6 h-6 text-gold drop-shadow-[0_0_8px_rgba(244,196,48,0.8)]" />
-                </motion.div>
-                <span className="tracking-wide">موثوق من <span className="text-gold">30+</span> شركة عربية ناجحة</span>
+                <Building2 className="w-5 h-5 shrink-0" aria-hidden="true" />
+                <div className="flex flex-col items-start leading-tight">
+                  <strong className="text-[14px]">مكاتب حقيقية في الجزائر</strong>
+                  <span className="text-[12px] font-medium" style={{ color: 'rgba(26,58,82,0.8)' }}>
+                    الجزائر العاصمة | قسنطينة
+                  </span>
+                </div>
               </motion.div>
             </motion.div>
 
-            <motion.h1 
-              variants={fadeUpBlur} 
-              className="text-5xl md:text-6xl lg:text-7xl font-tajawal font-black leading-[1.2] tracking-tight"
-            >
-              <motion.span 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="block"
+            {/* 2. Main Headline */}
+            <h1 className="font-tajawal font-black leading-tight" style={{ fontSize: 'clamp(32px, 5vw, 52px)', textShadow: '0 0 40px rgba(244,196,48,0.15)' }}>
+              ابني Business أمريكي صحيح 100%
+              <span
+                className="block mt-3"
+                style={{
+                  backgroundImage: 'linear-gradient(135deg, #F4C430 0%, #FFE17B 50%, #F4C430 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  filter: 'drop-shadow(0 0 18px rgba(244,196,48,0.45))',
+                }}
               >
-                أسس شركتك الأمريكية
-              </motion.span>
-              <motion.span 
-                initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                transition={{ duration: 1, delay: 0.5, type: "spring", bounce: 0.4 }}
-                className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-gold via-yellow-200 to-gold bg-[length:200%_auto] animate-gradient mt-2 mb-2 drop-shadow-[0_0_15px_rgba(244,196,48,0.3)]"
-              >
-                LLC
-              </motion.span>
-              <br />
-              <motion.span 
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="block text-3xl md:text-4xl lg:text-5xl text-white/90 font-bold mt-2"
-              >
-                في <span className="text-gold relative inline-block">
-                  7 أيام
-                  <motion.span 
-                    initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 0.8, delay: 1.5 }}
-                    className="absolute -bottom-2 right-0 h-1.5 bg-gold rounded-full"
-                  />
-                </span> فقط
-              </motion.span>
-            </motion.h1>
+                بدون غلق حساباتك البنكية
+               <br />لأننا نقدم عنواناً حقيقياً!
+              </span>
+            </h1>
 
-            <motion.p variants={fadeUpBlur} className="text-xl md:text-2xl text-light-gray max-w-lg leading-relaxed">
-              ادفع 39$ فقط الآن، وأكمل الباقي بعد تأسيس شركتك
+            {/* 3. Pre-headline / Subtext */}
+            <motion.p {...fadeUp(0.1)} className="text-[18px] font-semibold leading-[1.6] text-white opacity-90 max-w-xl">
+              نحن لا نعطيك أوراق LLC فقط. نقدم لك نظام متكامل تبدأ شركتك وتجارتك براحة بال وضمان قانوني شامل.
             </motion.p>
 
-            <motion.div variants={fadeUpBlur} className="space-y-4">
-              {[
-                'استقبل مدفوعات عالمية (Stripe, PayPal, Wise)',
-                'افتح حسابات بنكية أمريكية (Mercury, Relay)',
-                'وفر آلاف الدولارات في الرسوم سنوياً'
-              ].map((point, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="w-4 h-4 text-gold" />
+            {/* 4. CTA Buttons */}
+            <motion.div {...fadeUp(0.2)} className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto">
+              {/* Primary CTA */}
+              <a
+                href="#consultation"
+                className="flex flex-col items-center justify-center font-bold rounded-xl py-4 flex-1 shadow-xl transition-transform hover:-translate-y-1"
+                style={{ background: 'linear-gradient(135deg, #C49B1A, #F4C430)', color: '#1A3A52' }}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="font-black text-xl">احجز استشارة مجانية</span>
+                  <span className="text-2xl" aria-hidden="true">📅</span>
+                </div>
+                <span className="text-sm opacity-80 mt-1">15 دقيقة — بدون التزام</span>
+              </a>
+
+              {/* Secondary CTA */}
+              <a
+                href="#how-it-works"
+                className="flex flex-col items-center justify-center text-white font-bold rounded-xl py-4 px-6 flex-1 transition-all hover:bg-white/10"
+                style={{ background: 'rgba(255,255,255,0.05)', border: '2px solid rgba(255,255,255,0.2)' }}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="font-black text-xl">كيف يعمل النظام؟</span>
+                  <span className="text-2xl" aria-hidden="true">📖</span>
+                </div>
+              </a>
+            </motion.div>
+          </div>
+
+          {/* IMAGE CONTENT (Left Side in RTL) */}
+          <motion.div {...fadeUp(0.3)} className="flex-1 w-full max-w-[500px] flex justify-center relative">
+             <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl" style={{ border: '4px solid rgba(244,196,48,0.2)' }}>
+                {/* User's Uploaded Photo */}
+                <Image 
+                  src="/hero-founder.jpg" 
+                  alt="مؤسس الشركة" 
+                  fill
+                  className="object-cover rounded-3xl"
+                />
+                
+                {/* Floating Assurance Badge overlay */}
+                <div className="absolute bottom-4 right-4 left-4 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 shadow-lg flex items-center gap-3">
+                   <div className="rounded-full bg-green-500/20 p-2 border border-green-500/30">
+                      <ShieldCheck className="w-6 h-6 text-[#4caf50]" />
+                   </div>
+                   <div>
+                      <p className="font-bold text-white text-sm">التزام بالمصداقية</p>
+                      <p className="text-xs text-white/80">نحن معك بخبرة وتواجد حقيقي.</p>
+                   </div>
+                </div>
+             </div>
+             
+             {/* Glowing backdrop for image */}
+             <div className="absolute inset-0 -z-10 bg-[#F4C430] blur-[100px] opacity-20 rounded-full" />
+          </motion.div>
+        </div>
+
+
+        {/* ── Bottom Section: Value Grid & Trust Proof ── */}
+        <div className="flex flex-col items-center gap-12 w-full mt-8">
+          
+          {/* Trust Bar */}
+          <motion.div
+            {...fadeUp(0.4)}
+            className="w-full flex justify-center"
+          >
+            <div className="w-full max-w-4xl flex flex-wrap justify-center gap-5 md:gap-10 rounded-2xl px-6 py-6" style={glassCard}>
+              {trustBarItems.map((item, i) => (
+                <div key={i} className="flex items-center gap-3 min-w-[140px]">
+                  <span aria-hidden="true" className="shrink-0">{item.icon}</span>
+                  <div className="flex flex-col text-right">
+                    <strong className="text-white font-bold leading-tight" style={{ fontSize: '15px' }}>
+                      {item.strong}
+                    </strong>
+                    <small className="text-white" style={{ fontSize: '12px', opacity: 0.82 }}>
+                      {item.small}
+                    </small>
                   </div>
-                  <span className="text-lg text-white/90">{point}</span>
                 </div>
               ))}
-            </motion.div>
+            </div>
+          </motion.div>
 
-            <motion.div variants={fadeUpBlur} className="flex flex-col sm:flex-row gap-4 pt-4">
-              <a href="#pricing" className="group relative overflow-hidden bg-gold text-navy font-bold px-8 py-4 rounded-xl text-center text-lg hover-lift hover-glow-gold border-beam flex items-center justify-center gap-2 focus-ring">
-                <span className="relative z-10">ابدأ الآن - 39$ فقط</span>
-              </a>
-              <a href="#contact" className="bg-white/5 backdrop-blur-md border border-white/10 text-white font-bold px-8 py-4 rounded-xl text-center text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2 hover-lift focus-ring">
-                استشارة مجانية <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
-              </a>
-            </motion.div>
-
-            <motion.div variants={fadeUpBlur} className="flex flex-wrap gap-4 pt-6 border-t border-white/10">
-              {[
-                { icon: Zap, text: "تأسيس خلال 5-7 أيام" },
-                { icon: ShieldCheck, text: "معدل نجاح 100%" },
-                { icon: Lock, text: "دفع آمن" }
-              ].map((feature, i) => (
-                <motion.div 
+          {/* Value Highlights */}
+          <motion.div {...fadeUp(0.5)} className="w-full text-center">
+            <h3 className="font-bold text-white mb-8" style={{ fontSize: 'clamp(20px, 4vw, 28px)', textShadow: '0 0 30px rgba(244,196,48,0.2)' }}>
+              ✅ دليل أننا شركة حقيقية (ومكاتبنا بالجزائر):
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+              {proofCards.map((card, i) => (
+                <motion.div
                   key={i}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2.5 rounded-lg backdrop-blur-sm shadow-sm cursor-default transition-colors hover:bg-white/10 hover:border-gold/30"
+                  whileHover={{ y: -8, boxShadow: '0 16px 45px rgba(0,0,0,0.4)' }}
+                  transition={{ duration: 0.28 }}
+                  className="rounded-2xl p-7 flex flex-col items-center gap-4 text-center"
+                  style={card.highlight ? glassCardHighlight : glassCard}
                 >
-                  <feature.icon className="w-5 h-5 text-gold" /> 
-                  <span className="text-base font-medium text-white/90">{feature.text}</span>
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: 'rgba(244,196,48,0.12)', border: '1px solid rgba(244,196,48,0.3)' }}>
+                    {card.icon}
+                  </div>
+                  <h4 className="font-bold text-[#F4C430] text-lg">{card.title}</h4>
+                  <p className="leading-relaxed text-white text-sm">
+                    {card.desc}<br />
+                    <strong className="font-bold">{card.strong}</strong>
+                  </p>
+                  <a 
+                    href={card.link} 
+                    className="font-semibold hover:underline transition-all text-[#F4C430] text-sm"
+                    target={card.link.startsWith('http') ? "_blank" : undefined}
+                    rel={card.link.startsWith('http') ? "noopener noreferrer" : undefined}
+                  >
+                    {card.linkText}
+                  </a>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
-
-          {/* Right Visual - Floating Glass Card with Parallax */}
-          <motion.div 
-            style={{ y: foregroundY }}
-            initial={{ opacity: 0, scale: 0.8, filter: 'blur(20px)' }}
-            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-            className="relative hidden md:block perspective-1000"
-          >
-            <motion.div 
-              animate={{ y: [-10, 10, -10], rotateX: [2, -2, 2], rotateY: [-2, 2, -2] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative bg-white/10 border border-white/20 rounded-2xl p-8 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] transform-style-3d"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl pointer-events-none"></div>
-              <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6 relative z-10">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-[0_0_10px_rgba(234,179,8,0.5)]"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
-                </div>
-                <div className="text-xs text-white/50 font-mono bg-black/20 px-2 py-1 rounded">dashboard.go-llc.com</div>
-              </div>
-              <div className="space-y-6 relative z-10">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold/40 to-gold/10 border border-gold/30 flex items-center justify-center shadow-[0_0_20px_rgba(244,196,48,0.2)]">
-                    <ShieldCheck className="w-7 h-7 text-gold" />
-                  </div>
-                  <div>
-                    <div className="text-xl font-bold text-white">LLC Approved</div>
-                    <div className="text-sm text-white/60 flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Wyoming, USA
-                    </div>
-                  </div>
-                </div>
-                <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
-                    className="h-full bg-gradient-to-r from-gold to-yellow-200 shadow-[0_0_10px_rgba(244,196,48,0.5)]"
-                  ></motion.div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-black/20 p-4 rounded-xl border border-white/5 hover:bg-black/30 transition-colors">
-                    <div className="text-white/50 text-xs mb-1">EIN Number</div>
-                    <div className="font-mono text-sm text-white/90">XX-XXXXXXX</div>
-                  </div>
-                  <div className="bg-black/20 p-4 rounded-xl border border-white/5 hover:bg-black/30 transition-colors">
-                    <div className="text-white/50 text-xs mb-1">Bank Status</div>
-                    <div className="text-green-400 text-sm flex items-center gap-1 font-medium"><CheckCircle2 className="w-4 h-4"/> Active</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-
+          
         </div>
       </div>
     </section>

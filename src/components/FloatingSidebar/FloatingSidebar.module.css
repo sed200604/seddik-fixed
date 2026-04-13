@@ -1,0 +1,120 @@
+/* ================================
+   STICKY SIDEBAR (Desktop Only)
+   ================================ */
+
+/* We're using position: fixed instead of sticky to prevent layout breakage */
+.floatingSidebar {
+  display: none; /* Hidden on mobile */
+  position: fixed;
+  top: 20%;
+  left: 32px; /* RTL means it goes on the left edge */
+  width: 280px;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1280px) {
+  .floatingSidebar {
+    display: block;
+  }
+}
+
+.card {
+  background: linear-gradient(180deg, #0A1628, #1A3A52);
+  border: 2px solid rgba(244, 196, 48, 0.3);
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 16px 32px rgba(10, 22, 40, 0.4);
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #F4C430, #D4A017);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 16px;
+}
+
+.title {
+  color: #F4C430;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.features {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #FFFFFF;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature:last-child {
+  border-bottom: none;
+}
+
+.check {
+  color: #28A745;
+  font-size: 14px;
+}
+
+.cta {
+  display: block;
+  width: 100%;
+  background: linear-gradient(90deg, #C49B1A, #F4C430);
+  color: #0A1628;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 196, 48, 0.4);
+}
+
+/* Office Image (Optional) */
+.office {
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(244, 196, 48, 0.2);
+}
+
+.officeImage {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.officeLabel {
+  background: rgba(244, 196, 48, 0.1);
+  padding: 8px;
+  font-size: 12px;
+  color: #F4C430;
+  text-align: center;
+}
