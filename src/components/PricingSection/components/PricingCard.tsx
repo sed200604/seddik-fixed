@@ -22,7 +22,7 @@ export default function PricingCard({ pkg, active }: PricingCardProps) {
     btnClass = styles.ctaPremium;
   }
 
-  const basePrice = parseInt(pkg.price);
+  const basePrice = pkg.price;
   const totalPrice = includesWyoming ? basePrice + 60 : basePrice;
 
   return (
