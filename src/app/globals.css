@@ -82,3 +82,94 @@ html {
 @keyframes rotate {
   100% { transform: rotate(360deg); }
 }
+
+/* ================================
+   PERFORMANCE OPTIMIZATIONS
+   ================================ */
+
+/* Box model reset - prevents CLS */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Remove tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent layout shifts from images without dimensions */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix 100vh on mobile browsers */
+.full-height {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Prevent horizontal overflow */
+html, body {
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+
+/* GPU-accelerate fixed/sticky elements */
+.sticky, [class*="sticky"],
+.fixed, [class*="fixed"] {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Smooth scroll - respects user preference */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Respect reduced motion preference - accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Fix input font-size on iOS to prevent zoom */
+input, select, textarea {
+  font-size: max(16px, 1em);
+}
+
+/* Skeleton loader - for dynamic content placeholders */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e8e8e8 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Z-index scale - prevents conflicts between fixed elements */
+:root {
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-toast: 800;
+}

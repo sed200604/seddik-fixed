@@ -1,21 +1,25 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
+
+// Above-fold — load immediately
 import Hero from '../components/Hero';
-import TrustBar from '../components/TrustBar';
-import ProblemSolution from '../components/ProblemSolution';
-import WhyDifferent from '../components/WhyDifferent';
-import PricingSection from '../components/PricingSection';
-import Process from '../components/Process';
-import SolutionSystem from '../components/SolutionSystem';
-import FinalCTA from '../components/FinalCTA';
-import Footer from '../components/Footer';
-import FloatingWhatsApp from '../components/FloatingWhatsApp';
-import ReadingProgress from '../components/ReadingProgress';
 import Header from '../components/Header';
 
-// New Components replacing CTA flow
-import StickyCTABar from '../components/StickyCTABar/StickyCTABar';
-import FloatingSidebar from '../components/FloatingSidebar/FloatingSidebar';
-import ConsultationSection from '../components/ConsultationSection/ConsultationSection';
+// Below-fold — lazy loaded to reduce initial bundle
+const TrustBar         = dynamic(() => import('../components/TrustBar'));
+const ProblemSolution  = dynamic(() => import('../components/ProblemSolution'));
+const WhyDifferent     = dynamic(() => import('../components/WhyDifferent'));
+const PricingSection   = dynamic(() => import('../components/PricingSection'));
+const Process          = dynamic(() => import('../components/Process'));
+const SolutionSystem   = dynamic(() => import('../components/SolutionSystem'));
+const ConsultationSection = dynamic(() => import('../components/ConsultationSection/ConsultationSection'));
+const Footer           = dynamic(() => import('../components/Footer'));
+
+// Fixed UI — lazy loaded (ssr handled per component via useEffect)
+const FloatingWhatsApp = dynamic(() => import('../components/FloatingWhatsApp'));
+const ReadingProgress  = dynamic(() => import('../components/ReadingProgress'));
+const StickyCTABar     = dynamic(() => import('../components/StickyCTABar/StickyCTABar'));
+const FloatingSidebar  = dynamic(() => import('../components/FloatingSidebar/FloatingSidebar'));
 
 export const metadata: Metadata = {
   title: 'Go LLC - أسس شركتك الأمريكية بسهولة',
@@ -41,8 +45,8 @@ export default function Home() {
     <div className="min-h-screen font-cairo overflow-x-hidden relative">
       <ReadingProgress />
       <Header />
-      
-      {/* Absolute fixed layer for extra UI pieces */}
+
+      {/* Fixed overlay UI */}
       <StickyCTABar />
       <FloatingSidebar />
       <FloatingWhatsApp />
@@ -55,8 +59,6 @@ export default function Home() {
         <SolutionSystem />
         <PricingSection />
         <Process />
-        
-        {/* We place ConsultationSection just below the Calendly interactive form, replacing FinalCTA */}
         <ConsultationSection />
       </main>
       <Footer />

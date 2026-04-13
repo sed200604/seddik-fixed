@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import './globals.css';
 import FacebookPixel from '../components/FacebookPixel';
@@ -11,8 +11,14 @@ export const metadata: Metadata = {
     shortcut: '/favicon.png?v=3',
     apple: '/favicon.png?v=3',
   },
+  robots: { index: true, follow: true },
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#1A3A52',
+};
 
 export default function RootLayout({
   children,
@@ -22,10 +28,24 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
+        {/* Favicons */}
         <link rel="icon" type="image/png" href="/favicon.png?v=3" />
         <link rel="shortcut icon" type="image/png" href="/favicon.png?v=3" />
         <link rel="apple-touch-icon" href="/favicon.png?v=3" />
-        {/* Google tag 1 (gtag.js) - AW-17998077641 */}
+
+        {/* Preconnect to external origins - speeds up font + analytics loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+
+        {/* Fonts with display=swap to prevent render blocking */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap&subset=arabic"
+          rel="stylesheet"
+        />
+
+        {/* Google Ads - afterInteractive to not block first paint */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-17998077641"
           strategy="afterInteractive"
@@ -36,16 +56,6 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-17998077641');
-          `}
-        </Script>
-
-        {/* Google tag 2 (gtag.js) - AW-17998153005 */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17998153005"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics-2" strategy="afterInteractive">
-          {`
             gtag('config', 'AW-17998153005');
           `}
         </Script>
