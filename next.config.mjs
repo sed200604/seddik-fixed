@@ -58,6 +58,19 @@ const nextConfig = {
       },
     ];
   },
+
+  async rewrites() {
+    return [
+      {
+        source: '/workshop-2',
+        destination: '/workshop-2.html',
+      },
+      {
+        source: '/book',
+        destination: '/book.html',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
