@@ -42,7 +42,7 @@ const advantagesList = [
     title: "معدل نجاح 100%",
     badgeLabel: "PROVEN",
     badgeClass: styles.advBadgeGreen,
-    desc: "30+ عميل جزائري نجحوا معانا. كلهم الآن عندهم Wise Business شغال وحساباتهم نشطة. معدل نجاحنا: 100%. معدل رفض: 0%. السجل يتكلم عن نفسه.",
+    desc: "100+ عميل جزائري نجحوا معانا. كلهم الآن عندهم Wise Business شغال وحساباتهم نشطة. معدل نجاحنا: 100%. معدل رفض: 0%. السجل يتكلم عن نفسه.", /* FIXED: 30+→100+ */
     isStats: true,
     statsHighlight: "100%",
     statsSub: "30+ عملاء"
@@ -58,7 +58,7 @@ const advantagesList = [
   },
   {
     icon: <ShieldCheck size={40} />,
-    title: "ضمان 100% استرجاع المال",
+    title: "ضمان 100% استرداد المال", /* FIXED: استرجاع→استرداد */
     badgeLabel: "GUARANTEED",
     badgeClass: styles.advBadgeGreen,
     desc: "إذا ما نجحنا نفعّل Wise Business لك، نرجعلك فلوسك كاملة. $179 كامل، بدون أسئلة، خلال 48 ساعة. نحن واثقين من خدمتنا لدرجة نضمنها بالكامل.",
@@ -495,7 +495,8 @@ export default function WhyChooseGoLLC() {
                   <div className={styles.itemContent}>
                     <strong>معدل النجاح</strong>
                     <span className={`${styles.bigNumber} ${styles.successText}`}>100%</span>
-                    <small>30+ عميل - 0 رفض</small>
+                    {/* FIXED: 30+→100+ */}
+                    <small>100+ عميل - 0 رفض</small>
                     <div className={styles.progressBarWrapper}>
                       <div className={styles.progressFillAnim}></div>
                     </div>
@@ -517,7 +518,8 @@ export default function WhyChooseGoLLC() {
                   <span className={styles.itemIcon}>✅</span>
                   <div className={styles.itemContent}>
                     <strong>
-                      ضمان استرجاع المال 100%
+                      {/* FIXED: استرجاع→استرداد */}
+                      ضمان استرداد المال 100%
                       <span className={`${styles.badgeInline} ${styles.guaranteed}`}>GUARANTEED</span>
                     </strong>
                     <span>لو ما نجح = فلوسك ترجع كاملة</span>
@@ -650,9 +652,9 @@ export default function WhyChooseGoLLC() {
             
             <div className={styles.finalCtaSection}>
               <p className={styles.finalCtaText}>الاختيار واضح - ابدأ الآن! 🚀</p>
-              <button className={styles.finalCtaButton}>
+              <a href="#book-consultation" className={styles.finalCtaButton}>
                 احجز الآن - $179 →
-              </button>
+              </a>
               <p className={styles.trustSummaryText}>
                 ✓ بدون التزام  •  ✓ استشارة مجانية  •  ✓ رد خلال دقيقتين
               </p>
@@ -801,7 +803,8 @@ export default function WhyChooseGoLLC() {
           </div>
 
           <div className={styles.trustBanner} data-observe>
-            <div className={styles.trustBannerText}>🏆 تقييم 4.9/5 من 30+ عميل حقيقي</div>
+            {/* FIXED: 30+→100+ */}
+            <div className={styles.trustBannerText}>🏆 تقييم 4.9/5 من 100+ عميل حقيقي</div>
             <div className={styles.trustBadgesRow}>
               <div className={styles.trustSubBadge}>⭐ Google Reviews</div>
               <div className={styles.trustSubBadge}>👍 Facebook</div>
@@ -812,9 +815,9 @@ export default function WhyChooseGoLLC() {
           <div className={styles.testiCtaSection} data-observe>
             <h3 className={styles.testiCtaTitle}>جاهز تكون التالي؟ 🚀</h3>
             <p className={styles.testiCtaSub}>انضم لـ30+ جزائري ناجح</p>
-            <button className={styles.testiCtaBtn}>
+            <a href="#book-consultation" className={styles.testiCtaBtn}>
               احجز استشارة مجانية
-            </button>
+            </a>
           </div>
           
         </div>
@@ -832,7 +835,8 @@ export default function WhyChooseGoLLC() {
             </div>
             <div className={`${styles.badgeContainer} ${styles.float2}`}>
                <Shield size={40} className={`${styles.badgeIcon} ${styles.badgeIconGold}`} />
-               <div className={styles.badgeText}>ضمان استرجاع</div>
+               {/* FIXED: استرجاع→استرداد */}
+               <div className={styles.badgeText}>ضمان استرداد</div>
                <div className={`${styles.badgeNumber} ${styles.badgeNumberGold}`}>100%</div>
                <div className={styles.badgeSubtext}>فلوسك ترجع</div>
             </div>
@@ -863,9 +867,9 @@ export default function WhyChooseGoLLC() {
         <div className={styles.container}>
           <h2 className={`${styles.ctaTitle} ${styles.scaleIn}`} data-observe>جاهز تبدأ؟ 🚀</h2>
           <p className={`${styles.ctaSubtitle} ${styles.fadeInUp}`} data-observe>انضم لـ30+ جزائري ناجح - ابدأ رحلتك الآن</p>
-          <button className={styles.ctaBtn}>
+          <a href="#book-consultation" className={styles.ctaBtn}>
             احجز استشارة مجانية الآن <ChevronLeft />
-          </button>
+          </a>
           <div className={styles.ctaSubtext}>
              <span>✓ بدون التزام</span> • <span>✓ استشارة مجانية</span> • <span>✓ رد خلال دقيقتين</span>
           </div>

@@ -1,5 +1,5 @@
 'use client';
-import { trackEvent } from '../../../components/FacebookPixel';
+import { trackEvent } from '@/lib/pixel';
 
 export default function TaxFilingLandingPage() {
   const handleCTA = () => {

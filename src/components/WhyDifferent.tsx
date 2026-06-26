@@ -406,12 +406,13 @@ export default function WhyDifferent() {
                     cardBorder: 'rgba(229,57,53,0.2)', cardBg: 'rgba(229,57,53,0.03)',
                     content: (
                       <>
-                        بعد 4 أشهر من فتح Wise Business، وصله:{' '}
+                        {/* FIXED: Broken sentence in Mohammed's story - Problem section */}
+                        بعد 4 أشهر من فتح Wise Business، وصله إشعار{' '}
                         <span className="font-bold px-1.5 rounded"
                           style={{ color: '#E53935', background: 'rgba(229,57,53,0.08)' }}>
                           &lsquo;Your account is under review&rsquo;
                         </span>
-                        . في الحساب <strong style={{ color: '#0A1628' }}>$8,000</strong> من العملاء!
+                        {' '}وكان لديه <strong style={{ color: '#0A1628' }}>$8,000</strong> في الحساب من العملاء!
                       </>
                     ),
                   },
@@ -421,6 +422,7 @@ export default function WhyDifferent() {
                     cardBorder: 'rgba(244,196,48,0.3)', cardBg: 'rgba(244,196,48,0.04)',
                     content: (
                       <>
+                        {/* FIXED: Broken sentence in Mohammed's story - Action section */}
                         اتصل بنا الساعة 9 مساءً — رددنا خلال{' '}
                         <strong style={{ color: '#0A1628' }}>20 دقيقة</strong>.
                         اتصلنا بـ Wise فوراً، فهمنا المشكلة وجهّزنا المستندات.
@@ -464,7 +466,7 @@ export default function WhyDifferent() {
               <motion.div variants={fadeUp} className="text-center mt-8">
                 <p className="text-sm mb-5" style={{ color: '#6B7280' }}>تريد نفس الدعم؟ فريق يبقى معك؟</p>
                 <motion.a
-                  href="#consultation"
+                  href="#book-consultation"
                   whileHover={{ y: -3, scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ duration: 0.2 }}
@@ -510,9 +512,11 @@ export default function WhyDifferent() {
                 style={{ background: 'linear-gradient(90deg, #C49B1A, #F4C430)', color: '#0A1628' }}>
                 <span className="text-2xl mb-0.5">🚀</span>
                 <span className="text-base font-black">ابدأ مع الفريق الصحيح</span>
-                <span className="text-xs opacity-70 mt-0.5">LLC + كتاب مجاني + دعم مدى الحياة</span>
+                {/* FIXED: Support duration contradiction */}
+                <span className="text-xs opacity-70 mt-0.5">LLC + كتاب مجاني + دعم مستمر حتى 90 يوم</span>
               </motion.a>
-              <motion.a href="#book"
+              {/* FIXED: Broken anchor link - Free Book section */}
+              <motion.a href="#book-consultation"
                 whileHover={{ y: -4, borderColor: 'rgba(244,196,48,0.5)' }}
                 whileTap={{ scale: 0.97 }} transition={{ duration: 0.25 }}
                 className="flex flex-col items-center text-white font-bold py-4 px-8 rounded-2xl min-h-[64px] justify-center transition-colors"
@@ -523,7 +527,8 @@ export default function WhyDifferent() {
               </motion.a>
             </div>
             <p className="text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>
-              ✅ دعم مدى الحياة &nbsp;|&nbsp; ✅ نتصل بالبنك نيابة عنك &nbsp;|&nbsp; ✅ كتاب مجاني قيمته $97
+              {/* FIXED: Support duration contradiction */}
+              ✅ دعم مستمر حتى 90 يوم &nbsp;|&nbsp; ✅ نتصل بالبنك نيابة عنك &nbsp;|&nbsp; ✅ كتاب مجاني قيمته $97
             </p>
           </motion.div>
 
@@ -551,7 +556,7 @@ export default function WhyDifferent() {
                 الفرق واضح: نحن لا نبيع خدمة —{' '}
                 <span style={{ color: '#F4C430' }} className="font-black">نبيع شراكة 💛</span>
               </p>
-              <motion.a href="#consultation"
+              <motion.a href="#book-consultation"
                 whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
                 transition={{ duration: 0.18 }}
                 className="shrink-0 font-black text-sm md:text-base py-3 px-6 rounded-xl whitespace-nowrap min-h-[48px] flex items-center"

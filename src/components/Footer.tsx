@@ -1,5 +1,5 @@
 'use client';
-import { Shield, Facebook, Instagram, Linkedin, MessageCircle } from 'lucide-react';
+import { Shield, MessageCircle } from 'lucide-react'; /* FIXED: Removed unused Facebook/Instagram/Linkedin imports */
 import { motion } from 'motion/react';
 import Link from 'next/link';
 
@@ -16,11 +16,9 @@ export default function Footer() {
               <span>Go LLC</span>
             </Link>
             <p className="text-medium-gray mb-6">شريكك في تأسيس الشركات الأمريكية. نبسط لك الإجراءات المعقدة لتنطلق عالمياً.</p>
+            {/* FIXED: Empty social media links - removed Facebook/Instagram/LinkedIn (no real pages yet) */}
             <div className="flex gap-4">
-              <a href="#" aria-label="فيسبوك" className="text-medium-gray hover:text-gold transition-colors p-2 -ml-2"><Facebook className="w-6 h-6" /></a>
-              <a href="#" aria-label="انستغرام" className="text-medium-gray hover:text-gold transition-colors p-2"><Instagram className="w-6 h-6" /></a>
-              <a href="#" aria-label="لينكد إن" className="text-medium-gray hover:text-gold transition-colors p-2"><Linkedin className="w-6 h-6" /></a>
-              <a href="https://wa.me/213791789125" target="_blank" rel="noopener noreferrer" aria-label="واتساب" className="text-medium-gray hover:text-gold transition-colors p-2"><MessageCircle className="w-6 h-6" /></a>
+              <a href="https://wa.me/213791789125" target="_blank" rel="noopener noreferrer" aria-label="واتساب" className="text-medium-gray hover:text-gold transition-colors p-2 -ml-2"><MessageCircle className="w-6 h-6" /></a>
             </div>
           </motion.div>
 

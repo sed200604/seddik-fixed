@@ -5,7 +5,8 @@ export default function GuaranteeBox() {
   return (
     <div className={styles.guaranteeBox}>
       <div className={styles.guaranteeIcon} role="img" aria-label="🛡️">🛡️</div>
-      <h3 className={styles.guaranteeHeadline}>ضماننا لك: رضاك 100% أو استرجاع أموالك</h3>
+      {/* FIXED: استرجاع→استرداد */}
+      <h3 className={styles.guaranteeHeadline}>ضماننا لك: رضاك 100% أو استرداد أموالك</h3>
       
       <p className={styles.guaranteeText}>
         نحن واثقون من جودة خدماتنا. إذا لم تكن راضياً 100% 
@@ -27,7 +28,8 @@ export default function GuaranteeBox() {
       <div className={styles.guaranteeSmall}>
         * الضمان يشمل جودة خدمة التأسيس والإعداد<br/>
         * خلال 7 أيام من بدء العمل<br/>
-        * استرجاع كامل بدون أسئلة
+        {/* FIXED: استرجاع→استرداد */}
+        * استرداد كامل بدون أسئلة
       </div>
     </div>
   );

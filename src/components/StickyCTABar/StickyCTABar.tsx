@@ -7,15 +7,18 @@ export default function StickyCTABar() {
   const [isMinimized, setIsMinimized] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsVisible(window.scrollY > 300);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Check initial state
 
     return () => window.removeEventListener('scroll', handleScroll);
@@ -65,7 +68,14 @@ export default function StickyCTABar() {
         </div>
 
         {/* CTA Button */}
-        <a href="#book-consultation" className={styles.button}>
+        <a
+          href="#book-consultation"
+          className={styles.button}
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('book-consultation')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
+        >
           <span>احجز استشارتك الآن</span>
           <span className={styles.arrow}>←</span>
         </a>

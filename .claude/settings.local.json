@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm run:*)",
-      "Bash(grep -n \"^  {$\\\\|  id:\" \"c:/Users/star/Desktop/seddik-fixed/src/data/articles.ts\")"
+      "Bash(grep -n \"^  {$\\\\|  id:\" \"c:/Users/star/Desktop/seddik-fixed/src/data/articles.ts\")",
+      "Bash(python \".claude/skills/ui-ux-pro-max/scripts/search.py\" \"luxury legal service LLC formation Arabic RTL mobile editorial premium navy gold restraint\" --design-system -p \"GO LLC\" -f markdown)"
     ]
   }
 }

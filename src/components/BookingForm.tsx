@@ -47,7 +47,7 @@ interface BookingFormProps {
 }
 
 export default function BookingForm({
-  title = "احجز استشارتك المجانية",
+  title = "قم بعمل شركتك امريكية في وايومينغ الان",
   subtitle = "15 دقيقة لنناقش كيف نساعدك في تأسيس شركتك الأمريكية",
   isTaxFiling = false
 }: BookingFormProps) {
@@ -185,6 +185,29 @@ export default function BookingForm({
             budget: formData.budget,
           });
         }
+
+        // Send Email Notification
+        const emailPayload = {
+          "الاسم": formData.name,
+          "رقم الهاتف": `${formData.countryCode}${formData.phone}`,
+          "اسم الشركة": formData.hasLlc === 'yes' ? 'يمتلك شركة بالفعل' : 'لا يمتلك شركة',
+          "قطاع النشاط": isTaxFiling ? 'Tax Filing' : formData.industry.join(', '),
+          _subject: "🎉 تسجيل جديد في الاستشارة!"
+        };
+
+        await Promise.all([
+          fetch('https://formsubmit.co/ajax/sed200604@gmail.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(emailPayload)
+          }),
+          fetch('https://formsubmit.co/ajax/abenameur231@gmail.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(emailPayload)
+          })
+        ]).catch(console.error);
+        
       } catch (error) {
         console.error('Error submitting form:', error);
       } finally {

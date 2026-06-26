@@ -1,9 +1,9 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import styles from './ConsultationSection.module.css';
 
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwHcrAbRrSHMVzHDE7QrAe2rDgsh1auVGKR8keMKYzyzRS8xkyAbAxqUa8JtdUFi5SU/exec';
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxl24aYlURBbEUfGWyOainFfapB164NtbSaNziA21mJ-GuNho8G0kDEX8M9Ud5tMlRo/exec';
 
 export default function ConsultationSection() {
   const [formData, setFormData] = useState({
@@ -14,29 +14,45 @@ export default function ConsultationSection() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const submittedRef = useRef(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submittedRef.current) return;
+    submittedRef.current = true;
     setIsLoading(true);
-    setSubmitStatus('idle');
 
-    try {
-      await fetch(GOOGLE_SHEET_URL, {
+    // Fire-and-forget — keepalive ensures request survives the redirect
+    fetch(GOOGLE_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      keepalive: true,
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(formData),
+    }).catch(() => {});
+
+    const emailPayload = {
+      "الاسم": formData.name,
+      "رقم الهاتف": formData.phone,
+      "قطاع النشاط": formData.businessType,
+      "الوقت المفضل": formData.preferredTime,
+      _subject: "🎉 طلب استشارة جديد!"
+    };
+
+    await Promise.all([
+      fetch('https://formsubmit.co/ajax/sed200604@gmail.com', {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(emailPayload)
+      }),
+      fetch('https://formsubmit.co/ajax/abenameur231@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(emailPayload)
+      })
+    ]).catch(console.error);
 
-      // no-cors mode means we can't read the response, but if no error thrown it worked
-      setSubmitStatus('success');
-      setFormData({ name: '', phone: '', businessType: '', preferredTime: '' });
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsLoading(false);
-    }
+    window.location.href = `/thank-you?name=${encodeURIComponent(formData.name)}`;
   };
 
   return (
@@ -46,7 +62,7 @@ export default function ConsultationSection() {
         <div className={styles.consultationHeader}>
           <div className={styles.headerBadge}>
             <span className={styles.badgeIcon}>🎯</span>
-            <span className={styles.badgeText}>احجز استشارتك المجانية</span>
+            <span className={styles.badgeText}>قم بعمل شركتك امريكية في وايومينغ الان</span>
           </div>
           
           <h2 className={styles.headerTitle}>

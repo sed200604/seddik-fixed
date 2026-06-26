@@ -13,7 +13,8 @@ export default function ValueHighlights() {
           <h4>اختر Basic إذا:</h4>
           <ul className={styles.valuePoints}>
             <li>تريد فقط التأسيس القانوني</li>
-            <li>عن عندك خبرة في التعامل مع البنوك</li>
+            {/* FIXED: Grammar error عن عندك */}
+            <li>إذا كان لديك خبرة في التعامل مع البنوك</li>
             <li>ميزانية محدودة</li>
             <li>ستفتح الحسابات بنفسك</li>
           </ul>

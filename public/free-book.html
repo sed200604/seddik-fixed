@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GO LLC - الدليل الشامل</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '4560697067476248');
+        fbq('track', 'PageView');
+        fbq('track', 'ViewContent', {content_name: 'go_llc_book_landing', content_category: 'book_funnel'});
+    </script>
+    <!-- End Meta Pixel Code -->
+
+    <script>
+        // Fail-Safe Reveal
+        document.documentElement.classList.add('js-anim');
+        setTimeout(() => {
+            document.querySelectorAll('.reveal-elem:not(.visible)').forEach(el => el.classList.add('visible'));
+        }, 2500);
+    </script>
+
+    <style>
+        :root {
+            --navy: #0A1628;
+            --gold: #F5A623;
+            --red: #E53935;
+            --green: #28A745;
+            --wa: #25D366;
+            --gray: #B0BEC5;
+            --bg-darker: #0B1120;
+            --card-bg: rgba(255,255,255,0.05);
+            --card-border: rgba(244,196,48,0.25);
+            --gold-glow: rgba(244,196,48,0.15);
+        }
+        
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            margin: 0; padding: 0;
+            background: var(--bg-darker);
+            font-family: 'Cairo', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .ltr { direction: ltr; display: inline-block; }
+        
+        /* App Container */
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--bg-darker);
+            min-height: 100svh;
+            position: relative;
+            box-shadow: 0 0 24px rgba(0,0,0,0.5);
+            padding-bottom: 80px;
+        }
+
+        /* Typography */
+        h1 { font-size: 36px; font-weight: 900; line-height: 1.2; margin: 0 0 16px 0; color: #fff; }
+        h2 { font-size: 28px; font-weight: 900; line-height: 1.3; margin: 0 0 24px 0; color: #fff; }
+        p { font-size: 16px; font-weight: 600; line-height: 1.6; color: var(--gray); margin: 0 0 24px 0; }
+        .text-gold { color: var(--gold); }
+        .text-red { color: var(--red); }
+        .text-green { color: var(--green); }
+        
+        .kicker {
+            font-size: 14px; font-weight: 700; color: var(--gold);
+            letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase;
+        }
+
+        /* Layout */
+        section { 
+            padding: 40px 20px; 
+            position: relative;
+        }
+        
+        .gold-divider {
+            height: 1px; width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(244,196,48,0.3), transparent);
+            margin: 0;
+        }
+
+        /* Deep Cards */
+        .deep-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.05), 0 4px 12px rgba(0,0,0,0.2);
+            padding: 24px;
+            position: relative;
+        }
+
+        /* SVG Icons */
+        .svg-icon {
+            stroke: var(--gold);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+        }
+        .svg-icon.drawn {
+            animation: drawSVG 1.5s ease-out forwards;
+        }
+        @keyframes drawSVG { to { stroke-dashoffset: 0; } }
+
+        /* Buttons */
+        .btn {
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; height: 56px;
+            border-radius: 12px; border: none;
+            font-family: 'Cairo', sans-serif; font-size: 18px; font-weight: 800;
+            cursor: pointer; transition: transform 0.2s, opacity 0.2s;
+            position: relative; overflow: hidden;
+        }
+        .btn:active { transform: scale(0.97); }
+        .btn:disabled { opacity: 0.5; pointer-events: none; }
+        
+        .btn-gold { background: var(--gold); color: #0B1120; box-shadow: 0 4px 20px rgba(245,166,35,0.3); border-radius: 14px; }
+        .btn-gold::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+        }
+        .btn-gold.shine::after { animation: shine 1s ease-in-out; }
+        @keyframes shine { 100% { left: 200%; } }
+        
+        .btn-wa { background: var(--wa); color: #fff; }
+
+        /* Form / Quiz Elements */
+        .form-group { margin-bottom: 20px; text-align: right; }
+        .form-group label { display: block; font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .input {
+            width: 100%; height: 52px; padding: 0 16px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--card-border);
+            border-radius: 8px; color: #fff; font-family: 'Cairo', sans-serif;
+            font-size: 16px; transition: border-color 0.2s;
+        }
+        .input:focus { outline: none; border-color: var(--gold); }
+        .input::placeholder { color: rgba(255,255,255,0.3); }
+
+        .chip-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+        .chip {
+            padding: 8px 16px; border-radius: 20px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--card-border);
+            color: var(--gray); font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .chip.active { background: rgba(244,196,48,0.1); border-color: var(--gold); color: var(--gold); }
+
+        /* Reveal Animations (Fail-Safe) */
+        html.js-anim .reveal-elem {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(.2,.7,.3,1), transform 0.7s cubic-bezier(.2,.7,.3,1);
+        }
+        html.js-anim .reveal-elem.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Specific Sections */
+        
+        /* S1 Hero */
+        .s1-hero { 
+            display: flex; flex-direction: column; justify-content: flex-start;
+            background: radial-gradient(circle at 50% 0%, rgba(245,166,35,0.15) 0%, transparent 200px);
+            padding-top: 40px; padding-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bullets { list-style: none; padding: 0; margin: 0 0 32px 0; position: relative; z-index: 2; }
+        .hero-bullets li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; font-size: 16px; font-weight: 600; color: var(--gray); line-height: 2; }
+        .bullet-icon { width: 20px; height: 20px; fill: none; stroke: var(--gold); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 6px; }
+        .urgency-text { text-align: center; font-size: 13px; color: #9CA3AF; margin-top: 8px; font-weight: 700; margin-bottom: 0; position: relative; z-index: 2; }
+
+        .eyebrow {
+            display: block; width: max-content; margin: 0 auto 16px auto;
+            padding: 4px 12px; border-radius: 100px;
+            border: 1px solid var(--gold); color: var(--gold);
+            font-size: 14px; font-weight: 700;
+        }
+        .trust-strip { display: flex; justify-content: space-between; gap: 8px; margin-top: 0; }
+        .trust-card {
+            flex: 1; text-align: center; padding: 12px 8px;
+            background: #131C2E; border: none; border-top: 1px solid var(--gold);
+            border-radius: 12px;
+        }
+        .trust-card span { display: block; font-size: 28px; font-weight: 700; color: var(--gold); }
+        .trust-card small { font-size: 13px; color: #fff; font-weight: 600; }
+
+        /* Section Titles */
+        .section-title { font-size: 13px; color: var(--gold); letter-spacing: 1px; text-align: right; margin-bottom: 16px; font-weight: 700; text-transform: uppercase; }
+
+        /* S2 The Gap Section */
+        #gap-section { background: var(--bg-darker); overflow: hidden; }
+        .contrast-block { margin-bottom: 40px; }
+        .cb-text1 { font-size: 28px; color: #fff; font-weight: 900; margin: 0; opacity: 0; transform: translateY(20px); will-change: transform, opacity; }
+        .cb-text1.anim { opacity: 1; transform: translateY(0); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .cb-line-wrap { margin: 12px 0; height: 2px; }
+        .cb-line { height: 100%; width: 40px; background: linear-gradient(90deg, var(--gold), transparent); transition: width 1s cubic-bezier(0.16, 1, 0.3, 1); will-change: width; }
+        .cb-line.anim { width: 100%; }
+        .cb-text2 { font-size: 28px; color: var(--gold); font-weight: 900; margin: 0; opacity: 0; transform: translateX(-30px); will-change: transform, opacity; }
+        .cb-text2.anim { opacity: 1; transform: translateX(0); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .shake { animation: shakeText 0.2s ease-in-out; }
+        @keyframes shakeText { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
+
+        .death-timeline { position: relative; margin: 0 16px 40px 0; padding-right: 24px; min-height: 180px; }
+        .dt-line-bg { position: absolute; right: 0; top: 4px; bottom: 0; width: 3px; background: rgba(255,255,255,0.05); border-radius: 3px; }
+        .dt-line-fill { position: absolute; right: 0; top: 4px; width: 3px; height: 0; background: linear-gradient(to bottom, var(--green) 0%, var(--wa) 50%, var(--red) 100%); border-radius: 3px; transition: height 2s linear; will-change: height; }
+        .dt-line-fill.anim { height: calc(100% - 4px); }
+
+        .dt-item { position: relative; margin-bottom: 40px; opacity: 0; transform: scale(0.9); will-change: transform, opacity; }
+        .dt-item.anim { opacity: 1; transform: scale(1); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .dt-item:last-child { margin-bottom: 0; }
+        .dt-dot { position: absolute; right: -28px; top: 4px; width: 12px; height: 12px; border-radius: 50%; transform: scale(0); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); will-change: transform; }
+        .dt-dot.anim { transform: scale(1); }
+        .dt-dot.d30 { background: var(--green); }
+        .dt-dot.d45 { background: var(--wa); }
+        .dt-dot.d90 { background: var(--red); width: 16px; height: 16px; right: -30px; top: 2px; }
+        .dt-dot.d90.anim { animation: pulseRed 1.5s infinite; }
+        @keyframes pulseRed { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 50% { transform: scale(1.3); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+
+        .killer-stat-text { font-size: 20px; font-weight: 900; margin-bottom: 16px; opacity: 0; transition: opacity 0.5s; text-align: center; }
+        .killer-stat-text.anim { opacity: 1; }
+        .squares-row { display: flex; gap: 8px; justify-content: center; }
+        .sq-icon { width: 24px; height: 24px; background: #131C2E; border-radius: 4px; opacity: 0; transform: scale(0.5); will-change: transform, opacity; }
+        .sq-icon.anim { opacity: 1; transform: scale(1); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .sq-icon.dead { background: var(--red); animation: deadFlash 0.3s; }
+        .sq-icon.alive { background: var(--gold); box-shadow: 0 0 12px rgba(245,166,35,0.6); }
+        @keyframes deadFlash { 0% { background: #fff; } 100% { background: var(--red); } }
+
+        /* S3 The Story Section */
+        #story-section { padding-top: 24px; }
+        .story-card { background: #131C2E; border: 1px solid rgba(245,166,35,0.15); border-radius: 16px; padding: 28px; opacity: 0; transform: translateY(30px); will-change: transform, opacity; }
+        .story-card.anim { opacity: 1; transform: translateY(0); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        
+        .story-timeline { position: relative; margin-bottom: 24px; padding-left: 28px; text-align: right; }
+        .st-line-bg { position: absolute; left: 8px; top: 12px; bottom: 12px; width: 1px; background: rgba(255,255,255,0.1); }
+        .st-line-fill { position: absolute; left: 8px; top: 12px; width: 1px; height: 0; background: linear-gradient(to bottom, var(--green) 0%, var(--red) 100%); transition: height 1.6s linear; will-change: height; }
+        .st-line-fill.anim { height: calc(100% - 24px); }
+
+        .st-item { position: relative; margin-bottom: 20px; opacity: 0; transform: translateX(20px); font-size: 15px; font-weight: 600; color: var(--gray); will-change: transform, opacity; }
+        .st-item:last-child { margin-bottom: 0; }
+        .st-item.anim { opacity: 1; transform: translateX(0); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .st-icon { position: absolute; left: -25px; top: 0; font-size: 14px; width: 16px; text-align: center; }
+        
+        .st-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 24px 0; opacity: 0; }
+        .st-divider.anim { opacity: 0.3; transition: opacity 0.5s; }
+
+        .st-quote { font-size: 15px; color: var(--gold); font-style: italic; text-align: center; margin-bottom: 8px; font-weight: 700; opacity: 0; }
+        .st-quote.anim { opacity: 1; animation: quoteGlow 2s infinite alternate; transition: opacity 0.5s; }
+        @keyframes quoteGlow { 0% { text-shadow: 0 0 4px rgba(245,166,35,0.2); } 100% { text-shadow: 0 0 12px rgba(245,166,35,0.8); } }
+        .st-attr { font-size: 12px; color: var(--gray); text-align: center; opacity: 0; }
+        .st-attr.anim { opacity: 1; transition: opacity 0.5s; }
+
+        /* S4 Proof Section */
+        #proof-section { padding: 40px 20px 64px 20px; overflow: hidden; }
+        .proof-kicker { font-size: 13px; color: var(--green); text-align: right; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .proof-title { font-size: 26px; color: #fff; font-weight: 900; margin-bottom: 32px; opacity: 0; transform: translateY(20px); will-change: transform, opacity; }
+        .proof-title.anim { opacity: 1; transform: translateY(0); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        .proof-carousel { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 -20px; padding: 0 20px 16px 20px; direction: rtl; }
+        .proof-carousel::-webkit-scrollbar { display: none; }
+        .pc-card { flex: 0 0 280px; min-height: 320px; background: #131C2E; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); overflow: hidden; scroll-snap-align: center; display: flex; flex-direction: column; opacity: 0; transform: translateX(60px); will-change: transform, opacity; }
+        .pc-card.anim { opacity: 1; transform: translateX(0); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        .pc-img-area { height: 190px; position: relative; overflow: hidden; }
+        .pc-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9) contrast(1.05); }
+        .pc-overlay { position: absolute; inset: 0; box-shadow: inset 0 0 40px rgba(19,28,46,0.8); pointer-events: none; }
+        
+        .pc-content { padding: 16px; position: relative; flex: 1; display: flex; flex-direction: column; }
+        .pc-badge { align-self: flex-start; font-size: 11px; color: var(--gold); border: 1px solid var(--gold); border-radius: 99px; padding: 4px 12px; margin-bottom: 8px; }
+        .pc-company { font-size: 16px; color: #fff; font-weight: 700; margin-bottom: 4px; }
+        .pc-detail { font-size: 13px; color: var(--gray); margin-bottom: 0; }
+        .pc-verified { position: absolute; bottom: 16px; left: 16px; font-size: 12px; color: var(--green); display: flex; align-items: center; gap: 4px; font-weight: 600; }
+        .pc-verified::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+        .pc-dots { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+        .pc-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gray); transition: background 0.3s; }
+        .pc-dot.active { background: var(--gold); }
+
+        .vm-header { font-size: 14px; color: var(--gray); text-align: center; margin: 40px 0 20px 0; opacity: 0; }
+        .vm-header.anim { opacity: 1; transition: opacity 0.5s; }
+
+        .vm-card { background: #1A2332; border-radius: 14px; padding: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; opacity: 0; transform: translateY(20px); will-change: transform, opacity; cursor: pointer; }
+        .vm-card.anim { opacity: 1; transform: translateY(0); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        .vm-avatar { width: 40px; height: 40px; border-radius: 50%; background: #0B1120; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+        .vm-center { flex: 1; display: flex; flex-direction: column; gap: 4px; overflow: hidden; text-align: right; }
+        .vm-name-row { display: flex; align-items: center; gap: 8px; justify-content: flex-start; }
+        .vm-name { font-size: 14px; color: #fff; font-weight: 700; }
+        .vm-loc { font-size: 12px; color: var(--gray); }
+
+        .vm-waveform { display: flex; align-items: flex-end; gap: 2px; height: 24px; margin-top: 4px; position: relative; }
+        .vm-bar { width: 2px; background: rgba(255,255,255,0.2); border-radius: 2px; transition: background 0.3s; }
+        .vm-card.playing .vm-bar { animation: wavePulse 1s infinite alternate ease-in-out; background: var(--gold); }
+        @keyframes wavePulse { 0% { transform: scaleY(0.4); } 100% { transform: scaleY(1.3); } }
+
+        .vm-dur { font-size: 12px; color: var(--gray); font-family: monospace; direction: ltr; margin-top: 4px; text-align: left; }
+
+        .vm-play { width: 44px; height: 44px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: none; outline: none; }
+        .vm-play::after { content: ''; width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid #131C2E; margin-left: 4px; }
+        .vm-card.playing .vm-play::after { border: none; width: 12px; height: 12px; background: #131C2E; border-radius: 2px; margin-left: 0; }
+
+        .trust-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 40px; opacity: 0; transform: scale(0.95); will-change: transform, opacity; }
+        .trust-strip.anim { opacity: 1; transform: scale(1); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .ts-badge { border: 1px solid rgba(255,255,255,0.15); border-radius: 99px; padding: 8px 16px; font-size: 13px; color: #fff; transition: border-color 0.3s; }
+        .ts-badge:hover, .ts-badge:active { border-color: var(--gold); }
+
+        /* S5 Inside the Book */
+        #book h2.ib-headline { text-align: right; line-height: 1.4; margin-bottom: 8px; font-size: 26px; }
+        #book .ib-sep { height: 1px; width: 60%; background: linear-gradient(to right, transparent, #F5A623); margin-left: auto; margin-bottom: 32px; }
+
+        .ib-card {
+            width: 100%; border-radius: 14px; padding: 20px;
+            margin-bottom: 12px; text-align: right;
+            display: flex; flex-direction: row-reverse; gap: 16px;
+            align-items: center; position: relative;
+            opacity: 0; transform: translateX(40px); transition: all 0.2s ease;
+        }
+        .ib-card.anim {
+            opacity: 1; transform: translateX(0);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .ib-card::before {
+            content: ''; position: absolute; top: 0; right: 0; height: 100%; width: 0;
+            border-radius: 0 14px 14px 0; transition: width 0.3s ease 0.3s;
+        }
+        .ib-card.anim::before { width: 3px; }
+        .ib-card:hover { transform: translateX(-4px) !important; }
+        .ib-card:hover::before { width: 5px; }
+
+        /* Card colors */
+        .ib-c1 { background: linear-gradient(135deg, #131C2E, #1A2332); }
+        .ib-c1::before { background-color: #F5A623; }
+        .ib-c2, .ib-c3, .ib-c4 { background: #131C2E; }
+        .ib-c2::before { background-color: #F59E0B; }
+        .ib-c3::before { background-color: #EF4444; }
+        .ib-c4::before { background-color: #DC2626; }
+        .ib-c5 { background: linear-gradient(135deg, #0F2A1A, #131C2E); box-shadow: 0 0 30px rgba(34,197,94,0.08); }
+        .ib-c5::before { background-color: #22C55E; }
+
+        /* Icon pulse */
+        .ib-icon { width: 28px; height: 28px; flex-shrink: 0; transform: scale(0.8); transition: transform 0.4s ease 0.2s; display: flex; justify-content: center; align-items: center; }
+        .ib-card.anim .ib-icon { transform: scale(1); }
+        .ib-c1 .ib-icon svg { fill: #F5A623; }
+        .ib-c2 .ib-icon svg { fill: #F59E0B; }
+        .ib-c3 .ib-icon svg { fill: #EF4444; }
+        .ib-c4 .ib-icon svg { fill: #DC2626; }
+        .ib-c5 .ib-icon svg { fill: #22C55E; }
+
+        .ib-content { flex-grow: 1; }
+        .ib-label { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; margin-bottom: 6px; }
+        .ib-c1 .ib-label { background: rgba(245,166,35,0.1); color: #F5A623; }
+        .ib-c2 .ib-label { background: rgba(245,158,11,0.1); color: #F59E0B; }
+        .ib-c3 .ib-label { background: rgba(239,68,68,0.1); color: #EF4444; }
+        .ib-c4 .ib-label { background: rgba(220,38,38,0.1); color: #DC2626; }
+        .ib-c5 .ib-label { background: rgba(34,197,94,0.1); color: #22C55E; }
+
+        .ib-title { font-size: 16px; color: #fff; font-weight: 700; margin-bottom: 4px; line-height: 1.4; }
+        .ib-sub { font-size: 13px; line-height: 1.4; color: #9CA3AF; margin: 0; }
+        .ib-c2 .ib-sub { color: #F59E0B; font-weight: 600; }
+        .ib-c3 .ib-sub { color: #EF4444; font-weight: 700; font-size: 14px; }
+        .ib-c5 .ib-sub { color: #22C55E; font-weight: 700; font-size: 14px; }
+
+        .ib-saved { display: inline-block; border: 1px solid #F5A623; color: #F5A623; padding: 2px 8px; border-radius: 20px; font-size: 11px; margin-top: 8px; }
+
+        @keyframes greenGlow { 0% { box-shadow: 0 0 30px rgba(34,197,94,0.05); } 50% { box-shadow: 0 0 30px rgba(34,197,94,0.12); } 100% { box-shadow: 0 0 30px rgba(34,197,94,0.05); } }
+        .ib-c5 { animation: greenGlow 3s infinite; }
+
+        .ib-anchor { text-align: center; margin-top: 24px; padding: 16px; opacity: 0; transition: opacity 0.5s ease; }
+        .ib-anchor.anim { opacity: 1; }
+        .ib-a-l1 { font-size: 14px; color: #9CA3AF; margin-bottom: 4px; }
+        .ib-a-l1 span { text-decoration: line-through; color: #fff; }
+        .ib-a-l2 { font-size: 20px; font-weight: 700; color: #F5A623; margin-bottom: 2px; position: relative; display: inline-block; }
+        .ib-a-l2::after { content:''; position:absolute; bottom:-2px; right:0; width:0%; height:2px; background:linear-gradient(270deg, transparent, #F5A623); transition: width 1s ease 0.5s; }
+        .ib-anchor.anim .ib-a-l2::after { width: 100%; }
+        .ib-a-l3 { font-size: 12px; color: #9CA3AF; }
+
+        /* S6 Receipt */
+        #receipt-sec { background: radial-gradient(circle at top right, rgba(229,57,53,0.05) 0%, transparent 60%); }
+        .receipt {
+            background: #fff; color: #000; padding: 24px; border-radius: 14px;
+            font-family: 'JetBrains Mono', monospace; font-size: 14px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+        .r-line { display: flex; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px dashed #ccc; padding-bottom: 4px; opacity: 0; }
+        .r-line.visible { opacity: 1; }
+        .r-text { font-family: 'Cairo', sans-serif; font-weight: 700; }
+        .r-total { display: flex; justify-content: space-between; margin-top: 16px; padding-top: 16px; border-top: 2px solid #000; font-size: 18px; font-weight: 800; opacity: 0; }
+        .r-total.visible { opacity: 1; }
+        
+        .flash-green { animation: flashG 1s ease-out; }
+        .flash-red { animation: flashR 1s ease-out, shake 0.4s ease-in-out; }
+        @keyframes flashG { 0% { color: var(--green); transform: scale(1.1); } 100% { color: #000; transform: scale(1); } }
+        @keyframes flashR { 0% { color: var(--red); transform: scale(1.1); } 100% { color: var(--red); transform: scale(1); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
+
+        /* SECTION A: Transition Bridge */
+        .fin-bridge { margin-top: 32px; margin-bottom: 24px; text-align: right; opacity: 0; transition: opacity 0.4s ease; padding: 0 20px; }
+        .fin-bridge.anim { opacity: 1; }
+        .fin-b-text { font-size: 16px; color: #fff; line-height: 1.6; }
+        .fin-b-red { color: #EF4444; font-weight: 700; }
+
+        /* SECTION B: Primary CTA Block */
+        .fin-cta-block { padding: 32px 20px; text-align: center; }
+        .fin-micro { font-size: 13px; color: #9CA3AF; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .fin-micro-icon { color: #F5A623; }
+        .fin-btn {
+            width: 100%; height: 60px; border-radius: 14px; border: none;
+            background: linear-gradient(135deg, #F5A623, #F7C948);
+            font-family: 'Cairo', sans-serif; font-size: 20px; font-weight: 700; color: #0B1120;
+            box-shadow: inset 0 -2px 4px rgba(0,0,0,0.1), 0 4px 24px rgba(245,166,35,0.35);
+            transition: all 0.2s ease; cursor: pointer;
+            transform: translateY(20px); opacity: 0;
+        }
+        .fin-btn.anim { transform: translateY(0); opacity: 1; transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fin-btn:hover, .fin-btn:active { scale: 1.02; box-shadow: inset 0 -2px 4px rgba(0,0,0,0.1), 0 4px 24px rgba(245,166,35,0.5); }
+        .fin-scarcity { font-size: 13px; color: #9CA3AF; margin-top: 16px; }
+        .fin-s-gold { color: #F5A623; font-weight: 700; }
+
+        /* Pulse animation for CTA shadow */
+        @keyframes ctaPulse { 0% { box-shadow: inset 0 -2px 4px rgba(0,0,0,0.1), 0 4px 24px rgba(245,166,35,0.25); } 50% { box-shadow: inset 0 -2px 4px rgba(0,0,0,0.1), 0 4px 24px rgba(245,166,35,0.4); } 100% { box-shadow: inset 0 -2px 4px rgba(0,0,0,0.1), 0 4px 24px rgba(245,166,35,0.25); } }
+        .fin-btn.anim { animation: ctaPulse 3s infinite ease-in-out 0.5s; }
+
+        /* SECTION C: Reverse Guarantee */
+        .fin-guar {
+            background: #131C2E; border: 1px solid rgba(34,197,94,0.2); border-radius: 16px;
+            padding: 28px 20px; margin: 40px 20px 0; text-align: center;
+            opacity: 0; transform: translateY(20px); transition: all 0.5s ease;
+        }
+        .fin-guar.anim { opacity: 1; transform: translateY(0); }
+        .fin-g-icon { margin: 0 auto 16px; width: 60px; height: 60px; background: radial-gradient(circle, rgba(34,197,94,0.1) 0%, transparent 60%); display: flex; align-items: center; justify-content: center; transform: rotate(-10deg) scale(0.9); transition: all 0.4s ease 0.2s; }
+        .fin-guar.anim .fin-g-icon { transform: rotate(0deg) scale(1); }
+        .fin-g-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+        .fin-g-body { font-size: 15px; color: #fff; line-height: 1.8; margin-bottom: 8px; }
+        .fin-g-punch { font-size: 16px; font-weight: 700; color: #22C55E; opacity: 0; transition: opacity 0.3s ease 0.5s; }
+        .fin-guar.anim .fin-g-punch { opacity: 1; }
+        .fin-g-line { height: 1px; width: 40%; background: #22C55E; opacity: 0.3; margin: 24px auto 0; }
+
+        /* SECTION D: Brand Anchor */
+        .fin-brand { margin-top: 48px; text-align: center; opacity: 0; transition: opacity 0.6s ease; }
+        .fin-brand.anim { opacity: 1; }
+        .fin-br-line { height: 2px; width: 40px; background: #F5A623; margin: 0 auto 12px; }
+        .fin-br-name { font-size: 32px; font-weight: 700; color: #fff; letter-spacing: 8px; font-family: 'JetBrains Mono', monospace; transition: letter-spacing 0.6s ease; }
+        .fin-brand.anim .fin-br-name { letter-spacing: 4px; }
+        .fin-br-tag { font-size: 14px; color: #9CA3AF; margin-top: 8px; }
+        .fin-br-auth { font-size: 13px; color: #fff; font-weight: 700; margin-top: 4px; }
+        .fin-dots { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px; }
+        .fin-dot { color: #F5A623; font-size: 12px; }
+
+        /* SECTION E: Final Urgency */
+        .fin-urg { margin-top: 48px; padding: 0 20px; text-align: center; position: relative; z-index: 1; }
+        .fin-u-l1 { font-size: 16px; color: #fff; }
+        .fin-u-l2 { font-size: 16px; color: #fff; }
+        .fin-u-l3 { font-size: 22px; font-weight: 700; color: #F5A623; margin-top: 4px; }
+        .fin-circles { display: flex; justify-content: center; gap: 6px; margin-top: 16px; margin-bottom: 12px; }
+        .fin-circle { width: 12px; height: 12px; border-radius: 50%; opacity: 0; transition: all 0.3s ease; }
+        .fin-circle.taken { background: #374151; opacity: 0; }
+        .fin-circle.avail { background: #F5A623; transform: scale(0); box-shadow: 0 0 8px rgba(245,166,35,0.4); }
+        .fin-circle.taken.show { opacity: 0.3; }
+        .fin-circle.avail.show { transform: scale(1); animation: pulseAvail 2s infinite alternate; }
+        @keyframes pulseAvail { 0% { transform: scale(1); box-shadow: 0 0 8px rgba(245,166,35,0.4); } 100% { transform: scale(1.1); box-shadow: 0 0 16px rgba(245,166,35,0.8); } }
+        .fin-u-reason { font-size: 13px; color: #9CA3AF; margin-bottom: 24px; }
+        .fin-obj { font-size: 12px; color: #9CA3AF; margin-top: 12px; }
+
+        /* Background Shift */
+        .bg-shift { position: absolute; bottom: 0; left: 0; width: 100%; height: 500px; background: linear-gradient(to top, #111827, transparent); z-index: 0; opacity: 0; transition: opacity 1s ease; pointer-events: none; }
+        .bg-shift.active { opacity: 1; }
+
+        /* SECTION F: Footer */
+        .fin-footer { padding: 40px 20px 24px; text-align: center; position: relative; z-index: 1; }
+        .fin-f-sep { height: 1px; width: 100%; background: rgba(255,255,255,0.06); margin-bottom: 24px; }
+        .fin-f-copy { font-size: 11px; color: #6B7280; }
+        .fin-f-links { margin-top: 8px; font-size: 11px; color: #6B7280; display: flex; justify-content: center; gap: 8px; }
+
+        /* S7 Quiz Modal */
+        #quiz-modal {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg-darker); z-index: 100;
+            display: none; flex-direction: column;
+            transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #quiz-modal.active { transform: translateX(0); }
+        .quiz-header { padding: 24px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; }
+        .quiz-back { background: none; border: none; color: var(--gray); font-size: 28px; cursor: pointer; padding: 0; line-height: 1; }
+        .quiz-progress { font-size: 14px; font-weight: 700; color: var(--gold); }
+        .quiz-body { flex: 1; position: relative; overflow: hidden; padding: 24px; }
+        
+        .quiz-screen {
+            position: absolute; top: 24px; left: 24px; right: 24px; bottom: 24px;
+            opacity: 0; pointer-events: none; transform: translateX(20px);
+            transition: all 0.4s cubic-bezier(.2,.7,.3,1); display: flex; flex-direction: column; overflow-y: auto;
+        }
+        .quiz-screen.active { opacity: 1; pointer-events: all; transform: translateX(0); }
+        .quiz-screen.exit { opacity: 0; transform: translateX(-20px); }
+        
+        .q-title { font-size: 24px; font-weight: 800; line-height: 1.4; margin-bottom: 32px; }
+        .q-opt {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            padding: 20px; border-radius: 12px; margin-bottom: 16px;
+            font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.2s;
+        }
+        .truth-box {
+            background: rgba(229,57,53,0.1); border-right: 3px solid var(--red);
+            padding: 16px; border-radius: 8px; margin-top: 16px; display: none;
+            font-size: 14px; font-weight: 700;
+        }
+        .q-next-btn { margin-top: auto; display: none; }
+
+        .stamp-pass { display: inline-block; animation: stampOvershoot 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; transform: scale(0); opacity: 0; }
+        @keyframes stampOvershoot { 0% { transform: scale(3) rotate(-20deg); opacity: 0; } 100% { transform: scale(1) rotate(0deg); opacity: 1; } }
+
+        /* New Lead Capture Form Styles */
+        .prog-ind { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 24px; opacity: 0; transform: translateY(10px); transition: all 0.4s; }
+        .prog-ind.visible { opacity: 1; transform: translateY(0); }
+        .prog-step { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; color: var(--gray); transition: all 0.3s; }
+        .prog-step.done { color: var(--green); }
+        .prog-step.current { color: var(--gold); }
+        .prog-icon { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; font-size: 10px; }
+        .prog-step.done .prog-icon { background: var(--green); color: #fff; }
+        .prog-step.current .prog-icon { background: var(--gold); animation: pulseGold 2s infinite; }
+        @keyframes pulseGold { 0% { box-shadow: 0 0 0 0 rgba(245,166,35,0.4); } 70% { box-shadow: 0 0 0 6px rgba(245,166,35,0); } 100% { box-shadow: 0 0 0 0 rgba(245,166,35,0); } }
+        .prog-line { height: 2px; width: 30px; background: rgba(255,255,255,0.1); border-radius: 2px; }
+        .prog-line.done { background: var(--green); }
+
+        .form-title { font-size: 24px; font-weight: 800; line-height: 1.4; margin-bottom: 8px; text-align: center; }
+        .form-sub { font-size: 14px; color: var(--gray); text-align: center; margin-bottom: 28px; line-height: 1.5; }
+
+        .form-card { background: #131C2E; border-radius: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 16px; opacity: 0; transform: translateY(20px); transition: all 0.4s; }
+        .form-card.visible { opacity: 1; transform: translateY(0); }
+        .form-card.gold-top { border-top: 2px solid var(--gold); }
+        .card-label { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+
+        .fg { margin-bottom: 16px; position: relative; }
+        .fg:last-child { margin-bottom: 0; }
+        .fg label { display: block; font-size: 13px; color: var(--gray); margin-bottom: 6px; text-align: right; }
+        .input-wrap { position: relative; }
+        .input { width: 100%; background: #0B1120; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 0 16px; color: #fff; font-size: 15px; font-family: inherit; transition: all 0.3s; }
+        input.input { height: 48px; }
+        textarea.input { padding: 12px 16px; }
+        .input::placeholder { color: rgba(255,255,255,0.25); }
+        .input:focus { border-color: var(--gold); box-shadow: 0 0 12px rgba(245,166,35,0.15); outline: none; }
+        .input.err { border-color: var(--red); }
+        .input.success { border-color: var(--green); }
+        
+        .err-text { font-size: 12px; color: var(--red); margin-top: 4px; display: none; }
+        .fg.has-err .err-text { display: block; }
+        @keyframes shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-4px); } 40%,80% { transform: translateX(4px); } }
+        .shake { animation: shake 0.3s; }
+
+        .phone-wrap { display: flex; align-items: center; width: 100%; }
+        .country-pill { background: #1A2332; border: 1px solid rgba(255,255,255,0.1); border-right: none; border-radius: 10px 0 0 10px; height: 48px; display: flex; align-items: center; justify-content: center; width: 80px; font-size: 15px; color: #fff; font-family: monospace; }
+        .phone-input { border-radius: 0 10px 10px 0; font-family: monospace; }
+        .trust-line { font-size: 11px; color: var(--gray); margin-top: 6px; text-align: right; }
+
+        .chip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .chip { background: #1A2332; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px; font-size: 13px; color: #fff; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; }
+        .chip.selected { border-color: var(--gold); background: rgba(245,166,35,0.08); color: var(--gold); }
+        .chip.selected::after { content: '✓'; position: absolute; top: 6px; right: 8px; font-size: 10px; }
+        
+        .char-counter { font-size: 11px; color: var(--gray); position: absolute; left: 12px; bottom: -20px; }
+        .char-counter.amber { color: var(--gold); }
+        .char-counter.red { color: var(--red); }
+
+        .submit-sec { margin-top: 24px; text-align: center; }
+        .privacy-above { font-size: 12px; color: var(--gray); margin-bottom: 12px; }
+        .btn-wa-submit { width: 100%; height: 58px; background: linear-gradient(135deg, #2AABEE, #229ED9); border: none; border-radius: 14px; color: #fff; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(42,171,238,0.3); transition: all 0.3s; position: relative; overflow: hidden; }
+        .btn-wa-submit:hover:not(:disabled) { transform: scale(1.02); box-shadow: 0 6px 24px rgba(42,171,238,0.4); }
+        .btn-wa-submit:disabled { opacity: 0.5; pointer-events: none; }
+        .btn-wa-submit.loading .wa-icon { display: none; }
+        .btn-wa-submit.loading .btn-text { opacity: 0.8; }
+        .btn-wa-submit.success { background: #10B981; }
+        .effort-line { font-size: 12px; color: var(--gray); margin-top: 12px; }
+
+        .post-submit-steps { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 24px; opacity: 0; transform: translateY(10px); transition: all 0.4s; }
+        .post-submit-steps.visible { opacity: 1; transform: translateY(0); }
+        .ps-step { font-size: 12px; color: var(--gray); }
+        .ps-arrow { color: var(--gold); font-size: 14px; }
+        
+        /* Spinner */
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .loader-icon { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; display: none; }
+        .btn-wa-submit.loading .loader-icon { display: block; }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(100%);
+            width: 100%; max-width: 480px; padding: 16px 24px; padding-bottom: calc(16px + env(safe-area-inset-bottom));
+            background: rgba(5,11,20,0.95); backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255,255,255,0.05); z-index: 50;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sticky-cta.visible { transform: translateX(-50%) translateY(0); }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; animation: none !important; }
+            html.js-anim .reveal-elem { opacity: 1 !important; transform: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4560697067476248&ev=PageView&noscript=1"/></noscript>
+
+<div class="app-container">
+
+    <!-- S1 HERO -->
+    <section class="s1-hero" id="hero">
+        <div class="reveal-elem" data-delay="0" style="position: relative; z-index: 2;">
+            <div class="eyebrow">كتاب مجاني — ليس إعلاناً</div>
+            
+            <p style="color: #FF6B6B; font-size: 14px; font-weight: 700; margin-bottom: 8px; text-align: right;">٧٠٪ من الحسابات تُغلق خلال السنة الأولى</p>
+            
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+                <h1 style="font-size: 34px; margin: 0; flex: 1; text-align: right;">شركة أمريكية حساباتها <span class="text-gold">تعيش.</span></h1>
+                
+                <!-- Floating 3D Book Mockup -->
+                <div style="width: 80px; height: 110px; background: #131C2E; border: 1px solid var(--gold); border-radius: 4px; box-shadow: -4px 4px 12px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; transform: rotate(-5deg); margin-right: 16px; flex-shrink: 0;">
+                    <span class="mono ltr text-gold" style="font-weight: 900; font-size: 24px;">GO</span>
+                </div>
+            </div>
+
+            <ul class="hero-bullets">
+                <li>
+                    <svg class="bullet-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>طريقة الوكلاء خطوة بخطوة مجاناً (بدل دفع <span class="mono ltr text-red">$180</span>)</span>
+                </li>
+                <li>
+                    <svg class="bullet-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>أسرار إبقاء حسابك المالي حياً وتجنب الإغلاق</span>
+                </li>
+                <li>
+                    <svg class="bullet-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>ما يخفيه الوكلاء عنك للحصول على أموالك</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="trust-strip reveal-elem" data-delay="1" style="position: relative; z-index: 2; margin-bottom: 8px;">
+            <div class="trust-card">
+                <span class="mono ltr text-gold">100</span>
+                <small>شركة</small>
+            </div>
+            <div class="trust-card">
+                <span class="mono ltr text-gold">92</span>
+                <small>حسابات نشطة</small>
+            </div>
+            <div class="trust-card">
+                <span class="mono ltr text-gold">7</span>
+                <small>أشهر</small>
+            </div>
+        </div>
+        
+        <p class="reveal-elem" data-delay="1" style="text-align: center; font-size: 12px; color: var(--gray); margin-bottom: 0;">من أصحاب شركات حقيقيين — ليس من وكيل تأسيس</p>
+        
+        <div class="reveal-elem" data-delay="2" style="position: relative; z-index: 2; margin-top: 40px;">
+            <button class="btn btn-gold cta-trigger">أريد الكتاب</button>
+            <p class="urgency-text">متاح لفترة محدودة — <span class="text-gold">10 مقاعد فقط</span> هذا الشهر.</p>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- S2 THE GAP -->
+    <section id="gap-section">
+        <div class="section-title">الفجوة</div>
+        
+        <div class="contrast-block">
+            <p class="cb-text1">التأسيس = 5 أيام.</p>
+            <div class="cb-line-wrap"><div class="cb-line"></div></div>
+            <p class="cb-text2">حياة شركتك = 365 يوم.</p>
+        </div>
+        
+        <div class="death-timeline">
+            <div class="dt-line-bg"></div>
+            <div class="dt-line-fill"></div>
+            
+            <div class="dt-item">
+                <div class="dt-dot d30"></div>
+                <p style="margin:0; font-size:14px; color:#fff;">الموت يأتي يوم 30...</p>
+            </div>
+            <div class="dt-item">
+                <div class="dt-dot d45"></div>
+                <p style="margin:0; font-size:14px; color:var(--gray);">يوم 45...</p>
+            </div>
+            <div class="dt-item">
+                <div class="dt-dot d90"></div>
+                <p style="margin:0; font-size:14px; color:#fff; font-weight:700;">يوم 90 — وليس يوم التأسيس.</p>
+            </div>
+        </div>
+        
+        <div class="killer-stat">
+            <p class="killer-stat-text"><span style="color:var(--red);">9 من 10</span> شركات جزائرية تموت في أول 90 يوم.</p>
+            <div class="squares-row">
+                <div class="sq-icon"></div><div class="sq-icon"></div><div class="sq-icon"></div><div class="sq-icon"></div><div class="sq-icon"></div>
+                <div class="sq-icon"></div><div class="sq-icon"></div><div class="sq-icon"></div><div class="sq-icon"></div><div class="sq-icon"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- S3 STORY -->
+    <section id="story-section">
+        <div class="section-title">القصة</div>
+        <div class="story-card">
+            <div class="story-timeline">
+                <div class="st-line-bg"></div>
+                <div class="st-line-fill"></div>
+                
+                <div class="st-item">
+                    يوم 1: كريم دفع <span style="color:#fff; font-weight:700;">$180</span> للوكيل. <span class="st-icon">✅</span>
+                </div>
+                <div class="st-item">
+                    يوم 20: <span style="color:#fff; font-weight:700;">Wise</span> مغلق. <span class="st-icon">⚠️</span>
+                </div>
+                <div class="st-item">
+                    يوم 35: <span style="color:#fff; font-weight:700;">$11,000</span> مجمّدة. <span class="st-icon">🔴</span>
+                </div>
+                <div class="st-item">
+                    يوم 50: <span style="color:#fff; font-weight:700;">Stripe</span> ban نهائي. <span class="st-icon">❌</span>
+                </div>
+            </div>
+            <div class="st-divider"></div>
+            <p class="st-quote">"لو قرأت كتاباً يشرح لي اللعبة، ما كنت لأخسر كل شيء."</p>
+            <p class="st-attr">— كريم، الجزائر</p>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- S4 PROOF -->
+    <section id="proof-section">
+        <div class="proof-kicker">الإثبات</div>
+        <h2 class="proof-title">لا تصدّقنا. <span style="color:var(--green);">اسمع وشاهد بنفسك.</span></h2>
+        
+        <div class="proof-carousel" id="proof-carousel">
+            <div class="pc-card">
+                <div class="pc-img-area">
+                    <img src="PROOF 1 (1).webp" class="pc-img" loading="lazy">
+                    <div class="pc-overlay"></div>
+                </div>
+                <div class="pc-content">
+                    <span class="pc-badge">حساب بنكي</span>
+                    <h3 class="pc-company">AcquisitionPro LLC</h3>
+                    <p class="pc-detail">نشط منذ 12 شهر — الجزائر العاصمة</p>
+                    <div class="pc-verified">موثّق</div>
+                </div>
+            </div>
+            <div class="pc-card">
+                <div class="pc-img-area">
+                    <img src="PROOF 1 (2).webp" class="pc-img" loading="lazy">
+                    <div class="pc-overlay"></div>
+                </div>
+                <div class="pc-content">
+                    <span class="pc-badge">إيداع مالي</span>
+                    <h3 class="pc-company">ContentPaths LLC</h3>
+                    <p class="pc-detail">حساب نشط — إيداعات فعلية</p>
+                    <div class="pc-verified">موثّق</div>
+                </div>
+            </div>
+            <div class="pc-card">
+                <div class="pc-img-area">
+                    <img src="PROOF 1 (3).webp" class="pc-img" loading="lazy">
+                    <div class="pc-overlay"></div>
+                </div>
+                <div class="pc-content">
+                    <span class="pc-badge">شهادة تأسيس</span>
+                    <h3 class="pc-company">Growth LLC</h3>
+                    <p class="pc-detail">Secretary of State</p>
+                    <div class="pc-verified">موثّق</div>
+                </div>
+            </div>
+            <div class="pc-card">
+                <div class="pc-img-area">
+                    <img src="PROOF 1 (4).webp" class="pc-img" loading="lazy">
+                    <div class="pc-overlay"></div>
+                </div>
+                <div class="pc-content">
+                    <span class="pc-badge">تأكيد ضريبي</span>
+                    <h3 class="pc-company">ScaleUp LLC</h3>
+                    <p class="pc-detail">موافقة مصلحة الضرائب</p>
+                    <div class="pc-verified">موثّق</div>
+                </div>
+            </div>
+        </div>
+        <div class="pc-dots">
+            <div class="pc-dot active"></div><div class="pc-dot"></div><div class="pc-dot"></div><div class="pc-dot"></div>
+        </div>
+
+        <div class="vm-header">رسائل حقيقية من تيليجرام — بإذن أصحابها.</div>
+        
+        <div class="vm-card" data-audio="voice1.mp3.mp3">
+            <div class="vm-avatar">ع.ر</div>
+            <div class="vm-center">
+                <div class="vm-name-row"><span class="vm-name">عبد الرحمان</span> <span class="vm-loc">الجزائر العاصمة</span></div>
+                <div class="vm-waveform"></div>
+                <div class="vm-dur">0:42</div>
+            </div>
+            <button class="vm-play"></button>
+        </div>
+        
+        <div class="vm-card" data-audio="voice2.mp3.mp3">
+            <div class="vm-avatar">ر</div>
+            <div class="vm-center">
+                <div class="vm-name-row"><span class="vm-name">ريان</span> <span class="vm-loc">وهران</span></div>
+                <div class="vm-waveform"></div>
+                <div class="vm-dur">1:15</div>
+            </div>
+            <button class="vm-play"></button>
+        </div>
+        
+        <div class="vm-card" data-audio="voice3.mp3.mp3">
+            <div class="vm-avatar">إ</div>
+            <div class="vm-center">
+                <div class="vm-name-row"><span class="vm-name">إسلام</span> <span class="vm-loc">قسنطينة</span></div>
+                <div class="vm-waveform"></div>
+                <div class="vm-dur">0:58</div>
+            </div>
+            <button class="vm-play"></button>
+        </div>
+
+        <div class="trust-strip">
+            <div class="ts-badge">شراكة Verto موثّقة</div>
+            <div class="ts-badge">Secretary of State من Apostille</div>
+            <div class="ts-badge">مكاتب الجزائر + قسنطينة</div>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- S5 INSIDE THE BOOK -->
+    <section id="book">
+        <div class="kicker" style="color: #F5A623; margin-bottom: 8px; text-align: right; font-size: 13px;">داخل الكتاب</div>
+        <h2 class="ib-headline">
+            14 صفحة. تقرأه في <span class="mono ltr">25</span> دقيقة.<br>
+            <span class="text-gold">يصلك في <span class="mono ltr">60</span> ثانية.</span>
+        </h2>
+        <div class="ib-sep"></div>
+        
+        <div class="ib-cards" id="ib-cards">
+            <!-- Card 1 -->
+            <div class="ib-card ib-c1">
+                <div class="ib-content">
+                    <span class="ib-label">الفصل الأول</span>
+                    <h3 class="ib-title">طريقة الوكلاء كاملة: كيف تؤسس شركتك بنفسك بـ0$</h3>
+                    <p class="ib-sub">على نفس المواقع التي يستعملونها — تدفع رسوم الولاية فقط</p>
+                    <span class="ib-saved">توفّر $180</span>
+                </div>
+                <div class="ib-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6-9V6a6 6 0 1 0-12 0v2h-1c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2h-1zm-6-5a4 4 0 0 1 4 4v2H8V6a4 4 0 0 1 4-4z"/></svg>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="ib-card ib-c2">
+                <div class="ib-content">
+                    <span class="ib-label">الفصل الثاني</span>
+                    <h3 class="ib-title">ستكشف أي وكيل مزوّر في 5 دقائق</h3>
+                    <p class="ib-sub">قبل أن يأخذ فلسك</p>
+                </div>
+                <div class="ib-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="ib-card ib-c3">
+                <div class="ib-content">
+                    <span class="ib-label">الفصل الثالث</span>
+                    <h3 class="ib-title">الـ4 فخوخ التي تحوّل 0$ المعلن إلى +500$ سنوياً</h3>
+                    <p class="ib-sub">من جيبك</p>
+                </div>
+                <div class="ib-icon">
+                    <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="ib-card ib-c4">
+                <div class="ib-content">
+                    <span class="ib-label">الفصل الرابع</span>
+                    <h3 class="ib-title">الـ5 قتلة الصامتون الذين يغلقون الحسابات بعد يوم 30</h3>
+                </div>
+                <div class="ib-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm4 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-2 4c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z"/></svg>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="ib-card ib-c5">
+                <div class="ib-content">
+                    <span class="ib-label">الفصل الخامس</span>
+                    <h3 class="ib-title">نظام إبقاء حسابك حياً 365 يوم</h3>
+                    <p class="ib-sub">حتى لو أسّست بنفسك</p>
+                </div>
+                <div class="ib-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ib-anchor" id="ib-anchor">
+            <div class="ib-a-l1">القيمة الحقيقية: <span>أكثر من $680</span></div>
+            <div class="ib-a-l2">السعر: مجاني. $0.</div>
+            <div class="ib-a-l3">لفترة محدودة.</div>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- S6 QUICK WIN -->
+    <section id="receipt-sec">
+        <div class="kicker">فائدة فورية</div>
+        <h2 class="reveal-elem">خذ أول فائدة الآن — قبل حتى أن <span class="text-gold">تطلب</span> الكتاب:</h2>
+        
+        <div class="receipt reveal-elem" id="receipt">
+            <div class="r-line"><span class="r-text">Bizee formation</span><span class="mono ltr receipt-val">$0</span></div>
+            <div class="r-line"><span class="r-text">Registered agent سنة أولى</span><span class="mono ltr receipt-val">$0</span></div>
+            <div class="r-line"><span class="r-text">EIN من IRS</span><span class="mono ltr receipt-val">$0</span></div>
+            <div class="r-line"><span class="r-text">Operating Agreement</span><span class="mono ltr receipt-val">$0</span></div>
+            <div class="r-total"><span class="r-text">ما يبيعه لك الوكيل:</span><span class="mono ltr text-red receipt-total">$180</span></div>
+        </div>
+        
+        <!-- SECTION A: Transition Bridge -->
+        <div class="fin-bridge" id="fin-bridge">
+            <p class="fin-b-text">هذه أول حقيقة. في الكتاب: الطريقة كاملة + ما هو <span class="fin-b-red">أخطر بكثير</span> من الـ<span class="mono ltr">$180</span>.</p>
+        </div>
+
+        <!-- SECTION B: Primary CTA Block -->
+        <div class="fin-cta-block" id="fin-cta-1">
+            <div class="fin-micro">
+                <span class="fin-micro-icon">⚡</span> PDF فوري — يصلك في أقل من 60 ثانية
+            </div>
+            <button class="fin-btn cta-trigger">أريد الكتاب — مجاناً</button>
+            <div class="fin-scarcity">متاح لفترة محدودة — <span class="fin-s-gold">10 مقاعد فقط</span> هذا الشهر.</div>
+        </div>
+    </section>
+
+    <!-- SECTION C: Reverse Guarantee -->
+    <section class="fin-guar" id="fin-guar">
+        <div class="fin-g-icon">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="#22C55E"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        </div>
+        <h2 class="fin-g-title">ضماننا معكوس</h2>
+        <p class="fin-g-body">اقرأ الكتاب، ثم اطرح أسئلته السبعة الكاشفة علينا نحن أولاً.</p>
+        <div class="fin-g-punch">إن فشلنا في سؤال واحد — لا تتعامل معنا.</div>
+        <div class="fin-g-line"></div>
+    </section>
+
+    <!-- SECTION D: Brand Anchor -->
+    <section class="fin-brand" id="fin-brand">
+        <div class="fin-br-line"></div>
+        <div class="fin-br-name"><span class="fin-dot">●</span> GO LLC <span class="fin-dot">●</span></div>
+        <div class="fin-br-tag">مكاتب حقيقية في الجزائر العاصمة وقسنطينة.</div>
+        <div class="fin-br-auth">نرفض طلبات أكثر مما نقبل.</div>
+    </section>
+
+    <!-- SECTION E: Final Urgency -->
+    <section class="fin-urg" id="fin-urg">
+        <div class="fin-u-l1">الكتاب مجاني ودائماً سيكون.</div>
+        <div class="fin-u-l2">المقاعد التي يقود إليها —</div>
+        <div class="fin-u-l3">10 فقط كل شهر.</div>
+        <div class="fin-circles" id="fin-circles">
+            <div class="fin-circle taken"></div><div class="fin-circle taken"></div><div class="fin-circle taken"></div><div class="fin-circle taken"></div><div class="fin-circle taken"></div><div class="fin-circle taken"></div><div class="fin-circle taken"></div>
+            <div class="fin-circle avail"></div><div class="fin-circle avail"></div><div class="fin-circle avail"></div>
+        </div>
+        <div class="fin-u-reason">أنت تقرأ هذا لأن هناك مقعداً متاحاً الآن.</div>
+        <button class="fin-btn cta-trigger" id="fin-btn-2">احجز نسختك الآن</button>
+        <div class="fin-obj">لا بطاقة. لا اشتراك. PDF فوري.</div>
+    </section>
+
+    <!-- SECTION F: Footer -->
+    <footer class="fin-footer">
+        <div class="fin-f-sep"></div>
+        <div class="fin-f-copy">© 2024 GO LLC — جميع الحقوق محفوظة</div>
+        <div class="fin-f-links">
+            <span>سياسة الخصوصية</span> | <span>تواصل معنا</span>
+        </div>
+    </footer>
+
+        <div class="bg-shift" id="bg-shift"></div>
+</div>
+
+<!-- Sticky Bottom CTA -->
+<div class="sticky-cta" id="sticky-cta">
+    <button class="fin-btn cta-trigger" style="height: 50px; font-size: 18px; transform: none; opacity: 1; animation: none;">أريد الكتاب &larr;</button>
+</div>
+
+<!-- S7 QUIZ MODAL -->
+<div id="quiz-modal">
+    <div class="quiz-header">
+        <button class="quiz-back" id="quiz-back">&times;</button>
+    </div>
+    <div class="quiz-body">
+        <div class="quiz-screen active" id="qs-contact" data-step="5">
+            <!-- Part A: Section Header -->
+            <div class="prog-ind">
+                <div class="prog-step done"><span class="prog-icon">✓</span><span class="prog-text">قرأت</span></div>
+                <div class="prog-line done"></div>
+                <div class="prog-step done"><span class="prog-icon">✓</span><span class="prog-text">قررت</span></div>
+                <div class="prog-line"></div>
+                <div class="prog-step current"><span class="prog-icon"></span><span class="prog-text">سجّل</span></div>
+            </div>
+
+            <h2 class="form-title">آخر خطوة — لمن نرسل الكتاب؟</h2>
+            <p class="form-sub">سجّل وانضم لمجتمعنا على تيليجرام — ستجد الكتاب بالداخل.</p>
+
+            <!-- Part B: Group 1 -->
+            <div class="form-card gold-top">
+                <div class="card-label">معلوماتك</div>
+                
+                <div class="fg">
+                    <label>الاسم واللقب</label>
+                    <div class="input-wrap">
+                        <input type="text" class="input" id="f-name" placeholder="اكتب اسمك هنا">
+                    </div>
+                    <div class="err-text" id="err-name">هذا الحقل مطلوب</div>
+                </div>
+
+                <div class="fg">
+                    <label>رقم تيليجرام</label>
+                    <div class="phone-wrapper" dir="ltr">
+                        <div class="country-pill">🇩🇿 +213</div>
+                        <input type="tel" class="input phone-input" id="f-phone" inputmode="tel" placeholder="05 XX XX XX XX">
+                    </div>
+                    <div class="input-glow"></div>
+                    <div class="trust-line"><svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left:4px;vertical-align:middle"><path d="M8 5V3.5C8 1.567 6.657 0 5 0C3.343 0 2 1.567 2 3.5V5H1C0.448 5 0 5.448 0 6V11C0 11.552 0.448 12 1 12H9C9.552 12 10 11.552 10 11V6C10 5.448 9.552 5 9 5H8ZM3 3.5C3 2.119 3.895 1 5 1C6.105 1 7 2.119 7 3.5V5H3V3.5ZM5 9.5C4.448 9.5 4 9.052 4 8.5C4 7.948 4.448 7.5 5 7.5C5.552 7.5 6 7.948 6 8.5C6 9.052 5.552 9.5 5 9.5Z" fill="#9CA3AF"/></svg>رقمك لن يُشارك مع أحد — نستخدمه فقط لإرسال رابط المجتمع</div>
+                    <div class="err-text" id="err-phone" style="text-align: right; margin-top: 4px;">أدخل رقم تيليجرام صحيح</div>
+                </div>
+            </div>
+
+            <!-- Part B: Group 2 -->
+            <div class="form-card">
+                <div class="card-label">عن مشروعك</div>
+
+                <div class="fg">
+                    <label>مجالك التجاري</label>
+                    <div class="chip-grid" id="f-field">
+                        <div class="chip">استيراد وتصدير</div><div class="chip">خدمات وفريلانس</div>
+                        <div class="chip">Dropshipping</div><div class="chip">متجر إلكتروني</div>
+                        <div class="chip">كورسات أونلاين</div><div class="chip">أخرى</div>
+                    </div>
+                </div>
+
+                <div class="fg">
+                    <label>لماذا تريد إنشاء شركة أمريكية؟</label>
+                    <div class="input-wrap">
+                        <input type="text" class="input" id="f-reason" placeholder="اكتب السبب باختصار">
+                        <div class="char-counter" id="cc-reason">0/100</div>
+                    </div>
+                    <div class="err-text" id="err-reason">هذا الحقل مطلوب</div>
+                </div>
+
+                <div class="fg">
+                    <label>ما المشكلة التي تعاني منها؟</label>
+                    <div class="input-wrap">
+                        <textarea class="input" id="f-problem" placeholder="اكتب مشكلتك هنا" rows="3" style="resize:none; height:80px;"></textarea>
+                        <div class="char-counter" id="cc-problem">0/200</div>
+                    </div>
+                    <div class="err-text" id="err-problem">هذا الحقل مطلوب</div>
+                </div>
+            </div>
+
+            <!-- Part C: Submit CTA -->
+            <div class="submit-sec">
+                <div class="privacy-above"><svg width="12" height="14" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left:4px;vertical-align:middle"><path d="M8 5V3.5C8 1.567 6.657 0 5 0C3.343 0 2 1.567 2 3.5V5H1C0.448 5 0 5.448 0 6V11C0 11.552 0.448 12 1 12H9C9.552 12 10 11.552 10 11V6C10 5.448 9.552 5 9 5H8ZM3 3.5C3 2.119 3.895 1 5 1C6.105 1 7 2.119 7 3.5V5H3V3.5ZM5 9.5C4.448 9.5 4 9.052 4 8.5C4 7.948 4.448 7.5 5 7.5C5.552 7.5 6 7.948 6 8.5C6 9.052 5.552 9.5 5 9.5Z" fill="#9CA3AF"/></svg>معلوماتك تذهب لتيليجرام GO LLC فقط — لا تُشارك في أي مكان.</div>
+                <button class="btn-wa-submit" id="submit-contact" disabled>
+                    <span class="btn-text">الحصول على الكتاب على تيليجرام</span>
+                </button>
+                <div class="effort-line">⏱ التسجيل يأخذ 30 ثانية فقط</div>
+            </div>
+
+            <!-- Part D: What Happens Next -->
+            <div class="post-submit-steps">
+                <div class="ps-step">📝 تسجّل</div>
+                <div class="ps-arrow">→</div>
+                <div class="ps-step">💬 تنضم للمجتمع</div>
+                <div class="ps-arrow">→</div>
+                <div class="ps-step">📖 تحمّل الكتاب</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- Reveal Observer ---
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                const el = entry.target;
+                const delay = el.dataset.delay ? parseInt(el.dataset.delay) * 120 : 0;
+                setTimeout(() => el.classList.add('visible'), delay);
+                revealObserver.unobserve(el);
+                
+                if(el.classList.contains('proof-title') || el.classList.contains('vm-header')) {
+                    el.classList.add('anim');
+                }
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal-elem').forEach(el => revealObserver.observe(el));
+
+    // --- Proof Section Animations ---
+    const proofObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('anim');
+                proofObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    document.querySelector('.proof-title').classList.add('anim');
+    document.querySelectorAll('.pc-card').forEach(c => proofObs.observe(c));
+    document.querySelector('.vm-header').classList.add('anim');
+    document.querySelectorAll('.vm-card').forEach(c => proofObs.observe(c));
+    document.querySelector('.trust-strip').classList.add('anim');
+
+    // --- Audio Logic & Waveforms ---
+    document.querySelectorAll('.vm-waveform').forEach(wf => {
+        for(let i=0; i<30; i++) {
+            let bar = document.createElement('div');
+            bar.className = 'vm-bar';
+            let h = Math.random() * 60 + 20;
+            bar.style.height = h + '%';
+            bar.style.animationDelay = (Math.random() * 0.5) + 's';
+            wf.appendChild(bar);
+        }
+    });
+
+    const pCarousel = document.getElementById('proof-carousel');
+    const pDots = document.querySelectorAll('.pc-dot');
+    if(pCarousel && pDots.length) {
+        pCarousel.addEventListener('scroll', () => {
+            const cards = pCarousel.querySelectorAll('.pc-card');
+            let minDiff = Infinity;
+            let activeIdx = 0;
+            cards.forEach((c, i) => {
+                const rect = c.getBoundingClientRect();
+                const centerDiff = Math.abs(rect.left + rect.width/2 - window.innerWidth/2);
+                if(centerDiff < minDiff) { minDiff = centerDiff; activeIdx = i; }
+            });
+            pDots.forEach((d, i) => d.classList.toggle('active', i === activeIdx));
+        });
+    }
+
+    let currentAudio = null;
+    let currentCard = null;
+    document.querySelectorAll('.vm-card').forEach(card => {
+        const file = card.getAttribute('data-audio');
+        const audio = new Audio(file);
+        
+        audio.addEventListener('ended', () => card.classList.remove('playing'));
+
+        card.addEventListener('click', () => {
+            if (currentAudio && currentAudio !== audio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                if(currentCard) currentCard.classList.remove('playing');
+            }
+            if (audio.paused) {
+                audio.play();
+                card.classList.add('playing');
+                currentAudio = audio;
+                currentCard = card;
+            } else {
+                audio.pause();
+                card.classList.remove('playing');
+            }
+        });
+    });
+
+    // --- GAP SECTION ANIMATION ---
+    const gapObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const el = entry.target;
+                gapObserver.unobserve(el);
+                
+                setTimeout(() => el.querySelector('.cb-text1').classList.add('anim'), 100);
+                setTimeout(() => el.querySelector('.cb-line').classList.add('anim'), 500);
+                setTimeout(() => {
+                    const text2 = el.querySelector('.cb-text2');
+                    text2.classList.add('anim', 'shake');
+                    setTimeout(() => text2.classList.remove('shake'), 200);
+                }, 900);
+
+                setTimeout(() => {
+                    el.querySelector('.dt-line-fill').classList.add('anim');
+                    const items = el.querySelectorAll('.dt-item');
+                    const dots = el.querySelectorAll('.dt-dot');
+                    setTimeout(() => { items[0].classList.add('anim'); dots[0].classList.add('anim'); }, 100);
+                    setTimeout(() => { items[1].classList.add('anim'); dots[1].classList.add('anim'); }, 800);
+                    setTimeout(() => { items[2].classList.add('anim'); dots[2].classList.add('anim'); }, 1900);
+                }, 1300);
+
+                setTimeout(() => {
+                    const squares = el.querySelectorAll('.sq-icon');
+                    squares.forEach((sq, i) => {
+                        setTimeout(() => {
+                            sq.classList.add('anim');
+                            if(i < 9) sq.classList.add('dead');
+                            else sq.classList.add('alive');
+                        }, i * 150);
+                    });
+                    setTimeout(() => el.querySelector('.killer-stat-text').classList.add('anim'), 10 * 150 + 300);
+                }, 3500);
+            }
+        });
+    }, { threshold: 0.2 });
+    const gapSec = document.getElementById('gap-section');
+    if(gapSec) gapObserver.observe(gapSec);
+
+    // --- STORY SECTION ANIMATION ---
+    const storyObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const el = entry.target;
+                storyObserver.unobserve(el);
+
+                el.querySelector('.story-card').classList.add('anim');
+                
+                setTimeout(() => {
+                    el.querySelector('.st-line-fill').classList.add('anim');
+                    const items = el.querySelectorAll('.st-item');
+                    items.forEach((item, i) => {
+                        setTimeout(() => item.classList.add('anim'), i * 400);
+                    });
+                    
+                    setTimeout(() => {
+                        el.querySelector('.st-divider').classList.add('anim');
+                        el.querySelector('.st-quote').classList.add('anim');
+                        el.querySelector('.st-attr').classList.add('anim');
+                    }, items.length * 400 + 300);
+                }, 600);
+            }
+        });
+    }, { threshold: 0.3 });
+    const storySec = document.getElementById('story-section');
+    if(storySec) storyObserver.observe(storySec);
+
+    // --- INSIDE THE BOOK ANIMATION ---
+    const ibObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                ibObserver.unobserve(entry.target);
+                
+                const cards = entry.target.querySelectorAll('.ib-card');
+                cards.forEach((card, i) => {
+                    setTimeout(() => {
+                        card.classList.add('anim');
+                    }, i * 150);
+                });
+
+                const anchor = entry.target.querySelector('#ib-anchor');
+                if(anchor) {
+                    setTimeout(() => {
+                        anchor.classList.add('anim');
+                    }, cards.length * 150 + 500);
+                }
+            }
+        });
+    }, { threshold: 0.15 });
+    const ibSec = document.getElementById('book');
+    if(ibSec) ibObserver.observe(ibSec);
+
+    // --- Custom Specific Animations ---
+    const customObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                // S6 Receipt
+                if(entry.target.id === 'receipt') {
+                    const lines = entry.target.querySelectorAll('.r-line');
+                    lines.forEach((l, i) => {
+                        setTimeout(() => {
+                            l.classList.add('visible');
+                            l.querySelector('.receipt-val').classList.add('flash-green');
+                        }, i * 300);
+                    });
+                    const total = entry.target.querySelector('.r-total');
+                    setTimeout(() => {
+                        total.classList.add('visible');
+                        total.querySelector('.receipt-total').classList.add('flash-red');
+                    }, lines.length * 300);
+                    customObserver.unobserve(entry.target);
+                }
+            }
+        });
+    }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
+
+
+    const receipt = document.getElementById('receipt');
+    if(receipt) customObserver.observe(receipt);
+
+    // Sticky CTA Logic
+    const sticky = document.getElementById('sticky-cta');
+    const storySection = document.getElementById('story');
+    const quizModal = document.getElementById('quiz-modal');
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(!entry.isIntersecting && entry.boundingClientRect.top < 0 && !quizModal.classList.contains('active')) sticky.classList.add('visible');
+            else sticky.classList.remove('visible');
+        });
+    }, { threshold: 0 });
+    if(storySection) scrollObserver.observe(storySection);
+
+    // --- FINALE ANIMATIONS ---
+    const finObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const el = entry.target;
+                
+                if(el.id === 'fin-bridge') el.classList.add('anim');
+                else if(el.id === 'fin-cta-1') el.querySelector('.fin-btn').classList.add('anim');
+                else if(el.id === 'fin-guar') el.classList.add('anim');
+                else if(el.id === 'fin-brand') el.classList.add('anim');
+                else if(el.id === 'fin-urg') {
+                    const bgShift = document.getElementById('bg-shift');
+                    if(bgShift) bgShift.classList.add('active');
+                    
+                    const circles = el.querySelectorAll('.fin-circle');
+                    circles.forEach((c, i) => {
+                        setTimeout(() => { c.classList.add('show'); }, i * 100);
+                    });
+                    
+                    setTimeout(() => {
+                        el.querySelector('.fin-btn').classList.add('anim');
+                    }, circles.length * 100 + 100);
+                }
+
+                finObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    ['fin-bridge', 'fin-cta-1', 'fin-guar', 'fin-brand', 'fin-urg'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) finObserver.observe(el);
+    });
+
+    const screens = document.querySelectorAll('.quiz-screen');
+    let qStartTracked = false;
+
+    document.querySelectorAll('.cta-trigger').forEach(btn => {
+        btn.addEventListener('click', () => {
+            quizModal.style.display = 'flex';
+            setTimeout(() => {
+                quizModal.classList.add('active');
+                
+                // Trigger staggered animations for modal elements
+                const pInd = document.querySelector('.prog-ind');
+                const fCards = document.querySelectorAll('.form-card');
+                const pSteps = document.querySelector('.post-submit-steps');
+                
+                if(pInd) setTimeout(() => pInd.classList.add('visible'), 100);
+                if(fCards[0]) setTimeout(() => fCards[0].classList.add('visible'), 300);
+                if(fCards[1]) setTimeout(() => fCards[1].classList.add('visible'), 500);
+                if(pSteps) setTimeout(() => pSteps.classList.add('visible'), 700);
+
+            }, 10);
+            sticky.classList.remove('visible');
+            if(!qStartTracked) { 
+                if(typeof fbq === 'function') {
+                    try { fbq('trackCustom', 'QuizStart'); } catch(e) {}
+                }
+                qStartTracked = true; 
+            }
+        });
+    });
+
+    document.getElementById('quiz-back').addEventListener('click', () => {
+        quizModal.classList.remove('active');
+        setTimeout(() => quizModal.style.display = 'none', 400);
+        const storyRect = storySection.getBoundingClientRect();
+        if(storyRect.bottom < 0) sticky.classList.add('visible');
+    });
+
+    // --- Form Logic ---
+    let selectedField = "";
+    const nameInput = document.getElementById('f-name');
+    const phoneInput = document.getElementById('f-phone');
+    const reasonInput = document.getElementById('f-reason');
+    const problemInput = document.getElementById('f-problem');
+    const submitBtn = document.getElementById('submit-contact');
+    
+    const ccReason = document.getElementById('cc-reason');
+    const ccProblem = document.getElementById('cc-problem');
+
+    let regTracked = false;
+    let leadTracked = false;
+
+    // Chip selection
+    document.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', function() {
+            const parent = this.parentElement;
+            parent.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+            this.classList.add('selected');
+            if(parent.id === 'f-field') selectedField = this.innerText;
+            checkForm();
+        });
+    });
+
+    // Character counters
+    reasonInput.addEventListener('input', () => updateCounter(reasonInput, ccReason, 100, 80));
+    problemInput.addEventListener('input', () => updateCounter(problemInput, ccProblem, 200, 160));
+
+    function updateCounter(input, counterEl, max, warn) {
+        let val = input.value;
+        if(val.length > max) {
+            input.value = val.substring(0, max);
+            val = input.value;
+        }
+        counterEl.innerText = `${val.length}/${max}`;
+        counterEl.classList.remove('amber', 'red');
+        if(val.length >= max) counterEl.classList.add('red');
+        else if(val.length >= warn) counterEl.classList.add('amber');
+        checkForm();
+    }
+
+    // Validation on blur
+    [nameInput, phoneInput, reasonInput, problemInput].forEach(inp => {
+        inp.addEventListener('input', () => {
+            inp.classList.remove('err');
+            inp.closest('.fg').classList.remove('has-err');
+            checkForm();
+        });
+        inp.addEventListener('blur', () => {
+            let valid = false;
+            if(inp === nameInput) valid = nameInput.value.trim().length >= 3;
+            else if(inp === phoneInput) valid = /^[0-9\s]{8,15}$/.test(phoneInput.value);
+            else if(inp === reasonInput) valid = reasonInput.value.trim().length >= 2;
+            else if(inp === problemInput) valid = problemInput.value.trim().length >= 2;
+
+            if(!valid) {
+                inp.classList.add('err');
+                inp.closest('.fg').classList.add('has-err');
+                const fg = inp.closest('.fg');
+                fg.classList.remove('shake');
+                void fg.offsetWidth; // trigger reflow
+                fg.classList.add('shake');
+            } else {
+                inp.classList.remove('err');
+                inp.closest('.fg').classList.remove('has-err');
+                inp.classList.add('success');
+                setTimeout(() => inp.classList.remove('success'), 300);
+            }
+        });
+    });
+
+    function checkForm() {
+        const nameValid = nameInput.value.trim().length >= 3;
+        const phoneRegex = /^[0-9\s]{8,15}$/;
+        const phoneValid = phoneRegex.test(phoneInput.value);
+        const reasonValid = reasonInput.value.trim().length >= 2;
+        const problemValid = problemInput.value.trim().length >= 2;
+        submitBtn.disabled = !(nameValid && phoneValid && selectedField && reasonValid && problemValid);
+    }
+
+    submitBtn.addEventListener('click', () => {
+        // Change button to loading state
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        submitBtn.innerHTML = '<div class="loader-icon"></div><span class="btn-text">جاري الإرسال...</span>';
+
+        if("vibrate" in navigator) navigator.vibrate(50);
+        
+        if(!regTracked) {
+            if(typeof fbq === 'function') {
+                try { fbq('track', 'CompleteRegistration', { content_name: 'contact_card', business_field: selectedField, reason: reasonInput.value, problem: problemInput.value }); } catch(e) {}
+            }
+            regTracked = true;
+        }
+
+        const tgUrl = `https://t.me/+A8oYo-zbOdBjYzBk`;
+        
+        if(!leadTracked) {
+            if(typeof fbq === 'function') {
+                try { fbq('track', 'Lead', { content_name: 'telegram_book_request', score: '4/4', business_field: selectedField, value: 1, currency: 'USD' }); } catch(e) {}
+            }
+            leadTracked = true;
+            
+            // Save to Supabase
+            try {
+                fetch('/api/quiz-register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: nameInput.value.trim(),
+                        phone: '+213 ' + phoneInput.value.trim(),
+                        answers: {
+                            q3: selectedField || '',
+                            q4: reasonInput.value.trim() || '',
+                            q5: problemInput.value.trim() || ''
+                        },
+                        status: 'telegram_redirect'
+                    })
+                }).catch(e => console.error("Supabase Error", e));
+            } catch(e) {}
+        }
+        
+        // Fast loading state
+        setTimeout(() => {
+            submitBtn.classList.remove('loading');
+            submitBtn.classList.add('success');
+            submitBtn.innerHTML = '<span class="btn-text">✅ تم! جاري تحويلك لتيليجرام...</span>';
+            
+            setTimeout(() => {
+                window.location.href = tgUrl;
+            }, 200);
+        }, 300);
+    });
+});
+</script>
+</body>
+</html>

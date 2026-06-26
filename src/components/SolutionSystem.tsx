@@ -444,12 +444,17 @@ export default function SolutionSystem() {
             </p>
 
             <motion.a
-              href="#booking"
+              href="#book-consultation"
               className="inline-flex items-center justify-center gap-3 rounded-2xl font-black text-lg px-10"
               style={{
                 background: 'linear-gradient(90deg, #C49B1A, #F4C430)',
                 color: '#0A1628',
-                height: '56px',
+                minHeight: '56px',
+                height: 'auto',
+                paddingTop: '12px',
+                paddingBottom: '12px',
+                textAlign: 'center',
+                lineHeight: 1.3,
                 minWidth: '260px',
               }}
               animate={{
@@ -462,7 +467,7 @@ export default function SolutionSystem() {
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
             >
-              ابدأ الآن — احجز استشارتك المجانية
+              ابدأ الآن — قم بعمل شركتك امريكية في وايومينغ الان
               <CheckCircle2 className="w-5 h-5" aria-hidden="true" />
             </motion.a>
 

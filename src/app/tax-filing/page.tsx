@@ -120,9 +120,9 @@ export default function TaxFiling() {
                 
                 <div className="social-proof-mini animate-fadeIn delay-9 mt-6">
                   <div className="avatars">
-                    <img src="https://i.pravatar.cc/100?img=11" className="avatar" alt="Client" />
-                    <img src="https://i.pravatar.cc/100?img=12" className="avatar" alt="Client" />
-                    <img src="https://i.pravatar.cc/100?img=13" className="avatar" alt="Client" />
+                    <img src="https://i.pravatar.cc/100?img=11" className="avatar" alt="Client" width="40" height="40" loading="lazy" />
+                    <img src="https://i.pravatar.cc/100?img=12" className="avatar" alt="Client" width="40" height="40" loading="lazy" />
+                    <img src="https://i.pravatar.cc/100?img=13" className="avatar" alt="Client" width="40" height="40" loading="lazy" />
                     <span className="avatar-more">+50</span>
                   </div>
                   <p className="proof-text">
@@ -444,7 +444,7 @@ export default function TaxFiling() {
                         تأكيد IRS. أنصح الجميع!"
                       </p>
                       <div className="testimonial-author">
-                        <img src="https://i.pravatar.cc/100?img=33" className="author-avatar" alt="Client" />
+                        <img src="https://i.pravatar.cc/100?img=33" className="author-avatar" alt="Client" width="48" height="48" loading="lazy" />
                         <div className="author-info">
                           <strong>خالد المنصوري</strong>
                           <span>صاحب LLC في Delaware</span>
@@ -459,7 +459,7 @@ export default function TaxFiling() {
                         السعر ممتاز مقارنة بالخدمات الأخرى."
                       </p>
                       <div className="testimonial-author">
-                        <img src="https://i.pravatar.cc/100?img=11" className="author-avatar" alt="Client" />
+                        <img src="https://i.pravatar.cc/100?img=11" className="author-avatar" alt="Client" width="48" height="48" loading="lazy" />
                         <div className="author-info">
                           <strong>أحمد السالم</strong>
                           <span>فريلانسر - Wyoming LLC</span>

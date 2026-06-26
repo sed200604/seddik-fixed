@@ -151,7 +151,7 @@ export default function Testimonials() {
               <div className="flex items-center gap-4 border-t border-white/10 pt-6 mt-auto">
                 <div className="relative">
                   <div className="absolute inset-0 bg-gold rounded-full blur-[8px] opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <img src={t.img} alt={t.name} className="w-14 h-14 rounded-full border-2 border-gold object-cover relative z-10" referrerPolicy="no-referrer" />
+                  <img src={t.img} alt={t.name} width="56" height="56" loading="lazy" className="w-14 h-14 rounded-full border-2 border-gold object-cover relative z-10" referrerPolicy="no-referrer" />
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-lg">{t.name}</h4>

@@ -10,10 +10,17 @@ export default function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -89,7 +96,8 @@ export default function Header() {
             onClick={(e) => handleNavClick(e, '/#pricing')}
             className="hidden md:inline-flex bg-gold text-navy font-bold px-8 py-3 rounded-lg shadow-[0_4px_14px_rgba(244,196,48,0.4)] hover:bg-[#FFD700] hover:-translate-y-0.5 transition-all"
           >
-            ابدأ الآن - 39$
+            {/* FIXED: Wrong price in header CTA button */}
+            ابدأ الآن - $99
           </Link>
           <button
             className="md:hidden text-navy p-2 -mr-2"
@@ -120,7 +128,8 @@ export default function Header() {
               className="bg-gold text-navy font-bold px-6 py-4 rounded-lg text-center mt-4 block"
               onClick={(e) => handleNavClick(e, '/#pricing')}
             >
-              ابدأ الآن - 39$
+              {/* FIXED: Wrong price in header CTA button */}
+              ابدأ الآن - $99
             </Link>
           </nav>
         </div>

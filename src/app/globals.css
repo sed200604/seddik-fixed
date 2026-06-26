@@ -1,25 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=Inter+Tight:wght@700;800&family=Inter:wght@500&family=JetBrains+Mono:wght@500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #1A3A52;
-  --color-navy-dark: #0F1F2E;
-  --color-gold: #F4C430;
-  --color-gold-light: #FFE17B;
-  --color-off-white: #F8F9FA;
-  --color-light-gray: #E8E8E8;
-  --color-medium-gray: #4B5563; /* Darkened for better WCAG AA contrast on white */
-  --color-dark-gray: #1F2937; /* Darkened for better contrast */
-  
+  --color-foundation-navy: #0A1628;
+  --color-deep-navy: #050D1A;
+  --color-light-navy: #0F1E36;
+  --color-card-hairline: #1C2D4A;
+  --color-gold: #D4A843;
+  --color-gold-hover: #C99A35;
+  --color-warm-off-white: #E8D9B2;
+  --color-pure-white: #FFFFFF;
+  --color-muted-white: #C9D2DE;
+  --color-cream: #F5EFE3;
+  --color-signal-green: #1DB954;
+  --color-alert-red: #C8372D;
+
   --font-cairo: "Cairo", sans-serif;
   --font-tajawal: "Tajawal", sans-serif;
+  --font-inter-tight: "Inter Tight", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-jetbrains: "JetBrains Mono", monospace;
+
+  /* Animation Timings (Prompt 183) */
+  --duration-micro: 180ms;
+  --duration-reveal: 350ms;
+  --duration-large: 450ms;
+  --duration-emphasis: 600ms;
+  --duration-ambient: 1000ms;
 }
 
 @layer base {
   body {
     font-family: var(--font-cairo);
-    background-color: var(--color-off-white);
-    color: var(--color-dark-gray);
+    background-color: var(--color-foundation-navy);
+    color: var(--color-warm-off-white);
     direction: rtl;
   }
   
@@ -173,3 +187,34 @@ input, select, textarea {
   --z-modal: 500;
   --z-toast: 800;
 }
+
+/* ================================
+   ANIMATION STATES & FALLBACK
+   ================================ */
+
+/* Content is visible by default (JS failure / no-js) */
+.animate-on-scroll {
+  opacity: 1;
+  transform: none;
+}
+
+/* When JS loads, hide elements initially */
+.js-ready .animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+}
+
+/* Revealed state (added via JS hook) */
+.js-ready .animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity var(--duration-reveal) ease-out, transform var(--duration-reveal) ease-out;
+}
+
+/* Mobile: reduce thresholds or disable complex animations if needed */
+@media (max-width: 767px) {
+  [data-framer-component-type] {
+    opacity: 1;
+  }
+}
+

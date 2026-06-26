@@ -1895,3 +1895,25 @@
   color: rgba(26,58,82,0.7);
 }
 @media (min-width: 640px) { .trustIndicators { font-size: 14px; } }
+
+/* ================================
+   MOBILE ANIMATION FALLBACK
+   Prevents blank white areas when
+   IntersectionObserver doesn't fire
+   ================================ */
+@media (max-width: 767px) {
+  .fadeInUp,
+  .fadeInLeft,
+  .fadeInRight,
+  .scaleIn {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .staggerChildren > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

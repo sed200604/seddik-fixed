@@ -69,6 +69,10 @@ const nextConfig = {
         source: '/book',
         destination: '/book.html',
       },
+      {
+        source: '/free-book',
+        destination: '/free-book.html',
+      },
     ];
   },
 };

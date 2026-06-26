@@ -5,7 +5,8 @@ export default function FinalCTA() {
   return (
     <div className={styles.finalCtaSection}>
       <h3 className={styles.finalCtaHeadline}>جاهز لبدء شركتك الأمريكية؟ 🚀</h3>
-      <p className={styles.finalCtaSub}>انضم لـ 30+ رائد أعمال جزائري بدأوا معنا</p>
+      {/* FIXED: Unify client count */}
+      <p className={styles.finalCtaSub}>انضم لـ 100+ رائد أعمال جزائري بدأوا معنا</p>
       
       <div className={styles.finalCtaButtons}>
         <button className={`${styles.ctaButton} ${styles.btnBasic}`} style={{ width: 'auto' }}>
@@ -20,14 +21,16 @@ export default function FinalCTA() {
       </div>
 
       <div className={styles.finalCtaFeatures}>
-        <span>✓ ضمان استرجاع المال 100%</span>
+        {/* FIXED: استرجاع→استرداد */}
+        <span>✓ ضمان استرداد المال 100%</span>
         <span>✓ تأسيس مضمون خلال 5 أيام</span>
         <span>✓ دعم عربي كامل</span>
         <span>✓ بدون رسوم خفية</span>
       </div>
 
       <p className={styles.finalCtaSmall}>
-        لديك أسئلة؟ تواصل معنا عبر واتساب: +213XXXXXXXXX
+        {/* FIXED: Incomplete WhatsApp number */}
+        لديك أسئلة؟ تواصل معنا عبر واتساب: +213791789125
       </p>
     </div>
   );

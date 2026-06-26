@@ -1,12 +1,26 @@
 {
   "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
+  "/api/capi/lead/route": "app/api/capi/lead/route.js",
+  "/api/email-notify/route": "app/api/email-notify/route.js",
+  "/api/quiz-register/route": "app/api/quiz-register/route.js",
+  "/api/track/route": "app/api/track/route.js",
+  "/api/workshop-register/route": "app/api/workshop-register/route.js",
   "/blog/[slug]/page": "app/blog/[slug]/page.js",
   "/blog/page": "app/blog/page.js",
+  "/ebook/api/stripe/checkout/route": "app/ebook/api/stripe/checkout/route.js",
+  "/ebook/page": "app/ebook/page.js",
   "/icon.png/route": "app/icon.png/route.js",
+  "/lp/go/page": "app/lp/go/page.js",
+  "/lp/pro/page": "app/lp/pro/page.js",
   "/lp/tax-filing/page": "app/lp/tax-filing/page.js",
+  "/new-flow/page": "app/new-flow/page.js",
   "/page": "app/page.js",
   "/robots.txt/route": "app/robots.txt/route.js",
   "/sitemap.xml/route": "app/sitemap.xml/route.js",
-  "/tax-filing/page": "app/tax-filing/page.js"
+  "/tax-filing/page": "app/tax-filing/page.js",
+  "/thank-you/page": "app/thank-you/page.js",
+  "/why-choose-us/page": "app/why-choose-us/page.js",
+  "/workshop/page": "app/workshop/page.js",
+  "/workshop/redirect/page": "app/workshop/redirect/page.js"
 }

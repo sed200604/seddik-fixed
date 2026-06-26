@@ -7,15 +7,18 @@ export default function FloatingWhatsApp() {
 
   useEffect(() => {
     // Lift the whatsapp button when the sticky bar appears
+    let ticking = false;
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setIsLifted(true);
-      } else {
-        setIsLifted(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsLifted(window.scrollY > 300);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);

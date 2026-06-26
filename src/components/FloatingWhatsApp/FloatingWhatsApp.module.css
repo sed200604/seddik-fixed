@@ -104,28 +104,9 @@
   bottom: 120px;
 }
 
-/* Mobile */
+/* Mobile — hide entirely to prevent content overlap; StickyCTABar handles CTA */
 @media (max-width: 768px) {
   .floatingWhatsapp {
-    bottom: 90px;
-    left: 16px;
-  }
-  
-  .whatsappButton {
-    width: 54px;
-    height: 54px;
-  }
-  
-  .whatsappButton svg {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .whatsappTooltip {
-    display: none; /* Hide tooltip on mobile */
-  }
-  
-  .lifted {
-    bottom: 140px;
+    display: none;
   }
 }

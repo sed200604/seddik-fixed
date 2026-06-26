@@ -1,20 +1,48 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Go LLC — Interactive Ebook
 
-# Run and deploy your AI Studio app
+A cinematic, scroll-driven web experience tailored for Algerian entrepreneurs. This application educates users on the risks of cheap US LLC formation traps and converts them into customers of the Go LLC premium service.
 
-This contains everything you need to run your app locally.
+## Project Architecture
 
-View your app in AI Studio: https://ai.studio/apps/649f0a77-248b-4662-8b3a-1b6b18aba748
+This ebook operates as a dedicated route (`/ebook`) within a Next.js 14 (App Router) project.
 
-## Run Locally
+### Core Features
+- **Cinematic Scrolling**: Powered by Lenis for smooth scrolling, with robust scroll-tracking mechanisms.
+- **RTL-First Typography**: Native support for Arabic formatting and right-to-left layout constraints using modern CSS logical properties (`inset-inline-start`, `padding-block`, etc.).
+- **Interactive 3D Elements**: Uses `@react-three/fiber` and `@react-three/drei` for interactive 3D visualizations (e.g., the Algeria map).
+- **Advanced Animations**: Powered by `motion/react` and `gsap` for staggered reveals, layout transitions, and complex interactive effects.
+- **Performance Optimized**: Heavy components and 3D scenes are dynamically imported (`ssr: false`) to ensure a tiny initial JS bundle footprint.
+- **Content Gating & Paywall**: Hybrid gating system that prevents content leakage to unauthenticated or unpaid users.
 
-**Prerequisites:**  Node.js
+### Protection & Anti-Scraping
+- **Client-Side Verification**: Prevents DOM-scraping by validating user states before rendering sensitive nodes.
+- **Canvas Watermarking**: Injects unique, randomized, and visually subtle session watermarks onto the page to trace unauthorized screenshots.
+- **Protection Layer**: Actively blocks common scraping shortcuts and developer tools, ensuring proprietary material is protected.
+- **Legal Defense**: Contains an actionable DMCA Takedown Template (`legal/takedown_template.md`) to be used if the design or content is replicated.
 
+## Development
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## Structure
+
+- `/src/app/ebook` - The main ebook Next.js route and layout shell
+- `/src/components/ebook/chapters` - The 14 individual chapter components
+- `/src/components/ebook/ui` - Reusable interactive atoms (FlipCards, MagneticButtons, etc)
+- `/src/components/ebook/providers` - Global state context and scroll management
+- `/src/components/ebook/protection` - Anti-scraping and watermarking systems
+- `/src/data/ebook` - Typed data stores for the ebook content
+- `/src/lib/ebook` - PostHog analytics and Stripe utility wrappers
+
+## License
+
+All content, design systems, and specialized code within the `/ebook` namespace are proprietary to Go LLC. Unauthorized reproduction is prohibited.

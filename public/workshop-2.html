@@ -1,0 +1,3652 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GO LLC — أسس شركتك الأمريكية بأمان من الجزائر</title>
+<meta name="description" content="GO LLC تساعد الجزائريين في تأسيس شركات LLC أمريكية قانونية مع مرافقة كاملة في البنوك والمدفوعات. 100+ شركة ناجحة — 0 حساب مغلق.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0F1E;
+  --navy: #1E3A5F;
+  --gold: #C8960C;
+  --danger: #C0392B;
+  --success: #1A7A4A;
+  --text: #FFFFFF;
+  --text-2: #B0BEC5;
+  --bg-alt: #0D1526;
+  --card-bg: #111B2E;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --section-pad: clamp(48px, 12vw, 120px);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  padding-bottom: 90px;
+}
+
+img, canvas, video, svg {
+  max-width: 100%;
+  display: block;
+}
+
+.num, .en {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px clamp(16px, 4vw, 40px);
+  transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease), backdrop-filter 0.4s var(--ease);
+  background: rgba(10, 15, 30, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.navbar.scrolled {
+  background: var(--bg);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.5);
+}
+
+.navbar-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(20px, 5vw, 28px);
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar-cta {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 700;
+  font-size: clamp(12px, 3.2vw, 14px);
+  padding: 10px clamp(16px, 4vw, 28px);
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(200,150,12,0.4);
+}
+
+.navbar-cta:active {
+  transform: scale(0.96);
+}
+
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-small {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.reveal-small.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-small {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .pulse-badge, .bounce-arrow, .shimmer-btn, .shake-once, .wobble-icon, .pulse-urgency {
+    animation: none !important;
+  }
+  .typewriter-cursor {
+    animation: none !important;
+  }
+  .warning-badge {
+    animation: none !important;
+  }
+  .btn-primary, .mega-cta {
+    animation: none !important;
+  }
+  .btn-primary::before, .mega-cta::before {
+    animation: none !important;
+  }
+  .timeline-icon.red {
+    animation: none !important;
+  }
+  .urgency-bar {
+    animation: none !important;
+  }
+  .scroll-arrow {
+    animation: none !important;
+  }
+  .form-success-icon {
+    animation: none !important;
+  }
+}
+
+/* ===== SECTION: HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(90px, 18vw, 120px) clamp(16px, 4vw, 20px) clamp(60px, 10vw, 80px);
+  overflow: hidden;
+}
+
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, var(--navy), transparent);
+  opacity: 0.35;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  width: 100%;
+}
+
+.warning-badge {
+  display: inline-block;
+  background: rgba(192, 57, 43, 0.2);
+  border: 1px solid var(--danger);
+  color: var(--text);
+  font-size: clamp(12px, 3.5vw, 15px);
+  font-weight: 700;
+  padding: clamp(8px, 2vw, 10px) clamp(16px, 4vw, 28px);
+  border-radius: 50px;
+  margin-bottom: clamp(20px, 5vw, 32px);
+  animation: pulse-glow 1.5s ease-in-out infinite;
+  max-width: 100%;
+  line-height: 1.5;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(192,57,43,0.3); }
+  50% { box-shadow: 0 0 24px rgba(192,57,43,0.6); }
+}
+
+.hero-headline {
+  font-size: clamp(32px, 9vw, 80px);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: clamp(14px, 3vw, 20px);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.hero-headline-gold {
+  color: var(--gold);
+  display: block;
+  min-height: 1.2em;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.9em;
+  background: var(--gold);
+  margin-right: 4px;
+  vertical-align: middle;
+  animation: blink-cursor 0.8s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-sub {
+  font-size: clamp(15px, 4vw, 20px);
+  color: var(--text-2);
+  margin-bottom: clamp(24px, 6vw, 40px);
+  font-weight: 400;
+  padding-inline: 4px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: clamp(28px, 7vw, 48px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 700;
+  font-size: clamp(16px, 4vw, 18px);
+  padding: 16px clamp(28px, 6vw, 44px);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  animation: soft-pulse 2s ease-in-out infinite;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  min-height: 52px;
+  text-align: center;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer-sweep 2.5s ease-in-out infinite;
+}
+
+@keyframes shimmer-sweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes soft-pulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(200,150,12,0.3); }
+  50% { box-shadow: 0 0 30px rgba(200,150,12,0.6); }
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(200,150,12,0.5);
+}
+
+.btn-primary:active {
+  transform: scale(0.96);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text);
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 700;
+  font-size: clamp(16px, 4vw, 18px);
+  padding: 16px clamp(28px, 6vw, 44px);
+  border-radius: 8px;
+  border: 2px solid rgba(255,255,255,0.4);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
+  min-height: 52px;
+  text-align: center;
+}
+
+.btn-secondary:hover {
+  border-color: var(--text);
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: scale(0.96);
+  background: rgba(255,255,255,0.08);
+}
+
+.trust-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 24px);
+  flex-wrap: wrap;
+  font-size: clamp(13px, 3.5vw, 15px);
+  color: var(--text-2);
+  margin-bottom: 40px;
+}
+
+.trust-badges .badge-item {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.trust-badges .badge-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.trust-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255,255,255,0.2);
+}
+
+.scroll-arrow {
+  position: absolute;
+  bottom: clamp(16px, 4vw, 30px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 28px;
+  color: var(--text-2);
+  animation: bounce-arrow 1.8s ease-in-out infinite;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(12px); }
+}
+
+/* ===== SECTION 2: STORY ===== */
+.section-story {
+  background: var(--bg-alt);
+  padding: var(--section-pad) clamp(16px, 4vw, 20px);
+}
+
+.section-title {
+  font-size: clamp(26px, 6vw, 44px);
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 12px;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.title-underline {
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--gold);
+  margin: 0 auto clamp(32px, 8vw, 60px);
+  border-radius: 2px;
+}
+
+.timeline {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto clamp(32px, 8vw, 60px);
+  position: relative;
+}
+
+.timeline-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  padding: 0 20px;
+}
+
+.timeline-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin: 0 auto 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-icon.green { background: rgba(26,122,74,0.2); border: 2px solid var(--success); }
+.timeline-icon.blue-gold { background: rgba(30,58,95,0.4); border: 2px solid var(--gold); }
+.timeline-icon.yellow { background: rgba(200,150,12,0.2); border: 2px solid var(--gold); }
+.timeline-icon.orange { background: rgba(230,126,34,0.2); border: 2px solid #e67e22; color: #e67e22; }
+.timeline-icon.red {
+  background: rgba(192,57,43,0.2);
+  border: 2px solid var(--danger);
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+.timeline-icon.gold-glow { 
+  background: rgba(200,150,12,0.2); 
+  border: 2px solid var(--gold); 
+  box-shadow: 0 0 15px rgba(200,150,12,0.6);
+}
+
+.timeline-text {
+  font-size: clamp(14px, 3.8vw, 16px);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.timeline-line {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1;
+}
+
+.timeline-line-inner {
+  height: 100%;
+  background: linear-gradient(to left, var(--danger), var(--gold), var(--success));
+  width: 0%;
+  transition: width 1.5s var(--ease);
+}
+
+.timeline-line-inner.drawn {
+  width: 100%;
+}
+
+/* Mobile vertical timeline line */
+.timeline-line-v {
+  display: none;
+}
+
+.story-subheadline {
+  text-align: center;
+  font-size: clamp(15px, 4vw, 18px);
+  color: var(--text-2);
+  max-width: 800px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.timeline-6-steps {
+  max-width: 1200px; /* Override 800px for 6 steps */
+}
+
+.story-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.story-card {
+  padding: clamp(24px, 5vw, 32px);
+  border-radius: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  text-align: right;
+  font-size: clamp(15px, 4vw, 18px);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.warning-card {
+  background: rgba(192,57,43,0.1);
+  border: 1px solid rgba(192,57,43,0.3);
+  color: var(--text);
+}
+
+.solution-card {
+  background: rgba(200,150,12,0.1);
+  border: 1px solid rgba(200,150,12,0.3);
+  color: var(--text);
+}
+
+.card-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+  margin-top: -4px;
+}
+
+.card-icon.red { color: var(--danger); }
+.card-icon.gold { color: var(--gold); }
+
+@media (max-width: 768px) {
+  .story-cards { grid-template-columns: 1fr; }
+}
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+/* ===== SECTION 3: MISTAKES ===== */
+.section-mistakes {
+  background: #0A0F1E;
+  padding: var(--section-pad) clamp(16px, 4vw, 20px);
+}
+
+.mistake-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto 50px;
+}
+
+.mistake-card {
+  background: #111B2E;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-top: 4px solid #C0392B;
+  border-radius: 12px;
+  padding: clamp(24px, 5vw, 36px) clamp(20px, 4vw, 28px);
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: all 0.4s var(--ease);
+}
+
+.mistake-card:hover {
+  box-shadow: 0 12px 30px rgba(200,150,12,0.15);
+  transform: translateY(-6px);
+  border-color: rgba(200,150,12,0.4);
+}
+
+.mistake-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.mistake-icon-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mistake-icon {
+  font-size: 28px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  transition: transform 0.3s var(--ease);
+}
+
+.mistake-card:hover .mistake-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.mistake-icon.main-icon {
+  font-size: 36px;
+}
+
+.mistake-close {
+  color: #C0392B;
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+.mistake-title {
+  font-size: clamp(18px, 4.5vw, 22px);
+  font-weight: 900;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+  line-height: 1.4;
+}
+
+.mistake-desc {
+  font-size: clamp(14px, 3.8vw, 16px);
+  color: #A0A5B5;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.mistake-badge {
+  display: block;
+  padding: clamp(12px, 3vw, 14px) clamp(16px, 3vw, 20px);
+  border-radius: 8px;
+  font-size: clamp(13px, 3.5vw, 15px);
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+.mistake-badge:last-child {
+  margin-bottom: 0;
+}
+
+.mistake-badge.danger {
+  background: rgba(192,57,43,0.1);
+  color: #E74C3C;
+  border: 1px solid rgba(192,57,43,0.3);
+}
+
+.mistake-badge.success {
+  background: rgba(26,122,74,0.1);
+  color: #2ECC71;
+  border: 1px solid rgba(26,122,74,0.3);
+}
+
+/* Animations */
+@media (prefers-reduced-motion: no-preference) {
+  .section-mistakes .section-title.reveal.active {
+    animation: fadeUp 0.5s ease-out forwards;
+  }
+  
+  .title-underline-gold {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .title-underline-gold::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #C8960C;
+    transition: width 0.8s ease-out 0.3s;
+  }
+  
+  .active .title-underline-gold::after {
+    width: 100%;
+  }
+
+  .mistake-card.reveal.active .danger {
+    animation: pulseSoft 1.5s ease-in-out 1;
+    animation-delay: 0.5s;
+  }
+
+  .mistake-card.reveal.active .success {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUpFade 0.6s ease-out forwards;
+    animation-delay: 1.2s;
+  }
+}
+
+@keyframes pulseSoft {
+  0% { box-shadow: 0 0 0 0 rgba(192,57,43,0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(192,57,43,0); }
+  100% { box-shadow: 0 0 0 0 rgba(192,57,43,0); }
+}
+
+@keyframes slideUpFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mistakes-cta-banner {
+  background: rgba(200,150,12,0.1);
+  border: 1px solid rgba(200,150,12,0.3);
+  border-radius: 12px;
+  padding: 40px 30px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mistakes-banner-text {
+  font-size: clamp(16px, 4.5vw, 22px);
+  font-weight: 700;
+  color: #C8960C;
+  margin-bottom: 24px;
+}
+
+.mistake-trust-text {
+  font-size: clamp(12px, 3vw, 14px);
+  color: #A0A5B5;
+  margin-top: 16px;
+  font-weight: 400;
+}
+
+/* ===== SECTION 5: QUIZ ===== */
+.section-quiz {
+  background: #0A0F1E;
+  padding: var(--section-pad) clamp(16px, 4vw, 20px);
+}
+
+.quiz-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.quiz-badge {
+  display: inline-block;
+  background: rgba(200,150,12,0.1);
+  color: #C8960C;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: clamp(12px, 3.5vw, 14px);
+  font-weight: 700;
+  margin-bottom: 16px;
+  border: 1px solid rgba(200,150,12,0.3);
+}
+
+.quiz-subheadline {
+  font-size: clamp(16px, 4vw, 18px);
+  color: #A0A5B5;
+  margin-top: 16px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quiz-card {
+  background: #111B2E;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: clamp(24px, 6vw, 40px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  transition: all 0.4s var(--ease);
+}
+
+.quiz-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200,150,12,0.3);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+}
+
+.quiz-progress-wrap {
+  margin-bottom: 30px;
+}
+
+.quiz-progress-text {
+  font-size: 14px;
+  color: #C8960C;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.quiz-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background: #C8960C;
+  transition: width 0.5s ease;
+}
+
+.quiz-question-area {
+  min-height: 250px;
+}
+
+.quiz-question {
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 900;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  animation: slideInRight 0.4s ease-out;
+}
+
+.quiz-helper {
+  font-size: clamp(14px, 4vw, 16px);
+  color: #A0A5B5;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.quiz-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.quiz-btn {
+  flex: 1;
+  padding: clamp(14px, 4vw, 18px);
+  border-radius: 10px;
+  font-size: clamp(15px, 4vw, 17px);
+  font-weight: 700;
+  font-family: 'Tajawal', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  background: rgba(255,255,255,0.02);
+  color: #FFFFFF;
+  animation: fadeUp 0.5s ease-out backwards;
+}
+
+.yes-btn {
+  border: 2px solid rgba(26,122,74,0.4);
+  animation-delay: 0.1s;
+}
+
+.yes-btn:hover, .yes-btn.active {
+  background: rgba(26,122,74,0.1);
+  border-color: #1A7A4A;
+}
+
+.no-btn {
+  border: 2px solid rgba(192,57,43,0.4);
+  animation-delay: 0.2s;
+}
+
+.no-btn:hover, .no-btn.active {
+  background: rgba(192,57,43,0.1);
+  border-color: #C0392B;
+}
+
+.quiz-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quiz-feedback {
+  padding: 16px;
+  border-radius: 8px;
+  font-size: clamp(14px, 4vw, 16px);
+  font-weight: 700;
+  margin-bottom: 24px;
+  display: none;
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.quiz-feedback.show-yes {
+  display: block;
+  background: rgba(26,122,74,0.1);
+  color: #2ECC71;
+  border: 1px solid rgba(26,122,74,0.3);
+}
+
+.quiz-feedback.show-no {
+  display: block;
+  background: rgba(192,57,43,0.1);
+  color: #E74C3C;
+  border: 1px solid rgba(192,57,43,0.3);
+  animation: popInPulse 0.6s ease-out forwards;
+}
+
+.quiz-next-btn {
+  background: #C8960C;
+  color: #0A0F1E;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Tajawal', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  display: inline-block;
+}
+
+.quiz-next-btn:hover {
+  box-shadow: 0 0 15px rgba(200,150,12,0.4);
+  transform: translateY(-2px);
+}
+
+.quiz-result-area {
+  text-align: center;
+  animation: glowIn 0.8s ease-out forwards;
+}
+
+.quiz-result-title {
+  font-size: clamp(24px, 6vw, 32px);
+  font-weight: 900;
+  margin-bottom: 16px;
+  color: #FFFFFF;
+}
+
+.quiz-result-desc {
+  font-size: clamp(16px, 4.5vw, 18px);
+  color: #A0A5B5;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.quiz-final-cta {
+  background: #C8960C;
+  color: #0A0F1E;
+  margin-bottom: 16px;
+}
+
+.quiz-final-cta:hover {
+  box-shadow: 0 0 20px rgba(200,150,12,0.5);
+}
+
+.quiz-trust-line {
+  font-size: clamp(12px, 3.5vw, 14px);
+  color: #A0A5B5;
+}
+
+/* ===== QUIZ MOBILE REDESIGN ===== */
+@media (max-width: 768px) {
+  .section-quiz {
+    padding: 60px 16px 80px;
+  }
+
+  .quiz-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .quiz-badge {
+    order: -1;
+    margin-bottom: 20px;
+    font-size: 13px;
+    padding: 8px 16px;
+    background: rgba(200, 150, 12, 0.15);
+    border: 1px solid rgba(200, 150, 12, 0.3);
+    color: #C8960C;
+    border-radius: 20px;
+    display: inline-block;
+    white-space: normal;
+    line-height: 1.4;
+  }
+
+  .quiz-header .section-title {
+    font-size: clamp(26px, 8vw, 32px);
+    line-height: 1.3;
+    margin-bottom: 16px;
+    white-space: normal;
+  }
+
+  .quiz-subheadline {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #A0A5B5;
+    margin-top: 0;
+  }
+
+  .quiz-card {
+    padding: 32px 20px;
+    border-radius: 20px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .quiz-progress-wrap {
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .quiz-progress-text {
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: #C8960C;
+    font-weight: 700;
+  }
+
+  .quiz-question-area {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .quiz-question {
+    font-size: 22px;
+    line-height: 1.4;
+    text-align: center;
+    margin-bottom: 16px;
+    font-weight: 900;
+    color: #FFFFFF;
+  }
+
+  .quiz-helper {
+    font-size: 14.5px;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #A0A5B5;
+  }
+
+  .quiz-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 0;
+  }
+
+  .quiz-btn {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 12px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    min-height: 56px;
+    align-items: center;
+  }
+
+  .yes-btn {
+    background: rgba(26, 122, 74, 0.1);
+    border: 1px solid rgba(26, 122, 74, 0.4);
+    color: #2ECC71;
+  }
+  
+  .yes-btn:hover, .yes-btn.active {
+    background: rgba(26, 122, 74, 0.15);
+    border-color: #2ECC71;
+  }
+
+  .no-btn {
+    background: rgba(192, 57, 43, 0.05);
+    border: 1px solid rgba(192, 57, 43, 0.3);
+    color: #E74C3C;
+  }
+  
+  .no-btn:hover, .no-btn.active {
+    background: rgba(192, 57, 43, 0.1);
+    border-color: #E74C3C;
+  }
+  
+  .quiz-feedback {
+    margin-top: 24px;
+    text-align: center;
+  }
+  
+  .quiz-next-btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-question, .quiz-btn, .quiz-feedback, .quiz-result-area {
+    animation: none;
+    transition: opacity 0.3s ease;
+  }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes popInPulse {
+  0% { opacity: 0; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.02); box-shadow: 0 0 15px rgba(192,57,43,0.3); }
+  100% { opacity: 1; transform: scale(1); box-shadow: none; }
+}
+
+@keyframes glowIn {
+  0% { opacity: 0; filter: drop-shadow(0 0 0 rgba(200,150,12,0)); }
+  100% { opacity: 1; filter: drop-shadow(0 0 20px rgba(200,150,12,0.15)); }
+}
+
+/* ===== SECTION 6: COMPARISON ===== */
+.section-compare {
+  background: #0A0F1E;
+  padding: var(--section-pad) clamp(16px, 4vw, 20px);
+}
+
+.compare-header-wrapper {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.compare-subheadline {
+  max-width: 950px;
+  margin: 16px auto 0;
+  font-size: clamp(15px, 4vw, 18px);
+  color: #A0A5B5;
+  line-height: 1.6;
+}
+
+.compare-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.compare-card-pro {
+  background: #111B2E;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.compare-card-pro:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200, 150, 12, 0.3);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+.cc-title-bar {
+  background: rgba(10, 15, 30, 0.5);
+  padding: 16px 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cc-title-text {
+  font-size: clamp(18px, 4.5vw, 20px);
+  font-weight: 900;
+  color: #FFF;
+}
+
+.cc-row {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: relative;
+}
+
+.cc-row.negative {
+  background: rgba(192, 57, 43, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.cc-row.positive {
+  background: rgba(26, 122, 74, 0.03);
+}
+
+.cc-row-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.cc-row-title {
+  font-size: 14px;
+  font-weight: 900;
+  color: #A0A5B5;
+}
+
+.cc-icon {
+  font-size: 16px;
+}
+
+.cc-row-text {
+  font-size: clamp(15px, 4vw, 16px);
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.cc-row.negative .cc-row-text {
+  color: #E57373;
+}
+
+.cc-row.positive .cc-row-text {
+  color: #81C784;
+}
+
+.slide-row {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: slideRowIn 0.5s var(--ease) forwards;
+}
+
+@keyframes slideRowIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes compareFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.compare-cta-banner {
+  text-align: center;
+  margin-top: 50px;
+  opacity: 0;
+  animation: compareFadeUp 0.8s var(--ease) 1s forwards;
+}
+
+.compare-cta-text {
+  font-size: clamp(18px, 5vw, 22px);
+  font-weight: 700;
+  color: #FFF;
+  margin-bottom: 24px;
+}
+
+.compare-cta-highlight {
+  color: #C8960C;
+}
+
+.compare-cta-button {
+  background: #C8960C;
+  color: #0A0F1E;
+  padding: 16px 40px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 900;
+  font-family: 'Tajawal', sans-serif;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.compare-cta-button:hover {
+  box-shadow: 0 0 25px rgba(200, 150, 12, 0.5);
+  transform: translateY(-2px);
+}
+
+.compare-trust-line {
+  font-size: 14px;
+  color: #A0A5B5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .compare-card-pro, .slide-row, .compare-cta-banner {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ===== SECTION 7: PROOF & FEATURES ===== */
+.section-proof {
+  background: #0A0F1E;
+  padding: clamp(60px, 8vw, 100px) clamp(16px, 4vw, 20px);
+  position: relative;
+}
+
+.proof-top-cta {
+  background: rgba(17, 27, 46, 0.8);
+  border: 1px solid rgba(200, 150, 12, 0.2);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 60px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+}
+
+.proof-top-text {
+  font-size: clamp(18px, 4.5vw, 22px);
+  font-weight: 900;
+  color: #FFF;
+  margin-bottom: 20px;
+}
+
+.proof-top-text .highlight {
+  color: #C8960C;
+}
+
+.btn-proof-cta {
+  background: #C8960C;
+  color: #0A0F1E;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 900;
+  font-family: 'Tajawal', sans-serif;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  display: inline-block;
+  margin-bottom: 12px;
+  animation: gentlePulse 2.5s infinite;
+}
+
+.btn-proof-cta:hover {
+  box-shadow: 0 0 20px rgba(200, 150, 12, 0.5);
+  transform: translateY(-2px);
+}
+
+.proof-top-subtext {
+  font-size: clamp(13px, 3.5vw, 15px);
+  color: #A0A5B5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.proof-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.proof-subtitle {
+  max-width: 800px;
+  margin: 16px auto 0;
+  font-size: clamp(15px, 4vw, 18px);
+  color: #A0A5B5;
+  line-height: 1.6;
+}
+
+.counters-row {
+  display: flex;
+  justify-content: center;
+  gap: clamp(24px, 4vw, 40px);
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 380px;
+  background: #111B2E;
+  text-align: center;
+  padding: 40px 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(200, 150, 12, 0.3);
+}
+
+.counter-number {
+  font-family: 'Inter', 'Tajawal', sans-serif;
+  font-size: clamp(48px, 8vw, 64px);
+  font-weight: 900;
+  color: #C8960C;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  text-shadow: 0 0 20px rgba(200, 150, 12, 0.2);
+}
+
+.counter-number.text-stat {
+  font-size: clamp(24px, 5.5vw, 32px);
+  line-height: 1.3;
+}
+
+.stat-label {
+  font-size: clamp(18px, 4.5vw, 20px);
+  color: #FFF;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.stat-sub {
+  font-size: clamp(14px, 3.8vw, 15px);
+  color: #A0A5B5;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .counters-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+  .stat-card {
+    width: 100%;
+    min-width: 100%;
+    padding: 32px 20px;
+  }
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto 60px;
+}
+
+.feature-card {
+  background: #111B2E;
+  border-radius: 12px;
+  padding: 32px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, #C8960C, transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  border-color: rgba(200, 150, 12, 0.1);
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-icon-wrap {
+  width: 50px;
+  height: 50px;
+  background: rgba(200, 150, 12, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 24px;
+  color: #C8960C;
+}
+
+.feature-card h4 {
+  font-size: clamp(18px, 4vw, 20px);
+  font-weight: 900;
+  color: #FFF;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.feature-card p {
+  font-size: clamp(14px, 3.5vw, 15px);
+  color: #A0A5B5;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.proof-final-cta {
+  text-align: center;
+}
+
+.proof-final-cta .btn-proof-cta {
+  font-size: 20px;
+  padding: 18px 48px;
+}
+
+@keyframes gentlePulse {
+  0% { box-shadow: 0 0 0 0 rgba(200, 150, 12, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(200, 150, 12, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(200, 150, 12, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-proof-cta { animation: none; }
+  .feature-card, .counter-number { transition: none; transform: none; }
+}
+
+@media (max-width: 992px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ===== SECTION 8: FINAL CTA ===== */
+.section-cta {
+  position: relative;
+  padding: var(--section-pad) clamp(16px, 4vw, 20px);
+  background: linear-gradient(135deg, var(--bg), var(--navy));
+  overflow: hidden;
+}
+
+.cta-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-size: clamp(26px, 6.5vw, 44px);
+  font-weight: 900;
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+
+.cta-subtitle {
+  font-size: clamp(15px, 4vw, 20px);
+  color: var(--text-2);
+  margin-bottom: clamp(28px, 7vw, 48px);
+  line-height: 1.7;
+}
+
+.workshop-card {
+  background: var(--card-bg);
+  border: 2px solid var(--gold);
+  border-radius: 16px;
+  padding: clamp(24px, 6vw, 40px) clamp(18px, 4.5vw, 36px);
+  text-align: right;
+  margin-bottom: clamp(20px, 5vw, 32px);
+}
+
+.workshop-card h3 {
+  font-size: clamp(18px, 5vw, 26px);
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: clamp(16px, 4vw, 24px);
+  text-align: center;
+  line-height: 1.35;
+}
+
+.workshop-card ul {
+  padding: 0;
+}
+
+.workshop-card li {
+  font-size: clamp(14px, 3.8vw, 17px);
+  color: var(--text);
+  margin-bottom: clamp(8px, 2vw, 12px);
+  list-style: none;
+  line-height: 1.6;
+}
+
+.workshop-card li::before {
+  content: '✓';
+  color: var(--success);
+  font-weight: 900;
+  margin-left: 10px;
+}
+
+.workshop-card li:first-child::before {
+  content: '🎓';
+}
+
+.urgency-bar {
+  text-align: center;
+  font-size: clamp(15px, 4vw, 18px);
+  font-weight: 700;
+  color: var(--danger);
+  margin-bottom: clamp(20px, 5vw, 28px);
+  animation: pulse-urgency 1.5s ease-in-out infinite;
+}
+
+/* ===== QUIZ MODAL OVERLAY ===== */
+body.quiz-open { overflow: hidden; }
+
+.quiz-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10,15,30,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease), visibility 0.4s;
+  padding: 16px;
+}
+.quiz-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+.quiz-overlay-close {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+.quiz-overlay-close:hover {
+  background: rgba(255,255,255,0.15);
+}
+.quiz-card {
+  background: #111B2E;
+  border: 1px solid var(--gold);
+  box-shadow: 0 0 40px rgba(200,150,12,0.1), 0 20px 60px rgba(0,0,0,0.5);
+  border-radius: 16px;
+  padding: clamp(28px, 6vw, 40px) clamp(24px, 5vw, 36px);
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.4s var(--ease);
+  text-align: right;
+}
+.quiz-overlay.open .quiz-card {
+  transform: scale(1) translateY(0);
+}
+/* Scrollbar styling for quiz card */
+.quiz-card::-webkit-scrollbar { width: 6px; }
+.quiz-card::-webkit-scrollbar-track { background: transparent; }
+.quiz-card::-webkit-scrollbar-thumb { background: rgba(200,150,12,0.3); border-radius: 3px; }
+
+.quiz-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+.quiz-back-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text-2);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.quiz-back-btn:hover { border-color: var(--gold); color: var(--gold); }
+.quiz-back-btn.hidden { visibility: hidden; pointer-events: none; }
+.quiz-counter {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+.quiz-progress-container {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.quiz-progress-bar {
+  height: 100%;
+  background: var(--gold);
+  width: 0%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Quiz Steps */
+.quiz-step {
+  display: none;
+  width: 100%;
+}
+.quiz-step.active {
+  display: block;
+  animation: qSlideIn 0.4s var(--ease) forwards;
+}
+.quiz-step.sliding-out {
+  display: block;
+  animation: qSlideOut 0.35s var(--ease) forwards;
+}
+@keyframes qSlideIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes qSlideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-40px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quiz-step.active, .quiz-step.sliding-out { animation: none; opacity: 1; transform: none; }
+  .quiz-overlay, .quiz-card { transition: none; }
+}
+
+/* Welcome Screen */
+.quiz-welcome-title {
+  font-size: clamp(22px, 5.5vw, 28px);
+  font-weight: 900;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.quiz-welcome-sub {
+  font-size: clamp(14px, 3.8vw, 16px);
+  color: var(--text-2);
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.quiz-trust-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 28px;
+}
+.quiz-trust-list li {
+  font-size: clamp(14px, 3.5vw, 15px);
+  color: var(--text);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  line-height: 1.5;
+}
+.quiz-trust-list li:last-child { border-bottom: none; }
+
+/* Question */
+.quiz-question-text {
+  font-size: clamp(18px, 5vw, 22px);
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.quiz-helper {
+  font-size: clamp(13px, 3.5vw, 15px);
+  color: var(--text-2);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* Options */
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.quiz-option {
+  background: #0A0F1E;
+  border: 1px solid #2a3550;
+  border-radius: 10px;
+  padding: 16px 20px;
+  color: var(--text);
+  font-family: 'Tajawal', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: right;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+}
+.quiz-option:hover {
+  border-color: var(--gold);
+  background: rgba(200,150,12,0.05);
+  transform: translateY(-2px);
+}
+.quiz-option:active {
+  transform: scale(0.98);
+}
+.quiz-option.selected {
+  border-color: var(--gold);
+  background: rgba(200,150,12,0.12);
+  box-shadow: 0 0 12px rgba(200,150,12,0.2);
+}
+
+/* Input Fields */
+.quiz-input-group {
+  margin-bottom: 20px;
+}
+.quiz-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-2);
+  margin-bottom: 8px;
+}
+.quiz-input {
+  width: 100%;
+  height: 52px;
+  background: #0A0F1E;
+  color: #FFFFFF;
+  border: 1px solid #2a3550;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+.quiz-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(200,150,12,0.15);
+}
+.quiz-input.has-error {
+  border-color: var(--danger);
+  box-shadow: 0 0 8px rgba(192,57,43,0.2);
+}
+.quiz-tel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.quiz-tel-prefix {
+  position: absolute;
+  left: 16px;
+  color: var(--text-2);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.quiz-input.input-tel {
+  padding-left: 80px;
+  font-family: 'Inter', sans-serif;
+}
+.quiz-error {
+  display: none;
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+.quiz-error.show { display: block; }
+
+/* Buttons */
+.quiz-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 900;
+  font-size: clamp(17px, 4.5vw, 20px);
+  padding: 16px 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  min-height: 54px;
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: soft-pulse 2s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.quiz-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer-sweep 2.5s ease-in-out infinite;
+}
+.quiz-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200,150,12,0.5); }
+.quiz-btn-primary:active { transform: scale(0.96); }
+
+.quiz-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  color: #fff;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 900;
+  font-size: clamp(16px, 4vw, 18px);
+  padding: 16px 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  min-height: 54px;
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.quiz-btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,58,95,0.5); }
+
+/* Result Pages */
+.quiz-result { text-align: center; }
+.quiz-result-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+  animation: scale-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes scale-in {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.quiz-result-title {
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 900;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.quiz-result-title.success { color: var(--success); }
+.quiz-result-title.warning { color: var(--gold); }
+.quiz-result-desc {
+  font-size: clamp(14px, 3.8vw, 16px);
+  color: var(--text-2);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.quiz-checklist {
+  list-style: none;
+  padding: 0;
+  text-align: right;
+  margin-bottom: 24px;
+}
+.quiz-checklist li {
+  font-size: clamp(14px, 3.5vw, 15px);
+  color: var(--text);
+  padding: 8px 0;
+  line-height: 1.5;
+}
+.quiz-wa-note {
+  font-size: clamp(13px, 3.5vw, 15px);
+  color: var(--text-2);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.quiz-gentle-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+.quiz-gentle-text {
+  font-size: clamp(15px, 4vw, 17px);
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.trust-line {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-2);
+  margin-top: 12px;
+}
+
+/* Keep mega-cta for Section 8 fallback button */
+.mega-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 900;
+  font-size: clamp(18px, 5vw, 22px);
+  padding: clamp(16px, 4vw, 20px) clamp(32px, 8vw, 60px);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  animation: soft-pulse 2s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 54px;
+  width: 100%;
+  text-align: center;
+}
+.mega-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer-sweep 2.5s ease-in-out infinite;
+}
+.mega-cta:hover { transform: translateY(-3px); box-shadow: 0 8px 36px rgba(200,150,12,0.5); }
+.mega-cta:active { transform: scale(0.96); }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--bg);
+  padding: clamp(36px, 8vw, 60px) clamp(16px, 4vw, 20px) clamp(28px, 6vw, 40px);
+  text-align: center;
+  border-top: 1px solid var(--gold);
+}
+
+.footer-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(32px, 8vw, 42px);
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.footer-tagline {
+  font-size: clamp(15px, 4vw, 18px);
+  color: var(--text-2);
+  margin-bottom: 16px;
+}
+
+.footer-offices {
+  font-size: clamp(13px, 3.5vw, 15px);
+  color: var(--text-2);
+  margin-bottom: 8px;
+}
+
+.footer-partnership {
+  font-size: clamp(13px, 3.5vw, 15px);
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ===== MOBILE COMPARE CARDS ===== */
+.compare-mobile {
+  display: none;
+}
+
+.compare-mobile-card {
+  background: #111B2E;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.compare-mobile-card .cmc-criterion {
+  padding: 16px 20px;
+  font-weight: 900;
+  font-size: 18px;
+  color: #FFF;
+  background: rgba(10, 15, 30, 0.8);
+  border-bottom: 2px solid rgba(200, 150, 12, 0.2);
+  text-align: center;
+}
+
+.compare-mobile-card .cmc-others {
+  padding: 16px 20px;
+  font-size: 15px;
+  color: #E57373;
+  background: rgba(192, 57, 43, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+}
+
+.compare-mobile-card .cmc-go {
+  padding: 16px 20px;
+  font-size: 15px;
+  color: #81C784;
+  background: rgba(26, 122, 74, 0.05);
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+}
+
+.cmc-label {
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.cmc-content-wrap {
+  flex: 1;
+}
+
+/* ===== RESPONSIVE: MOBILE ≤ 768px ===== */
+@media (max-width: 768px) {
+  /* Hero */
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+    padding-inline: 8px;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    max-width: 360px;
+    margin-inline: auto;
+  }
+
+  .trust-badges {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 8px;
+    column-gap: 12px;
+  }
+
+  .trust-divider {
+    display: none;
+  }
+
+  /* Timeline vertical */
+  .timeline {
+    flex-direction: column;
+    gap: 0;
+    padding-right: 40px;
+    position: relative;
+  }
+
+  .timeline-line {
+    display: none;
+  }
+
+  .timeline-line-v {
+    display: block;
+    position: absolute;
+    right: 12px;
+    top: 28px;
+    bottom: 28px;
+    width: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    z-index: 1;
+  }
+
+  .timeline-line-v-inner {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to bottom, var(--success), var(--gold), var(--danger));
+    border-radius: 2px;
+    transition: height 1.5s var(--ease);
+  }
+
+  .timeline-line-v-inner.drawn {
+    height: 100%;
+  }
+
+  .timeline-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 0 24px 0;
+    text-align: right;
+    flex-direction: row-reverse;
+  }
+
+  .timeline-step:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline-icon {
+    margin: 0;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .timeline-text {
+    flex: 1;
+  }
+
+  /* Cards */
+  .mistake-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  /* Comparison */
+  .compare-table {
+    display: none;
+  }
+
+  .compare-mobile {
+    display: block;
+  }
+
+  /* Counters */
+  .counters-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* Features */
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* CTA */
+  .mega-cta {
+    width: 100%;
+    max-width: 360px;
+    margin-inline: auto;
+  }
+
+  /* Q result CTA */
+  .q-result .btn-primary {
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+/* ===== EXTRA SMALL: ≤ 420px ===== */
+@media (max-width: 420px) {
+  .bank-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .q-buttons {
+    gap: 10px;
+  }
+
+  .q-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 16px;
+  }
+}
+
+/* ===== TABLET: 769px → 1199px ===== */
+@media (min-width: 769px) and (max-width: 1199px) {
+  .hero-headline { font-size: 56px; }
+  .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .counter-number { font-size: 72px; }
+}
+
+/* ===== SECTION HELPERS ===== */
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.text-center { text-align: center; }
+.mb-60 { margin-bottom: 60px; }
+
+/* ===== STICKY BOTTOM CTA ===== */
+.sticky-bottom-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 20px;
+  background: rgba(10, 15, 30, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(200, 150, 12, 0.2);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.sticky-bottom-btn {
+  background: linear-gradient(135deg, #E3B734 0%, #C8960C 100%);
+  color: #0A0F1E;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 14px 40px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(200, 150, 12, 0.3);
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  display: block;
+}
+
+.sticky-bottom-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(200, 150, 12, 0.5);
+}
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1002567808831104');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1002567808831104&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="#" class="navbar-logo">GO LLC</a>
+  <a href="#" class="navbar-cta open-quiz-cta" onclick="openQuiz(); return false;">سجّل في الورشة</a>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section class="hero" id="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="warning-badge">⚠️ تحذير عاجل لكل جزائري يريد تأسيس شركة أمريكية</div>
+    <h1 class="hero-headline">
+      السوق مليء بمن يسرقونك
+      <span class="hero-headline-gold" id="typewriterTarget"><span class="typewriter-cursor"></span></span>
+    </h1>
+    <p class="hero-sub"><span class="num">100</span> جزائري تعلموا الحقيقة — وأسسوا شركاتهم بدون مشاكل. الآن دورك.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary open-quiz-cta" onclick="openQuiz(); return false;">سجّل في الورشة المجانية ←</a>
+      <a href="#story" class="btn-secondary">اقرأ القصة أولاً ↓</a>
+    </div>
+    <div class="trust-badges" id="trustBadges">
+      <span class="badge-item">🏆 <span class="num">100</span> شركة LLC ناجحة</span>
+      <span class="trust-divider"></span>
+      <span class="badge-item">✅ <span class="num">0</span> حساب مغلق</span>
+      <span class="trust-divider"></span>
+      <span class="badge-item">🏢 مكتبان حقيقيان في الجزائر</span>
+    </div>
+  </div>
+  <a href="#story" class="scroll-arrow" aria-label="انتقل إلى الأسفل">↓</a>
+</section>
+
+<!-- SECTION 2: STORY -->
+<section class="section-story" id="story">
+  <div class="container" style="max-width: 1200px;">
+    <h2 class="section-title reveal" style="color: #fff;">القصة لا تبدأ عند تأسيس الشركة… <span style="border-bottom: 2px solid var(--gold); padding-bottom: 4px;">بعده</span></h2>
+    <p class="story-subheadline reveal">الكثير يستلم الوثيقة ويظن أن الطريق انتهى… ثم تبدأ الأسئلة الحقيقية: EIN، البنوك، بوابات الدفع، المراجعة، والوثائق المطلوبة.</p>
+
+    <div class="timeline timeline-6-steps reveal" id="timeline">
+      <div class="timeline-line"><div class="timeline-line-inner" id="timelineLine"></div></div>
+      <div class="timeline-line-v"><div class="timeline-line-v-inner" id="timelineLineV"></div></div>
+      
+      <!-- Step 1 -->
+      <div class="timeline-step">
+        <div class="timeline-icon green">✓</div>
+        <p class="timeline-text">يستلم وثيقة الشركة</p>
+      </div>
+      <!-- Step 2 -->
+      <div class="timeline-step">
+        <div class="timeline-icon blue-gold">📋</div>
+        <p class="timeline-text">يطلب EIN</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="timeline-step">
+        <div class="timeline-icon yellow">💳</div>
+        <p class="timeline-text">يحاول فتح حساب دفع</p>
+      </div>
+      <!-- Step 4 -->
+      <div class="timeline-step">
+        <div class="timeline-icon orange">⚠</div>
+        <p class="timeline-text">تبدأ المراجعة</p>
+      </div>
+      <!-- Step 5 -->
+      <div class="timeline-step">
+        <div class="timeline-icon red">⛔</div>
+        <p class="timeline-text">الأموال تتجمد أو الحساب يتعطل</p>
+      </div>
+      <!-- Step 6 -->
+      <div class="timeline-step">
+        <div class="timeline-icon gold-glow">🛡️</div>
+        <p class="timeline-text">الحل: ورشة مجانية توضّح الطريق الصحيح</p>
+      </div>
+    </div>
+
+    <!-- Bottom Cards -->
+    <div class="story-cards reveal">
+      <div class="story-card warning-card">
+        <div class="card-icon red">⚠</div>
+        <p>المشكلة ليست في تأسيس الشركة فقط… المشكلة أن تبدأ بدون خطة لما يحدث بعدها.</p>
+      </div>
+      <div class="story-card solution-card">
+        <div class="card-icon gold">🛡️</div>
+        <p>في الورشة المجانية نشرح لك كيف تستعد قبل البنوك وبوابات الدفع، وما الذي يجب فهمه قبل أن تدفع لأي شخص.</p>
+      </div>
+    </div>
+
+    <div class="text-center reveal" style="margin-top: 40px;">
+      <button class="mega-cta" onclick="openQuiz()">احجز مكانك في الورشة المجانية ←</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: MISTAKES -->
+<section class="section-mistakes" id="mistakes">
+  <div class="container" style="max-width: 1200px;">
+    <h2 class="section-title reveal" style="color: #fff; margin-bottom: 12px;">3 أخطاء لا تظهر لك عند الدفع… لكنها تضربك <span class="title-underline-gold">بعد التأسيس</span></h2>
+    <p class="story-subheadline reveal" style="max-width: 900px; margin: 0 auto 40px; color: #A0A5B5;">الكثير يستلم الوثيقة ويفرح… ثم يكتشف أن المشكلة الحقيقية تبدأ عند العنوان، التجديدات، البنوك، وبوابات الدفع.</p>
+
+    <div class="mistake-cards-grid">
+      <!-- CARD 1 (Right) -->
+      <div class="mistake-card reveal" style="transition-delay: 0s;">
+        <div class="mistake-header">
+          <div class="mistake-icon-group">
+            <span class="mistake-icon main-icon">📍</span>
+            <span class="mistake-icon sub-icon">📄</span>
+            <span class="mistake-icon sub-icon">⚠</span>
+          </div>
+          <div class="mistake-close">❌</div>
+        </div>
+        <h3 class="mistake-title">عنوان غير مناسب = مشاكل لاحقاً</h3>
+        <p class="mistake-desc">بعض العناوين تبدو رسمية، لكنها قد لا تكون مناسبة للبنوك أو بوابات الدفع.</p>
+        <div class="mistake-badge danger">الخطر: مراجعة إضافية أو طلب وثائق لا تملكها</div>
+        <div class="mistake-badge success">الحل: نريك كيف تسأل قبل أن تدفع</div>
+      </div>
+
+      <!-- CARD 2 (Center) -->
+      <div class="mistake-card reveal" style="transition-delay: 0.08s;">
+        <div class="mistake-header">
+          <div class="mistake-icon-group">
+            <span class="mistake-icon main-icon">📅</span>
+            <span class="mistake-icon sub-icon">🏢</span>
+            <span class="mistake-icon sub-icon">✓</span>
+          </div>
+          <div class="mistake-close">❌</div>
+        </div>
+        <h3 class="mistake-title">تجديدات سنوية لا يخبرك بها أحد</h3>
+        <p class="mistake-desc">تأسيس الشركة ليس دائماً دفعة واحدة؛ قد توجد تجديدات والتزامات سنوية.</p>
+        <div class="mistake-badge danger">الخطر: رسوم مفاجئة أو فقدان وضع الشركة الجيد</div>
+        <div class="mistake-badge success">الحل: نوضح لك ما هو رسمي وما هو اختياري</div>
+      </div>
+
+      <!-- CARD 3 (Left) -->
+      <div class="mistake-card reveal" style="transition-delay: 0.16s;">
+        <div class="mistake-header">
+          <div class="mistake-icon-group">
+            <span class="mistake-icon main-icon">💳</span>
+            <span class="mistake-icon sub-icon">🔒</span>
+            <span class="mistake-icon sub-icon">📄</span>
+          </div>
+          <div class="mistake-close">❌</div>
+        </div>
+        <h3 class="mistake-title">الوثيقة وحدها لا تفتح لك الحسابات</h3>
+        <p class="mistake-desc">البنوك وبوابات الدفع تحتاج نشاط واضح، وثائق صحيحة، ومعلومات متطابقة.</p>
+        <div class="mistake-badge danger">الخطر: مراجعة، تعليق، أو طلب معلومات إضافية</div>
+        <div class="mistake-badge success">الحل: نريك كيف تستعد قبل التقديم</div>
+      </div>
+    </div>
+
+    <!-- BOTTOM CTA AREA -->
+    <div class="mistakes-cta-banner reveal">
+      <p class="mistakes-banner-text">في الورشة المجانية نكشف لك هذه الأخطاء قبل أن تقع فيها.</p>
+      <button class="mega-cta" style="background: #C8960C; color: #0A0F1E; box-shadow: 0 4px 15px rgba(200,150,12,0.4);" onclick="openQuiz()">احجز مكانك مجاناً</button>
+      <p class="mistake-trust-text">ورشة مجانية للمبتدئين — بدون وعود وهمية، فقط فهم واضح قبل أن تدفع</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: QUIZ -->
+<section class="section-quiz" id="quiz">
+  <div class="container">
+    <div class="quiz-header reveal">
+      <div class="quiz-badge">اختبار مجاني قبل تأسيس شركتك الأمريكية</div>
+      <h2 class="section-title" style="color: #fff;">اختبر العرض <span class="title-underline-gold">قبل أن تدفع</span></h2>
+      <p class="quiz-subheadline">7 أسئلة تكشف لك هل أنت أمام خبير… أم مجرد بائع وثيقة.</p>
+    </div>
+
+    <div class="quiz-card reveal">
+      <!-- Progress -->
+      <div class="quiz-progress-wrap" id="quizProgressWrap">
+        <div class="quiz-progress-text" id="quizProgressText">السؤال 1 من 7</div>
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="quizProgressFill" style="width: 14%;"></div>
+        </div>
+      </div>
+
+      <!-- Question Area -->
+      <div class="quiz-question-area" id="quizQuestionArea">
+        <h3 class="quiz-question" id="quizQuestionText">هل يشرح لك ماذا يحدث بعد تأسيس الشركة؟</h3>
+        <p class="quiz-helper" id="quizHelperText">لا تكتفِ بوثيقة فقط… اسأل عن الخطوات بعدها.</p>
+        
+        <div class="quiz-buttons">
+          <button class="quiz-btn yes-btn" onclick="answerQuiz('yes')">نعم، يشرح بوضوح</button>
+          <button class="quiz-btn no-btn" onclick="answerQuiz('no')">لا، فقط يبيع الوثيقة</button>
+        </div>
+
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <button class="quiz-next-btn" id="quizNextBtn" style="display:none;" onclick="nextQuestion()">السؤال التالي</button>
+      </div>
+
+      <!-- Result Area -->
+      <div class="quiz-result-area" id="quizResultArea" style="display: none;">
+        <h3 class="quiz-result-title" id="quizResultTitle">نتيجتك: خطر منخفض ✅</h3>
+        <p class="quiz-result-desc" id="quizResultDesc">وضعك جيد، لكن قبل الدفع تأكد من فهم الرسوم، التجديدات، والبنوك.</p>
+        <button class="mega-cta quiz-final-cta" onclick="openQuiz()">احجز مكانك في الورشة المجانية</button>
+        <p class="quiz-trust-line">ورشة مجانية للمبتدئين — نفهمك الخطوات قبل أن تدفع لأي شخص</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: COMPARISON -->
+<section class="section-compare" id="compare">
+  <div class="container">
+    <div class="compare-header-wrapper reveal">
+      <h2 class="section-title" style="color: #fff;">الفرق بين من يبيعك وثيقة… ومن <span class="title-underline-gold">يبيعك الطريقة</span></h2>
+      <p class="compare-subheadline">السعر وحده لا يكفي. الشركة الأمريكية الحقيقية تحتاج فهمًا لما يحدث بعد التأسيس: EIN، العنوان، التجديدات، البنوك، وبوابات الدفع.</p>
+    </div>
+
+    <div class="compare-cards-stack reveal">
+      
+      <!-- Card 1 -->
+      <div class="compare-card-pro slide-row" style="animation-delay: 0.1s;">
+        <div class="cc-title-bar">
+          <span class="cc-title-text">السعر</span>
+        </div>
+        <div class="cc-row negative">
+          <div class="cc-row-header">
+            <span class="cc-icon">❌</span>
+            <span class="cc-row-title">بيع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">سعر منخفض بدون شرح ما يشمل وما لا يشمل</div>
+        </div>
+        <div class="cc-row positive">
+          <div class="cc-row-header">
+            <span class="cc-icon">✅</span>
+            <span class="cc-row-title">الطريقة الصحيحة مع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">نفهم الرسوم الرسمية الإضافية، وما يجب أن تسأل عنه قبل الدفع</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="compare-card-pro slide-row" style="animation-delay: 0.2s;">
+        <div class="cc-title-bar">
+          <span class="cc-title-text">EIN</span>
+        </div>
+        <div class="cc-row negative">
+          <div class="cc-row-header">
+            <span class="cc-icon">❌</span>
+            <span class="cc-row-title">بيع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">قد تظن أنه شيء مضمّن أو مدفوع دائمًا</div>
+        </div>
+        <div class="cc-row positive">
+          <div class="cc-row-header">
+            <span class="cc-icon">✅</span>
+            <span class="cc-row-title">الطريقة الصحيحة مع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">نشرح لك أن EIN مجاني من IRS وما فائدته لشركتك</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="compare-card-pro slide-row" style="animation-delay: 0.3s;">
+        <div class="cc-title-bar">
+          <span class="cc-title-text">العنوان</span>
+        </div>
+        <div class="cc-row negative">
+          <div class="cc-row-header">
+            <span class="cc-icon">❌</span>
+            <span class="cc-row-title">بيع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">يُقال لك لديك عنوان، بدون توضيح هل هو حقيقي ومقبول للبنوك والمنصات</div>
+        </div>
+        <div class="cc-row positive">
+          <div class="cc-row-header">
+            <span class="cc-icon">✅</span>
+            <span class="cc-row-title">الطريقة الصحيحة مع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">نشرح لك الفرق بين Register Agent، عنوان الشركة، وعقد الإيجار ولماذا هذا مهم</div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="compare-card-pro slide-row" style="animation-delay: 0.4s;">
+        <div class="cc-title-bar">
+          <span class="cc-title-text">البنوك</span>
+        </div>
+        <div class="cc-row negative">
+          <div class="cc-row-header">
+            <span class="cc-icon">❌</span>
+            <span class="cc-row-title">بيع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">يتم بيعك الشركة وكأن الحساب البنكي مضمون بعدها</div>
+        </div>
+        <div class="cc-row positive">
+          <div class="cc-row-header">
+            <span class="cc-icon">✅</span>
+            <span class="cc-row-title">الطريقة الصحيحة مع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">نوضح لك أن فتح الحساب يحتاج ملفًا واضحًا، نشاطًا مفهومًا، ووثائق قوية</div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="compare-card-pro slide-row" style="animation-delay: 0.5s;">
+        <div class="cc-title-bar">
+          <span class="cc-title-text">بوابات الدفع</span>
+        </div>
+        <div class="cc-row negative">
+          <div class="cc-row-header">
+            <span class="cc-icon">❌</span>
+            <span class="cc-row-title">بيع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">يتم إعطاؤك أملًا غير واقعي بأن Stripe أو Wise يعملان تلقائيًا</div>
+        </div>
+        <div class="cc-row positive">
+          <div class="cc-row-header">
+            <span class="cc-icon">✅</span>
+            <span class="cc-row-title">الطريقة الصحيحة مع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">نشرح لك كيف تجهز شركتك بشكل أفضل لتقليل الأخطاء قبل التقديم</div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="compare-card-pro slide-row" style="animation-delay: 0.6s;">
+        <div class="cc-title-bar">
+          <span class="cc-title-text">التجديدات</span>
+        </div>
+        <div class="cc-row negative">
+          <div class="cc-row-header">
+            <span class="cc-icon">❌</span>
+            <span class="cc-row-title">بيع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">بعد سنة تبدأ المفاجآت: رسوم، تجديدات، ومشاكل لم يتم شرحها لك</div>
+        </div>
+        <div class="cc-row positive">
+          <div class="cc-row-header">
+            <span class="cc-icon">✅</span>
+            <span class="cc-row-title">الطريقة الصحيحة مع الوثيقة</span>
+          </div>
+          <div class="cc-row-text">نوضح لك من البداية ما الذي يجب تجديده وما التكاليف المتوقعة لاحقًا</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="compare-cta-banner">
+      <p class="compare-cta-text">لهذا في الورشة المجانية <span class="compare-cta-highlight">نريك ما يجب فهمه</span> قبل أن تدفع</p>
+      <button class="compare-cta-button" onclick="openQuiz()">احجز مكانك مجانًا</button>
+      <p class="compare-trust-line">افهم الفرق بين الوثيقة والطريقة قبل أن تبدأ</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: PROOF & FEATURES -->
+<section class="section-proof" id="proof">
+  <div class="container">
+    <div class="proof-top-cta reveal">
+      <h3 class="proof-top-text">في الورشة المجانية <span class="highlight">نكشف لك الفرق</span> قبل أن تدفع</h3>
+      <button class="btn-proof-cta" onclick="openQuiz()">احجز مكانك مجانًا</button>
+      <p class="proof-top-subtext">افهم الفرق بين تأسيس الشركة، EIN، العنوان، والبنوك قبل أن تبدأ.</p>
+    </div>
+
+    <div class="proof-header reveal">
+      <h2 class="section-title" style="color: #fff;">GO LLC بالأرقام</h2>
+      <span class="title-underline-gold"></span>
+      <p class="proof-subtitle">أرقام وتجارب مبنية على تجهيز واضح، مرافقة حقيقية، وفهم لما تحتاجه شركتك بعد التأسيس.</p>
+    </div>
+
+    <div class="counters-row" id="countersRow">
+      <!-- Stat 1 -->
+      <div class="stat-card reveal">
+        <div class="counter-number" data-target="100" data-suffix="+">+0</div>
+        <div class="stat-label">شركة LLC تم تجهيزها</div>
+        <p class="stat-sub">لرواد الأعمال، أصحاب E-commerce، وFreelancers الذين يريدون شركة أمريكية حقيقية قابلة للاستخدام دوليًا.</p>
+      </div>
+      <!-- Stat 2 -->
+      <div class="stat-card reveal" style="transition-delay:0.1s">
+        <div class="counter-number text-stat">جاهزية أقوى</div>
+        <div class="stat-label">تجهيز احترافي قبل التقديم</div>
+        <p class="stat-sub">نراجع معك العنوان، النشاط، الوثائق، وطريقة شرح شركتك قبل فتح الحسابات أو التقديم على المنصات.</p>
+      </div>
+      <!-- Stat 3 -->
+      <div class="stat-card reveal" style="transition-delay:0.2s">
+        <div class="counter-number text-stat">خطوة بخطوة</div>
+        <div class="stat-label">من التأسيس إلى الحسابات</div>
+        <p class="stat-sub">نرشدك من تأسيس الشركة إلى تجهيز ملفك لـ Wise وStripe وMercury وبوابات الدفع بطريقة أوضح وأقل أخطاء.</p>
+      </div>
+    </div>
+
+    <div class="proof-header reveal">
+      <h2 class="section-title" style="color: #fff; margin-bottom: 8px;">ما يميز GO LLC</h2>
+      <span class="title-underline-gold"></span>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card reveal" style="transition-delay:0s">
+        <div class="feature-icon-wrap">🔒</div>
+        <h4>Register Agent موثوق</h4>
+        <p>لن تختفي شركتك بسبب إهمال التجديد أو ضعف الخدمة.</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:0.1s">
+        <div class="feature-icon-wrap">📄</div>
+        <h4>عقد إيجار حقيقي</h4>
+        <p>وثائق أقوى تساعدك عند مراجعة Wise وStripe والمنصات المالية.</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:0.2s">
+        <div class="feature-icon-wrap">🏢</div>
+        <h4>مكتب وعنوان حقيقي</h4>
+        <p>عنوان احترافي يرفع مصداقية شركتك أمام البنوك وبوابات الدفع.</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:0.3s">
+        <div class="feature-icon-wrap">👥</div>
+        <h4>مجتمع خاص</h4>
+        <p>دعم مستمر، تحديثات، وتجارب عملية لأصحاب Freelance وE-commerce.</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:0.4s">
+        <div class="feature-icon-wrap">🏦</div>
+        <h4>مرافقة فتح الحسابات</h4>
+        <p>نجهزك قبل التقديم على Wise, Stripe, Mercury, Payoneer.</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:0.5s">
+        <div class="feature-icon-wrap">🤝</div>
+        <h4>شريك Verto رسمي</h4>
+        <p>حلول دفع دولية مناسبة أكثر لاحتياجات أصحاب الشركات الأمريكية.</p>
+      </div>
+    </div>
+
+    <div class="proof-final-cta reveal">
+      <button class="btn-proof-cta" onclick="openQuiz()">احجز مكانك في الورشة المجانية</button>
+      <p class="proof-top-subtext" style="margin-top: 12px;">تعرف على ما يجب أن يكون جاهزًا قبل أن تدفع على تأسيس شركتك.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: FINAL CTA -->
+<section class="section-cta" id="final-cta">
+  <canvas class="cta-canvas" id="ctaCanvas"></canvas>
+  <div class="cta-content">
+    <h2 class="cta-title reveal">قبل أن تتخذ قرارك — تعلّم الحقيقة أولاً</h2>
+    <p class="cta-subtitle reveal">لا نطلب منك أن تصدقنا. نطلب منك شيئاً واحداً: احضر الورشة مجاناً.</p>
+
+    <div class="workshop-card reveal">
+      <h3>🎓 ورشة مجانية أونلاين — LIVE على Zoom</h3>
+      <ul>
+        <li>كيف تؤسس LLC قانونياً من الجزائر خطوة بخطوة</li>
+        <li>سر فتح Wise Business بنجاح <span class="num">100%</span> بدون إغلاق</li>
+        <li>ألاعيب السوق التي تغلق حساباتك — وكيف تتجنبها</li>
+        <li>من يرافقك في كل خطوة بعد التأسيس</li>
+        <li>كيف تتعامل مع IRS وتتجنب الغرامات نهائياً</li>
+      </ul>
+    </div>
+
+    <div class="text-center">
+      <button class="mega-cta" onclick="openQuiz()">سجّل في الورشة المجانية ←</button>
+    </div>
+
+    <div class="urgency-bar reveal">🔴 المقاعد محدودة — للجزائريين فقط 🇩🇿</div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">GO LLC</div>
+  <p class="footer-tagline">نؤسس معك — لا لك</p>
+  <p class="footer-offices">مكتب الجزائر العاصمة  |  مكتب قسنطينة</p>
+  <p class="footer-partnership">شراكة رسمية مع Verto</p>
+</footer>
+
+<!-- QUIZ MODAL OVERLAY -->
+<div class="quiz-overlay" id="quizOverlay">
+  <button class="quiz-overlay-close" id="quizClose" aria-label="إغلاق">✕</button>
+  <div class="quiz-card" id="quizCard">
+
+    <!-- Header: back + progress + counter -->
+    <div class="quiz-header" id="quizHeader" style="display:none;">
+      <button class="quiz-back-btn hidden" id="quizBack" aria-label="رجوع">→</button>
+      <div class="quiz-progress-container">
+        <div class="quiz-progress-bar" id="quizProgress"></div>
+      </div>
+      <div class="quiz-counter" id="quizCounter"></div>
+    </div>
+
+    <!-- WELCOME -->
+    <div class="quiz-step active" id="qWelcome">
+      <h2 class="quiz-welcome-title">🇺🇸 هل أنت مؤهل للانضمام إلى ورشة GO LLC؟</h2>
+      <p class="quiz-welcome-sub">أجب على 5 أسئلة سريعة لنعرف إذا كانت الورشة تناسبك</p>
+      <ul class="quiz-trust-list">
+        <li>✅ أكثر من 200 جزائري أسسوا شركاتهم الأمريكية معنا</li>
+        <li>✅ الشركة الوحيدة في الجزائر تفتح Wise Business بشكل قانوني</li>
+        <li>✅ متابعة كاملة بعد التأسيس — لسنا وسطاء</li>
+      </ul>
+      <button class="quiz-btn-primary" onclick="quizStart()">ابدأ التقييم ←</button>
+    </div>
+
+    <!-- Q1: Name -->
+    <div class="quiz-step" id="qStep1">
+      <h3 class="quiz-question-text">ما اسمك الكامل؟</h3>
+      <div class="quiz-input-group">
+        <label for="qName" class="quiz-label">الاسم واللقب</label>
+        <input type="text" id="qName" class="quiz-input" placeholder="اكتب اسمك الكامل" autocomplete="name">
+        <div class="quiz-error" id="qNameErr">⚠️ هذا الحقل مطلوب (3 أحرف على الأقل)</div>
+      </div>
+      <button class="quiz-btn-primary" onclick="quizNextInput(1)">التالي ←</button>
+    </div>
+
+    <!-- Q2: Phone -->
+    <div class="quiz-step" id="qStep2">
+      <h3 class="quiz-question-text">ما رقم واتساب الخاص بك؟</h3>
+      <p class="quiz-helper">سنرسل لك رابط الورشة مباشرة على هذا الرقم</p>
+      <div class="quiz-input-group">
+        <label for="qPhone" class="quiz-label">رقم الهاتف (واتساب)</label>
+        <div class="quiz-tel-container">
+          <div class="quiz-tel-prefix">🇩🇿 +213</div>
+          <input type="tel" id="qPhone" class="quiz-input input-tel" placeholder="رقم هاتفك" inputmode="numeric" dir="ltr" autocomplete="tel">
+        </div>
+        <div class="quiz-error" id="qPhoneErr">⚠️ رقم هاتف غير صحيح</div>
+      </div>
+      <button class="quiz-btn-primary" onclick="quizNextInput(2)">التالي ←</button>
+    </div>
+
+    <!-- Q3: Awareness filter -->
+    <div class="quiz-step" id="qStep3">
+      <h3 class="quiz-question-text">في رأيك، فيما تفيدك الشركة الأمريكية؟</h3>
+      <p class="quiz-helper">اختر الإجابة الأقرب لتفكيرك</p>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="quizSelect(3,'A',this)">تفتح لي حساب Wise وStripe لاستقبال مدفوعاتي الدولية</div>
+        <div class="quiz-option" onclick="quizSelect(3,'B',this)">تعطيني مصداقية أمام العملاء الأجانب وأكبر في السوق</div>
+        <div class="quiz-option" onclick="quizSelect(3,'C',this)">أحميها من مشاكل المدفوعات والضرائب بشكل قانوني</div>
+        <div class="quiz-option" onclick="quizSelect(3,'D',this)">سمعت إنها مفيدة لكن لا أعرف بالضبط كيف</div>
+      </div>
+    </div>
+
+    <!-- Q4: Capital filter -->
+    <div class="quiz-step" id="qStep4">
+      <h3 class="quiz-question-text">هل عندك رأس مال لبدء مشروعك؟</h3>
+      <p class="quiz-helper">كن صادقاً — هذا يساعدنا نرشدك للباقة المناسبة</p>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="quizSelect(4,'A',this)">نعم، عندي ميزانية جاهزة للتأسيس الآن</div>
+        <div class="quiz-option" onclick="quizSelect(4,'B',this)">نعم، لكن أريد أفهم التكاليف بالضبط أولاً</div>
+        <div class="quiz-option" onclick="quizSelect(4,'C',this)">لا، لكن دخلي الحالي يغطي تكاليف التأسيس</div>
+        <div class="quiz-option" onclick="quizSelect(4,'D',this)">لا، وأنا لا زلت أبحث عن دخل</div>
+      </div>
+    </div>
+
+    <!-- Q5: Golden question filter -->
+    <div class="quiz-step" id="qStep5">
+      <h3 class="quiz-question-text">لماذا تريد الانضمام لورشة GO LLC؟</h3>
+      <p class="quiz-helper">هذا السؤال يحدد إذا كانت الورشة ستفيدك فعلاً</p>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="quizSelect(5,'A',this)">عندي بيزنس يشتغل وأريد أؤسسه قانونياً وأفتح حساباتي</div>
+        <div class="quiz-option" onclick="quizSelect(5,'B',this)">عندي عملاء أجانب وأعاني من مشكلة استقبال المدفوعات</div>
+        <div class="quiz-option" onclick="quizSelect(5,'C',this)">أريد أبدأ مشروع جاد خلال الشهر القادم</div>
+        <div class="quiz-option" onclick="quizSelect(5,'D',this)">أريد أتعلم وأفهم كيف تشتغل الشركات الأمريكية</div>
+      </div>
+    </div>
+
+    <!-- Gentle rejection for Q3 D -->
+    <div class="quiz-step" id="qGentleQ3">
+      <div class="quiz-result">
+        <div class="quiz-gentle-icon">😊</div>
+        <p class="quiz-gentle-text">شكراً على صدقك 😊 الورشة مصممة لمن عنده بيزنس أو مشروع جاهز. ننصحك بمتابعة محتوانا المجاني أولاً لفهم كيف تفيدك الشركة الأمريكية — ثم عد إلينا.</p>
+        <!-- TODO: Replace href below with actual free content URL -->
+        <a href="https://chat.whatsapp.com/Ex4acdbA5v4DDPBdyUsAT8" target="_blank" rel="noopener noreferrer" class="quiz-btn-secondary unqualified-link">تابع المحتوى المجاني</a>
+      </div>
+    </div>
+
+    <!-- Gentle rejection for Q4 D -->
+    <div class="quiz-step" id="qGentleQ4">
+      <div class="quiz-result">
+        <div class="quiz-gentle-icon">🤝</div>
+        <p class="quiz-gentle-text">نقدر وضعك تماماً 🤝 الورشة مصممة لمن عنده مصدر دخل جاهز يريد تنظيمه. انضم لقناتنا المجانية لتبني أساسك أولاً — وعندما تكون جاهزاً نحن هنا.</p>
+        <!-- TODO: Replace href below with actual WhatsApp channel URL -->
+        <a href="https://chat.whatsapp.com/Ex4acdbA5v4DDPBdyUsAT8" target="_blank" rel="noopener noreferrer" class="quiz-btn-secondary unqualified-link">تابعنا على واتساب</a>
+      </div>
+    </div>
+
+    <!-- QUALIFIED RESULT -->
+    <div class="quiz-step" id="qQualified">
+      <div class="quiz-result">
+        <div class="quiz-result-icon">🎉</div>
+        <h3 class="quiz-result-title success">مبروك — أنت مقبول في الورشة</h3>
+        <p class="quiz-result-desc" id="qQualifiedMsg"></p>
+        <p class="quiz-result-desc" style="font-weight:700; color:var(--text);">ستتعلم في الورشة:</p>
+        <ul class="quiz-checklist">
+          <li>✅ كيف تأسس شركتك الأمريكية من الجزائر بشكل قانوني 100%</li>
+          <li>✅ كيف تفتح Wise Business / Mercury / Stripe بدون مشاكل</li>
+          <li>✅ الفرق بين Wyoming $220 و New Mexico $160 وأيهما يناسبك</li>
+          <li>✅ كيف تستقبل أموالك من العالم وتركز على بيزنسك فقط</li>
+        </ul>
+        <p class="quiz-wa-note">سنتواصل معك على واتساب خلال 24 ساعة لتأكيد مكانك.</p>
+        <p class="quiz-wa-note">📲 أو انضم للمجموعة مباشرة الآن: 👇</p>
+        <!-- TODO: Replace href below with actual WhatsApp group link -->
+        <a href="https://chat.whatsapp.com/FwjfCJex5YiJlJCUadTABS" target="_blank" rel="noopener noreferrer" class="quiz-btn-primary" id="qGroupLink" onclick="if(typeof fbq==='function')fbq('track','Contact');">انضم للمجموعة ←</a>
+      </div>
+    </div>
+
+    <!-- WAITING RESULT -->
+    <div class="quiz-step" id="qWaiting">
+      <div class="quiz-result">
+        <div class="quiz-gentle-icon">🤝</div>
+        <h3 class="quiz-result-title warning">شكراً على صدقك</h3>
+        <p class="quiz-result-desc" id="qWaitingMsg"></p>
+        <p class="quiz-result-desc">عندما تكون جاهزاً — نحن هنا لك. تابع محتوانا المجاني في الوقت الحالي.</p>
+        <!-- TODO: Replace href below with actual WhatsApp channel URL -->
+        <a href="https://chat.whatsapp.com/Ex4acdbA5v4DDPBdyUsAT8" target="_blank" rel="noopener noreferrer" class="quiz-btn-secondary unqualified-link">تابعنا على واتساب</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isMobile = window.innerWidth <= 768;
+
+  // ===== NAVBAR SCROLL =====
+  var navbar = document.getElementById('navbar');
+  var ticking = false;
+
+  function updateNavbar() {
+    if (window.scrollY > 80) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbar);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // ===== INTERSECTION OBSERVER =====
+  var observerOptions = { threshold: 0.1, rootMargin: '0px 0px -30px 0px' };
+
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal, .reveal-small, .slide-right, .pop-in').forEach(function(el) {
+    revealObserver.observe(el);
+  });
+
+  // ===== TRUST BADGES STAGGER =====
+  var badges = document.querySelectorAll('.badge-item');
+  setTimeout(function() {
+    badges.forEach(function(badge, i) {
+      setTimeout(function() {
+        badge.classList.add('visible');
+      }, 200 * i + 800);
+    });
+  }, 0);
+
+  // ===== TYPEWRITER =====
+  if (!prefersReducedMotion) {
+    var typewriterTarget = document.getElementById('typewriterTarget');
+    var typewriterText = '— هذا الموقع يفضحهم';
+    var charIndex = 0;
+
+    function typewriterTick() {
+      if (charIndex <= typewriterText.length) {
+        typewriterTarget.innerHTML = typewriterText.substring(0, charIndex) + '<span class="typewriter-cursor"></span>';
+        charIndex++;
+        setTimeout(typewriterTick, 60);
+      } else {
+        setTimeout(function() {
+          typewriterTarget.innerHTML = typewriterText;
+        }, 2000);
+      }
+    }
+
+    setTimeout(typewriterTick, 1200);
+  } else {
+    document.getElementById('typewriterTarget').textContent = '— هذا الموقع يفضحهم';
+  }
+
+  // ===== TIMELINE LINE DRAW =====
+  var timelineEl = document.getElementById('timeline');
+  var timelineLine = document.getElementById('timelineLine');
+  var timelineLineV = document.getElementById('timelineLineV');
+
+  if (timelineEl) {
+    var timelineObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          setTimeout(function() {
+            if (timelineLine) timelineLine.classList.add('drawn');
+            if (timelineLineV) timelineLineV.classList.add('drawn');
+          }, 400);
+          timelineObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    timelineObserver.observe(timelineEl);
+  }
+
+  // ===== ANIMATED COUNTERS =====
+  var countersAnimated = false;
+  var countersRow = document.getElementById('countersRow');
+
+  function animateCounter(el, target, suffix, duration) {
+    var start = performance.now();
+
+    function update(now) {
+      var elapsed = now - start;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = Math.round(target * eased);
+      el.textContent = current + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  if (countersRow) {
+    var counterObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !countersAnimated) {
+          countersAnimated = true;
+          var counters = countersRow.querySelectorAll('.counter-number');
+          counters.forEach(function(counter) {
+            var targetAttr = counter.getAttribute('data-target');
+            if (targetAttr) {
+              var target = parseInt(targetAttr);
+              var suffix = counter.getAttribute('data-suffix') || '';
+              animateCounter(counter, target, suffix, 2000);
+            }
+          });
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    counterObserver.observe(countersRow);
+  }
+
+  // ===== QUIZ LOGIC =====
+  const quizData = [
+    {
+      q: "هل يشرح لك ماذا يحدث بعد تأسيس الشركة؟",
+      h: "لا تكتفِ بوثيقة فقط… اسأل عن الخطوات بعدها."
+    },
+    {
+      q: "هل يوضّح لك ما هو EIN وما فائدته؟",
+      h: "إذا لم يشرح لك EIN، فهو يتركك في نصف الطريق."
+    },
+    {
+      q: "هل يشرح لك العنوان المناسب للشركة؟",
+      h: "العنوان قد يؤثر على البنوك وبوابات الدفع."
+    },
+    {
+      q: "هل يخبرك بالتجديدات والالتزامات السنوية؟",
+      h: "لا تجعل الرسوم تظهر لك بعد الدفع."
+    },
+    {
+      q: "هل يشرح لك ما تحتاجه قبل البنوك؟",
+      h: "البنك لا يريد وثيقة فقط، بل معلومات متطابقة وواضحة."
+    },
+    {
+      q: "هل يشرح لك بوابات الدفع قبل أن تقدم عليها؟",
+      h: "الحسابات تحتاج فهم النشاط والوثائق والمخاطر."
+    },
+    {
+      q: "هل يعطيك خطة بعد التأسيس؟",
+      h: "الشركة بدون خطة قد تتحول إلى ورطة."
+    }
+  ];
+
+  let currentQ = 0;
+  let noAnswers = 0;
+
+  window.answerQuiz = function(answer) {
+    const yesBtn = document.querySelector('.yes-btn');
+    const noBtn = document.querySelector('.no-btn');
+    const feedback = document.getElementById('quizFeedback');
+    const nextBtn = document.getElementById('quizNextBtn');
+
+    // Disable buttons
+    yesBtn.disabled = true;
+    noBtn.disabled = true;
+
+    if (answer === 'yes') {
+      yesBtn.classList.add('active');
+      feedback.textContent = "✅ جيد: الشرح بعد التأسيس أهم من الوثيقة نفسها.";
+      feedback.className = 'quiz-feedback show-yes';
+    } else {
+      noBtn.classList.add('active');
+      feedback.textContent = "⚠️ خطر: قد تستلم الوثيقة فقط بدون أن تعرف ماذا تفعل بعدها.";
+      feedback.className = 'quiz-feedback show-no';
+      noAnswers++;
+    }
+
+    nextBtn.style.display = 'inline-block';
+  };
+
+  window.nextQuestion = function() {
+    currentQ++;
+    if (currentQ >= quizData.length) {
+      showQuizResult();
+    } else {
+      updateQuizUI();
+    }
+  };
+
+  function updateQuizUI() {
+    // reset UI
+    const yesBtn = document.querySelector('.yes-btn');
+    const noBtn = document.querySelector('.no-btn');
+    const feedback = document.getElementById('quizFeedback');
+    const nextBtn = document.getElementById('quizNextBtn');
+
+    yesBtn.disabled = false;
+    noBtn.disabled = false;
+    yesBtn.classList.remove('active');
+    noBtn.classList.remove('active');
+    feedback.className = 'quiz-feedback';
+    nextBtn.style.display = 'none';
+
+    // update text
+    document.getElementById('quizQuestionText').textContent = quizData[currentQ].q;
+    document.getElementById('quizHelperText').textContent = quizData[currentQ].h;
+    
+    // progress
+    const p = Math.round(((currentQ + 1) / quizData.length) * 100);
+    document.getElementById('quizProgressText').textContent = `السؤال ${currentQ + 1} من ${quizData.length}`;
+    document.getElementById('quizProgressFill').style.width = p + '%';
+
+    // trigger animation
+    const qTitle = document.getElementById('quizQuestionText');
+    qTitle.style.animation = 'none';
+    void qTitle.offsetWidth;
+    qTitle.style.animation = 'slideInRight 0.4s ease-out';
+  }
+
+  function showQuizResult() {
+    document.getElementById('quizProgressWrap').style.display = 'none';
+    document.getElementById('quizQuestionArea').style.display = 'none';
+    
+    const resArea = document.getElementById('quizResultArea');
+    const resTitle = document.getElementById('quizResultTitle');
+    const resDesc = document.getElementById('quizResultDesc');
+
+    if (noAnswers <= 2) {
+      resTitle.textContent = "نتيجتك: خطر منخفض ✅";
+      resTitle.style.color = "#2ECC71";
+      resDesc.textContent = "وضعك جيد، لكن قبل الدفع تأكد من فهم الرسوم، التجديدات، والبنوك.";
+    } else if (noAnswers <= 4) {
+      resTitle.textContent = "نتيجتك: انتبه ⚠️";
+      resTitle.style.color = "#F39C12";
+      resDesc.textContent = "هناك نقاط غير واضحة. الورشة ستساعدك تفهم ماذا تسأل قبل أن تدفع.";
+    } else {
+      resTitle.textContent = "نتيجتك: خطر مرتفع 🚨";
+      resTitle.style.color = "#E74C3C";
+      resDesc.textContent = "إذا كان العرض غير واضح، قد تستلم وثيقة فقط وتُترك وحدك بعد التأسيس.";
+    }
+
+    resArea.style.display = 'block';
+  }
+
+  // ===== QUIZ MODAL OVERLAY =====
+  var overlay = document.getElementById('quizOverlay');
+  var quizCard = document.getElementById('quizCard');
+  var quizHeader = document.getElementById('quizHeader');
+  var quizProgress = document.getElementById('quizProgress');
+  var quizCounter = document.getElementById('quizCounter');
+  var quizBackBtn = document.getElementById('quizBack');
+  var qData = { name: '', phone: '', answers: {} };
+  var qCurrent = 'welcome'; // welcome, 1, 2, 3, 4, 5, gentleQ3, gentleQ4, qualified, waiting
+  var qHistory = [];
+  var totalQ = 5;
+
+  // Open / close quiz overlay
+  window.openQuiz = function() {
+    // 1) when the quiz modal/popup opens:
+    if (typeof fbq === 'function') fbq('track', 'InitiateCheckout');
+    
+    overlay.classList.add('open');
+    document.body.classList.add('quiz-open');
+  };
+
+  function closeQuiz() {
+    overlay.classList.remove('open');
+    document.body.classList.remove('quiz-open');
+  }
+
+  document.getElementById('quizClose').addEventListener('click', closeQuiz);
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeQuiz();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeQuiz();
+  });
+  
+
+  // Wire all register CTAs to open quiz
+  document.querySelectorAll('.navbar-cta, a[href="#registration-form"], .open-quiz-cta').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      openQuiz();
+    });
+  });
+
+  // Step IDs mapping
+  var stepIds = {
+    'welcome': 'qWelcome',
+    '1': 'qStep1',
+    '2': 'qStep2',
+    '3': 'qStep3',
+    '4': 'qStep4',
+    '5': 'qStep5',
+    'gentleQ3': 'qGentleQ3',
+    'gentleQ4': 'qGentleQ4',
+    'qualified': 'qQualified',
+    'waiting': 'qWaiting'
+  };
+
+  function getStepEl(key) {
+    return document.getElementById(stepIds[key]);
+  }
+
+  function transitionTo(nextKey) {
+    var currentEl = getStepEl(qCurrent);
+    var nextEl = getStepEl(nextKey);
+    if (!currentEl || !nextEl) return;
+
+    qHistory.push(qCurrent);
+    currentEl.classList.remove('active');
+    currentEl.classList.add('sliding-out');
+
+    setTimeout(function() {
+      currentEl.classList.remove('sliding-out');
+      qCurrent = nextKey;
+      nextEl.classList.add('active');
+      updateUI();
+      quizCard.scrollTop = 0;
+    }, 350);
+  }
+
+  function transitionBack() {
+    if (qHistory.length === 0) return;
+    var prevKey = qHistory.pop();
+    var currentEl = getStepEl(qCurrent);
+    var prevEl = getStepEl(prevKey);
+    if (!currentEl || !prevEl) return;
+
+    currentEl.classList.remove('active');
+    currentEl.style.animation = 'none';
+    currentEl.offsetHeight; // reflow
+    currentEl.style.animation = '';
+
+    qCurrent = prevKey;
+    prevEl.classList.add('active');
+    prevEl.style.animation = 'none';
+    prevEl.offsetHeight;
+    prevEl.style.animation = '';
+    updateUI();
+    quizCard.scrollTop = 0;
+  }
+
+  function updateUI() {
+    var qNum = parseInt(qCurrent);
+    var isQuestion = !isNaN(qNum) && qNum >= 1 && qNum <= 5;
+    quizHeader.style.display = isQuestion ? 'flex' : 'none';
+
+    if (isQuestion) {
+      quizProgress.style.width = ((qNum / totalQ) * 100) + '%';
+      quizCounter.textContent = '\u0633\u0624\u0627\u0644 ' + qNum + ' \u0645\u0646 ' + totalQ;
+      if (qNum <= 1) {
+        quizBackBtn.classList.add('hidden');
+      } else {
+        quizBackBtn.classList.remove('hidden');
+      }
+    }
+  }
+
+  quizBackBtn.addEventListener('click', transitionBack);
+
+  // Welcome → Q1
+  window.quizStart = function() {
+    transitionTo('1');
+  };
+
+  // Input questions (Q1, Q2) — validate then advance
+  window.quizNextInput = function(step) {
+    if (step === 1) {
+      var nameInput = document.getElementById('qName');
+      var nameErr = document.getElementById('qNameErr');
+      if (nameInput.value.trim().length < 3) {
+        nameInput.classList.add('has-error');
+        nameErr.classList.add('show');
+        return;
+      }
+      nameInput.classList.remove('has-error');
+      nameErr.classList.remove('show');
+      qData.name = nameInput.value.trim();
+      transitionTo('2');
+    } else if (step === 2) {
+      var phoneInput = document.getElementById('qPhone');
+      var phoneErr = document.getElementById('qPhoneErr');
+      var digits = phoneInput.value.replace(/[^0-9]/g, '');
+      if (digits.length < 8 || digits.length > 15) {
+        phoneInput.classList.add('has-error');
+        phoneErr.classList.add('show');
+        return;
+      }
+      phoneInput.classList.remove('has-error');
+      phoneErr.classList.remove('show');
+      qData.phone = phoneInput.value.trim();
+      
+      // 2) right after Q2 passes validation, before showing Q3 — fire once:
+      if (!window._leadFired && typeof fbq === 'function') {
+        fbq('track', 'Lead', { content_name: 'GO LLC Quiz' });
+        window._leadFired = true;
+      }
+      
+      transitionTo('3');
+    }
+  };
+
+  // Enter key on inputs
+  var qNameEl = document.getElementById('qName');
+  var qPhoneEl = document.getElementById('qPhone');
+  if (qNameEl) {
+    qNameEl.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); quizNextInput(1); } });
+    qNameEl.addEventListener('input', function() { this.classList.remove('has-error'); document.getElementById('qNameErr').classList.remove('show'); });
+  }
+  if (qPhoneEl) {
+    qPhoneEl.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); quizNextInput(2); } });
+    qPhoneEl.addEventListener('input', function() { this.classList.remove('has-error'); document.getElementById('qPhoneErr').classList.remove('show'); });
+  }
+
+  // Option questions (Q3, Q4, Q5) — auto-advance with filter logic
+  window.quizSelect = function(step, answer, el) {
+    qData.answers['q' + step] = answer;
+
+    // Highlight selected
+    var parent = el.parentElement;
+    parent.querySelectorAll('.quiz-option').forEach(function(o) { o.classList.remove('selected'); });
+    el.classList.add('selected');
+
+    setTimeout(function() {
+      // Check for D answers (filter)
+      if (answer === 'D') {
+        if (step === 3) {
+          saveToSupabase('gentleQ3');
+          transitionTo('gentleQ3');
+        } else if (step === 4) {
+          saveToSupabase('gentleQ4');
+          transitionTo('gentleQ4');
+        } else if (step === 5) {
+          showWaitingPage();
+        }
+        return;
+      }
+
+      // Not D — advance
+      if (step < 5) {
+        transitionTo(String(step + 1));
+      } else {
+        // Q5 answered (not D), and Q3 & Q4 were also not D → Qualified
+        showQualifiedPage();
+      }
+    }, 300);
+  };
+
+  function saveToSupabase(status) {
+    if (window._supabaseSaved) return;
+    window._supabaseSaved = true;
+    try {
+      fetch('/api/quiz-register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: qData.name,
+          phone: qData.phone,
+          answers: qData.answers,
+          status: status
+        })
+      });
+    } catch (e) { console.error('Error saving:', e); }
+  }
+
+  function showQualifiedPage() {
+    var msg = document.getElementById('qQualifiedMsg');
+    msg.textContent = '\u064A\u0627 ' + qData.name + '\u060C \u0628\u0639\u062F \u0645\u0631\u0627\u062C\u0639\u0629 \u0625\u062C\u0627\u0628\u0627\u062A\u0643 \u2014 \u0623\u0646\u062A \u0628\u0627\u0644\u0636\u0628\u0637 \u0627\u0644\u0634\u062E\u0635 \u0627\u0644\u0630\u064A \u0635\u0645\u0645\u0646\u0627 \u0647\u0630\u0647 \u0627\u0644\u0648\u0631\u0634\u0629 \u0645\u0646 \u0623\u062C\u0644\u0647. \uD83D\uDCAA';
+    
+    saveToSupabase('qualified');
+    
+    transitionTo('qualified');
+
+    // 3) inside the function that renders the Acceptance (qualified) screen — fire once:
+    if (!window._regFired && typeof fbq === 'function') {
+      fbq('track', 'CompleteRegistration', { content_name: 'GO LLC Workshop', status: 'qualified' });
+      window._regFired = true;
+    }
+
+
+  }
+
+  function showWaitingPage() {
+    var msg = document.getElementById('qWaitingMsg');
+    msg.textContent = '\u064A\u0627 ' + qData.name + '\u060C \u0627\u0644\u0648\u0631\u0634\u0629 \u0645\u0635\u0645\u0645\u0629 \u0644\u0645\u0646 \u0647\u0648 \u062C\u0627\u0647\u0632 \u064A\u062A\u0635\u0631\u0641 \u0627\u0644\u0622\u0646 \u2014 \u0648\u0647\u0630\u0627 \u0644\u064A\u0633 \u0648\u0642\u062A\u0643 \u0628\u0639\u062F\u060C \u0648\u0644\u0627 \u0628\u0623\u0633 \u0628\u0630\u0644\u0643. \uD83D\uDE0A';
+    
+    saveToSupabase('waiting');
+    
+    transitionTo('waiting');
+    
+    // 5) A not-qualified visitor reaches the Waiting page -> Lead only if not already fired
+    if (!window._leadFired && typeof fbq === 'function') {
+      fbq('track', 'Lead', { content_name: 'GO LLC Quiz' });
+      window._leadFired = true;
+    }
+  }
+
+  // Smooth scroll for non-quiz anchors (story link etc.)
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    if (anchor.getAttribute('href') === '#registration-form') return; // handled by quiz
+    anchor.addEventListener('click', function(e) {
+      var targetId = this.getAttribute('href');
+      if (targetId === '#' || !targetId) return;
+      var targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ===== PARTICLE CANVAS =====
+  function initParticles(canvasId, colorR, colorG, colorB, desktopMaxDots, mobileMaxDots) {
+    var canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+
+    var width, height;
+    var dots = [];
+    var currentWidth = window.innerWidth;
+    var isMobileNow = currentWidth <= 768;
+    var maxDots = isMobileNow ? mobileMaxDots : desktopMaxDots;
+    var connectionDistance = isMobileNow ? 80 : 120;
+    var speed = 0.4;
+
+    function resize() {
+      var parent = canvas.parentElement;
+      width = parent.offsetWidth;
+      height = parent.offsetHeight;
+      canvas.width = width;
+      canvas.height = height;
+      currentWidth = window.innerWidth;
+      isMobileNow = currentWidth <= 768;
+      maxDots = isMobileNow ? mobileMaxDots : desktopMaxDots;
+      connectionDistance = isMobileNow ? 80 : 120;
+    }
+
+    function createDots() {
+      dots = [];
+      var density = isMobileNow ? 22000 : 15000;
+      var count = Math.min(maxDots, Math.floor((width * height) / density));
+      for (var i = 0; i < count; i++) {
+        dots.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * speed,
+          vy: (Math.random() - 0.5) * speed,
+          r: Math.random() * 1.8 + 0.8
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (var i = 0; i < dots.length; i++) {
+        for (var j = i + 1; j < dots.length; j++) {
+          var dx = dots[i].x - dots[j].x;
+          var dy = dots[i].y - dots[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < connectionDistance) {
+            var alpha = (1 - dist / connectionDistance) * 0.3;
+            ctx.strokeStyle = 'rgba(' + colorR + ',' + colorG + ',' + colorB + ',' + alpha + ')';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(dots[i].x, dots[i].y);
+            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (var k = 0; k < dots.length; k++) {
+        ctx.fillStyle = 'rgba(' + colorR + ',' + colorG + ',' + colorB + ',0.6)';
+        ctx.beginPath();
+        ctx.arc(dots[k].x, dots[k].y, dots[k].r, 0, Math.PI * 2);
+        ctx.fill();
+
+        dots[k].x += dots[k].vx;
+        dots[k].y += dots[k].vy;
+
+        if (dots[k].x < 0 || dots[k].x > width) dots[k].vx *= -1;
+        if (dots[k].y < 0 || dots[k].y > height) dots[k].vy *= -1;
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    createDots();
+
+    if (!prefersReducedMotion) {
+      draw();
+    } else {
+      ctx.clearRect(0, 0, width, height);
+      for (var m = 0; m < dots.length; m++) {
+        ctx.fillStyle = 'rgba(' + colorR + ',' + colorG + ',' + colorB + ',0.4)';
+        ctx.beginPath();
+        ctx.arc(dots[m].x, dots[m].y, dots[m].r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    var resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function() {
+        resize();
+        createDots();
+        if (prefersReducedMotion) {
+          ctx.clearRect(0, 0, width, height);
+          for (var n = 0; n < dots.length; n++) {
+            ctx.fillStyle = 'rgba(' + colorR + ',' + colorG + ',' + colorB + ',0.4)';
+            ctx.beginPath();
+            ctx.arc(dots[n].x, dots[n].y, dots[n].r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      }, 250);
+    });
+  }
+
+  // Hero: gold particles — 60 desktop, 30 mobile
+  initParticles('heroCanvas', 200, 150, 12, 60, 30);
+
+  // CTA: gold-green — 50 desktop, 25 mobile
+  initParticles('ctaCanvas', 120, 180, 40, 50, 25);
+
+})();
+</script>
+
+<!-- STICKY BOTTOM CTA -->
+<div class="sticky-bottom-wrapper">
+  <button class="sticky-bottom-btn" onclick="openQuiz()">احجز مكانك في الورشة المجانية ←</button>
+</div>
+
+</body>
+</html>

@@ -33,7 +33,7 @@ const Counter = ({ from, to, duration = 2, suffix = "" }: { from: number, to: nu
 export default function FinalCTA({
   title = "جاهز لتأسيس شركتك الأمريكية؟",
   subtitle = "ادفع 39 دولار فقط الآن، وابدأ خلال 24 ساعة",
-  priceText = "ابدأ الآن - 39$ فقط",
+  priceText = "ابدأ الآن - $99", /* FIXED: Wrong price in CTA prop default */
   targetId = "pricing",
   isTaxFiling = false
 }: FinalCTAProps) {
@@ -116,7 +116,8 @@ export default function FinalCTA({
                 <ArrowLeft className="w-8 h-8" />
               </button>
               <p className="text-gray-300 mt-6 flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-gold" /> ضمان استرجاع المال 100% | <Lock className="w-5 h-5 text-gold" /> بدون التزام
+                {/* FIXED: استرجاع→استرداد */}
+                <ShieldCheck className="w-5 h-5 text-gold" /> ضمان استرداد المال 100% | <Lock className="w-5 h-5 text-gold" /> بدون التزام
               </p>
             </motion.div>
           </div>
@@ -221,7 +222,8 @@ export default function FinalCTA({
             <Lock className="w-5 h-5 text-gold" /> دفع آمن
           </div>
           <div className="flex items-center gap-2 text-white/80">
-            <ShieldCheck className="w-5 h-5 text-gold" /> ضمان استرجاع
+            {/* FIXED: استرجاع→استرداد */}
+            <ShieldCheck className="w-5 h-5 text-gold" /> ضمان استرداد
           </div>
           <div className="flex items-center gap-2 text-white/80">
             <Zap className="w-5 h-5 text-gold" /> بدء فوري
@@ -235,7 +237,8 @@ export default function FinalCTA({
           transition={{ delay: 0.6 }}
           className="text-white/50 text-sm mt-8"
         >
-          ضمان استرجاع المال 100% إذا لم تكن راضياً
+          {/* FIXED: استرجاع→استرداد */}
+          ضمان استرداد المال 100% إذا لم تكن راضياً
         </motion.p>
       </div>
     </section>
