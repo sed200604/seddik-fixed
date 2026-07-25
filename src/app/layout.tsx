@@ -55,7 +55,8 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
-        {/* Meta Pixel Code - Synchronous */}
+        {/* Meta Pixel base code — no pixel is init'd here.
+             Each page that needs a pixel inits its own via a client component. */}
         <script dangerouslySetInnerHTML={{ __html: `
           !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -65,8 +66,6 @@ export default function RootLayout({
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '4083068931984643');
-          fbq('track', 'PageView');
         `}} />
 
         {/* Favicons */}
@@ -114,6 +113,10 @@ export default function RootLayout({
       if (target.tagName === 'BUTTON' && (target.type === 'submit' || target.closest('form'))) return;
 
       const href = target.getAttribute('href') || '';
+
+      // Never intercept external links (WhatsApp CTAs, etc.)
+      if (href.startsWith('http')) return;
+
       const text = target.textContent || '';
       const isConsultation =
         href.includes('#consultation') ||
@@ -169,9 +172,6 @@ export default function RootLayout({
           <style>{`.animate-on-scroll { opacity: 1 !important; transform: none !important; }`}</style>
         </noscript>
         <TrackingProvider />
-        <noscript>
-          <img height="1" width="1" style={{ display: 'none' }} src="https://www.facebook.com/tr?id=4083068931984643&ev=PageView&noscript=1" alt="" />
-        </noscript>
         {children}
       </body>
     </html>

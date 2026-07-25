@@ -21,4 +21,11 @@ export async function submitInlineBooking(data: InlineBookingData): Promise<void
     console.error('Supabase inline_booking_leads insert error:', error);
     throw new Error(error.message);
   }
+
+  // Send email notification to sed200604@gmail.com
+  fetch('/api/email-notify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  }).catch(console.error);
 }

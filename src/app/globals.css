@@ -29,6 +29,80 @@
   --duration-ambient: 1000ms;
 }
 
+:root {
+  --navy-darkest: #050d1a;
+  --navy-deep: #0a1628;
+  --navy-mid: #0f1f3a;
+  --navy-surface: #162a4a;
+  --navy-border: #1e3a5f;
+  --gold-primary: #c9a84c;
+  --gold-light: #d4bf6a;
+  --gold-glow: rgba(201,168,76,0.15);
+  --gold-gradient: linear-gradient(135deg, #c9a84c, #e8d48b, #c9a84c);
+  --text-primary: #f0ece2;
+  --text-secondary: #a8b2c1;
+  --text-muted: #6b7a8d;
+  --success: #4ade80;
+  --danger: #ef4444;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.2);
+  --shadow-glow: 0 0 40px rgba(201,168,76,0.12), 0 0 80px rgba(201,168,76,0.06);
+  --shadow-cta: 0 4px 20px rgba(201,168,76,0.3), 0 1px 4px rgba(201,168,76,0.2);
+}
+
+/* Shimmer sweep animation for CTA buttons */
+@keyframes shimmerSweep {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  20%, 100% { transform: translateX(300%) rotate(45deg); }
+}
+
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: rotate(45deg);
+  animation: shimmerSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+/* Offer Card Corner Ornaments */
+.corner-ornament-card {
+  position: relative;
+}
+.corner-ornament-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 24px;
+  height: 24px;
+  border-top: 2px solid var(--gold-primary);
+  border-right: 2px solid var(--gold-primary);
+  border-top-right-radius: 20px;
+  pointer-events: none;
+}
+.corner-ornament-card::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  width: 24px;
+  height: 24px;
+  border-bottom: 2px solid var(--gold-primary);
+  border-left: 2px solid var(--gold-primary);
+  border-bottom-left-radius: 20px;
+  pointer-events: none;
+}
+
+
 @layer base {
   body {
     font-family: var(--font-cairo);
@@ -217,4 +291,55 @@ input, select, textarea {
     opacity: 1;
   }
 }
+
+/* ================================
+   AI COURSE PAGE (ac-) UTILITIES
+   ================================ */
+
+/* Infinite topic ticker — content duplicated twice, slides half its width */
+.ac-marquee {
+  direction: ltr;
+  overflow: hidden;
+}
+@keyframes ac-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ac-marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: ac-marquee-scroll 38s linear infinite;
+  will-change: transform;
+}
+.ac-marquee:hover .ac-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Outlined display text (section indices, oversized words) */
+.ac-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(201, 168, 76, 0.45);
+}
+
+/* Slow-drifting aurora blobs behind the hero */
+@keyframes ac-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.08); }
+  66% { transform: translate(-30px, 25px) scale(0.94); }
+}
+.ac-aurora { animation: ac-drift 16s ease-in-out infinite; }
+.ac-aurora-slow { animation: ac-drift 24s ease-in-out infinite reverse; }
+
+/* Rotating dashed seal ring (guarantee section) */
+@keyframes ac-spin {
+  to { transform: rotate(360deg); }
+}
+.ac-spin-slow { animation: ac-spin 28s linear infinite; }
+
+/* Breathing glow for the final CTA */
+@keyframes ac-pulse-glow {
+  0%, 100% { box-shadow: 0 8px 30px rgba(201, 168, 76, 0.3); }
+  50% { box-shadow: 0 8px 50px rgba(201, 168, 76, 0.55); }
+}
+.ac-pulse-glow { animation: ac-pulse-glow 2.8s ease-in-out infinite; }
 
