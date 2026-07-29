@@ -159,8 +159,23 @@ export const detectAdBlocker = () => {
   }, 1500);
 };
 
+export const MAIN_PIXEL_ID = '4083068931984643';
+let pixelInitialized = false;
+
+export const initMainPixel = () => {
+  if (!isBrowser) return;
+  if (pixelInitialized) return;
+  if (typeof window.fbq === 'function') {
+    window.fbq('init', MAIN_PIXEL_ID);
+    window.fbq('track', 'PageView');
+    pixelInitialized = true;
+  }
+};
+
 export const initTracking = () => {
   captureUTMs();
+  initMainPixel();
   trackPagePerformance();
   detectAdBlocker();
 };
+

@@ -44,11 +44,19 @@ export default function WorkshopRedirect() {
   useEffect(() => {
     if (firedRef.current) return;
     firedRef.current = true;
+    if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+      window.fbq('init', PIXEL_ID);
+      window.fbq('trackSingle', PIXEL_ID, 'Lead', {
+        content_name: 'Workshop Registration',
+        content_category: 'Workshop',
+      });
+    }
     trackEvent('Lead', {
       content_name: 'Workshop Registration',
       content_category: 'Workshop',
     });
   }, []);
+
 
   /* Confetti */
   useEffect(() => {

@@ -170,7 +170,16 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `document.body.classList.add('js-ready');` }} />
         <noscript>
           <style>{`.animate-on-scroll { opacity: 1 !important; transform: none !important; }`}</style>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=4083068931984643&ev=PageView&noscript=1"
+            alt=""
+          />
         </noscript>
+
         <TrackingProvider />
         {children}
       </body>
