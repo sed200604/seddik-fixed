@@ -88,10 +88,15 @@ export function trackRegistration(plan: Plan, eventID?: string) {
     },
     eventID,
   );
-  trackPixel('CompleteRegistration', {
-    content_name: 'ai_course_registration_form',
-    status: 'submitted',
-    value,
-    currency: 'DZD',
-  });
+  trackPixel(
+    'CompleteRegistration',
+    {
+      content_name: 'ai_course_registration_form',
+      status: 'submitted',
+      value,
+      currency: 'DZD',
+    },
+    eventID,
+  );
 }
+

@@ -4,18 +4,22 @@ import { useEffect } from 'react';
 
 const AI_COURSE_PIXEL_ID = '1602512821224637';
 
-let initialized = false;
-
 export default function PagePixel() {
   useEffect(() => {
-    if (initialized) return;
-    if (typeof window === 'undefined') return;
-    const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
-    if (typeof fbq !== 'function') return;
+    let attempts = 0;
+    const initPixel = () => {
+      if (typeof window === 'undefined') return;
+      const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
+      if (typeof fbq === 'function') {
+        fbq('init', AI_COURSE_PIXEL_ID);
+        fbq('trackSingle', AI_COURSE_PIXEL_ID, 'PageView');
+      } else if (attempts < 10) {
+        attempts++;
+        setTimeout(initPixel, 300);
+      }
+    };
 
-    fbq('init', AI_COURSE_PIXEL_ID);
-    fbq('trackSingle', AI_COURSE_PIXEL_ID, 'PageView');
-    initialized = true;
+    initPixel();
   }, []);
 
   return (
@@ -31,3 +35,4 @@ export default function PagePixel() {
     </noscript>
   );
 }
+
