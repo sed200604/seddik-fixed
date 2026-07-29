@@ -1,121 +1,68 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
-import { EASE, Reveal, WhatsAppCTA } from './ui';
-
-const EVENT_DATE = '2026-08-08T10:00:00+01:00';
-
-function useCountdown(targetISO: string) {
-  const [remaining, setRemaining] = useState<number | null>(null);
-
-  useEffect(() => {
-    const target = new Date(targetISO).getTime();
-    const tick = () => setRemaining(Math.max(0, target - Date.now()));
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [targetISO]);
-
-  if (remaining === null) return null;
-  return {
-    days: Math.floor(remaining / 86_400_000),
-    hours: Math.floor((remaining % 86_400_000) / 3_600_000),
-    minutes: Math.floor((remaining % 3_600_000) / 60_000),
-    seconds: Math.floor((remaining % 60_000) / 1000),
-  };
-}
-
-const pad = (n: number) => String(n).padStart(2, '0');
+import { motion, useReducedMotion } from 'motion/react';
+import { EASE, EASE_BACK, VIEWPORT } from './motion';
+import { WhatsAppCTA, MaskedWords, Counter } from './ui';
+import { SEATS_LEFT, COURSE_START_LABEL } from './constants';
 
 export default function FinalCTASection() {
-  const countdown = useCountdown(EVENT_DATE);
-
-  const units = [
-    { value: countdown?.days, label: 'يوم' },
-    { value: countdown?.hours, label: 'ساعة' },
-    { value: countdown?.minutes, label: 'دقيقة' },
-    { value: countdown?.seconds, label: 'ثانية' },
-  ];
+  const reduce = useReducedMotion();
 
   return (
-    <section className="relative w-full py-20 md:py-32 px-4 md:px-8 overflow-hidden border-t border-[#13203a]">
-      {/* Gold hairline glow on top edge */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c9a84c] to-transparent" />
-      <div className="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.14)_0%,transparent_70%)] blur-3xl pointer-events-none" />
+    <section
+      id="final-cta"
+      className="relative w-full overflow-hidden py-[clamp(5rem,12vw,8rem)] px-5"
+      style={{ background: 'linear-gradient(160deg,#1B3A5C 0%,#16324f 50%,#112440 100%)' }}
+    >
+      {/* full-circle ambient backdrop mirroring the hero */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="ac-aurora absolute -top-[15%] start-[-8%] w-[45vw] h-[45vw] max-w-[560px] max-h-[560px] rounded-full bg-[radial-gradient(circle_at_center,rgba(212,168,67,0.12),transparent_65%)] blur-3xl" />
+        <div className="ac-aurora-slow absolute bottom-[-20%] end-[-10%] w-[50vw] h-[50vw] max-w-[640px] max-h-[640px] rounded-full bg-[radial-gradient(circle_at_center,rgba(30,80,140,0.28),transparent_65%)] blur-3xl" />
+      </div>
 
-      <div className="max-w-2xl mx-auto text-center relative z-10">
-        {/* Urgency */}
-        <Reveal>
-          <div className="inline-flex items-center gap-2.5 mb-7">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ef4444] opacity-70" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ef4444]" />
-            </span>
-            <span className="text-[#ef4444] font-bold text-sm tracking-wide">الأماكن محدودة جدًا</span>
+      <div className="relative z-10 max-w-3xl mx-auto text-center">
+        <h2
+          className="font-tajawal font-extrabold text-white leading-[1.2] text-balance"
+          style={{ fontSize: 'clamp(1.8rem,5vw,3.2rem)' }}
+        >
+          <MaskedWords text="5 أيام تفصلك على مهارة تغيّر حياتك. واش راح تبدا؟" />
+        </h2>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={VIEWPORT}
+          transition={{ duration: 0.5, ease: EASE_BACK, delay: 0.3 }}
+          className="mt-9 flex justify-center"
+        >
+          <div className={reduce ? '' : 'ac-pulse-glow rounded-full'}>
+            <WhatsAppCTA source="final" big>
+              سجّل الآن — أول فوج
+            </WhatsAppCTA>
           </div>
-        </Reveal>
+        </motion.div>
 
-        <Reveal delay={0.08}>
-          <h2 className="text-[#f0ece2] font-black text-4xl sm:text-5xl md:text-6xl leading-[1.2] mb-4">
-            لم يتبقَّ سوى
-            <span className="block bg-gradient-to-l from-[#c9a84c] via-[#e8d48b] to-[#b3903a] bg-clip-text text-transparent mt-1">
-              عدد محدود من المقاعد
-            </span>
-          </h2>
-        </Reveal>
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VIEWPORT}
+          transition={{ duration: 0.5, ease: EASE, delay: 0.15 }}
+          className="mt-6 text-white font-semibold"
+        >
+          {/* TODO(placeholder): real remaining seats */}
+          بقاو <span dir="ltr" className="font-inter-tight font-extrabold text-ac-gold-light"><Counter target={SEATS_LEFT} /></span> بلاصة
+        </motion.p>
 
-        <Reveal delay={0.14}>
-          <p className="text-[#8fa0b8] text-lg leading-relaxed mb-10">
-            <span className="text-[#e8d48b] font-bold">8 أوت · مول باب الزوار، المحمدية</span>
-            <span className="block mt-1">الدورة التطبيقية الوحيدة التي تحتاجها للبدء فعليًا</span>
-          </p>
-        </Reveal>
+        <p className="mt-2 text-ac-muted">
+          {/* TODO(placeholder): confirm the cohort start date */}
+          انطلاق الفوج الأول: <span className="text-white font-semibold">{COURSE_START_LABEL}</span>
+        </p>
 
-        {/* Live countdown */}
-        <Reveal delay={0.18}>
-          <div dir="ltr" className="flex items-start justify-center gap-3 sm:gap-5 mb-12">
-            {units.map((unit, i) => (
-              <div key={i} className="flex items-start gap-3 sm:gap-5">
-                <div className="flex flex-col items-center">
-                  <span className="font-jetbrains text-[#e8d48b] text-4xl sm:text-5xl md:text-6xl leading-none tabular-nums">
-                    {unit.value === undefined ? '--' : pad(unit.value)}
-                  </span>
-                  <span className="text-[#5d6e85] text-xs font-bold mt-2">{unit.label}</span>
-                </div>
-                {i < units.length - 1 && (
-                  <span className="font-jetbrains text-[#39506f] text-3xl sm:text-4xl leading-none mt-1">:</span>
-                )}
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        {/* Seats bar */}
-        <Reveal delay={0.22}>
-          <div className="max-w-md mx-auto mb-12">
-            <div className="flex justify-between items-center mb-3 text-sm font-bold">
-              <span className="text-[#f0ece2]">المقاعد المتبقية</span>
-              <span dir="ltr" className="font-jetbrains text-[#e8d48b]">12 / 20</span>
-            </div>
-            <div className="w-full h-2 rounded-full bg-[#13203a] overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: '60%' }}
-                viewport={{ once: true, amount: 0.8 }}
-                transition={{ duration: 1.4, delay: 0.3, ease: EASE }}
-                className="h-full rounded-full bg-gradient-to-l from-[#c9a84c] to-[#e8d48b] shadow-[0_0_14px_rgba(201,168,76,0.55)]"
-              />
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.26}>
-          <WhatsAppCTA big source="final" className="ac-pulse-glow w-full sm:w-auto">
-            راسلنا الآن على واتساب
-          </WhatsAppCTA>
-          <p className="text-[#5d6e85] text-sm mt-5">يتم تأكيد الحجز خلال 24 ساعة عبر واتساب</p>
-        </Reveal>
+        <div className="mt-10">
+          <span className="font-tajawal font-black text-2xl tracking-tight text-white">
+            GO <span className="text-ac-gold">LLC</span>
+          </span>
+        </div>
       </div>
     </section>
   );

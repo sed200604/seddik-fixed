@@ -15,6 +15,18 @@
   --color-signal-green: #1DB954;
   --color-alert-red: #C8372D;
 
+  /* AI Website-Building course palette (ac-) — Prompt: Master Build */
+  --color-ac-navy: #1B3A5C;
+  --color-ac-navy-deep: #112440;
+  --color-ac-white: #FFFFFF;
+  --color-ac-offwhite: #F5F7FA;
+  --color-ac-gold: #D4A843;
+  --color-ac-gold-light: #E8C36A;
+  --color-ac-ink: #4D4D4D;
+  --color-ac-muted: #B0BEC5;
+  --color-ac-success: #22C55E;
+  --color-ac-danger: #EF4444;
+
   --font-cairo: "Cairo", sans-serif;
   --font-tajawal: "Tajawal", sans-serif;
   --font-inter-tight: "Inter Tight", sans-serif;
@@ -335,6 +347,13 @@ input, select, textarea {
   to { transform: rotate(360deg); }
 }
 .ac-spin-slow { animation: ac-spin 28s linear infinite; }
+
+/* Idle icon wiggle (why-different pillars) */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
 
 /* Breathing glow for the final CTA */
 @keyframes ac-pulse-glow {

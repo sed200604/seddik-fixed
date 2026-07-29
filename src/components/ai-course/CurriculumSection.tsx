@@ -1,109 +1,107 @@
 'use client';
 
-import { motion } from 'motion/react';
-import {
-  EASE,
-  SectionFrame,
-  Reveal,
-  ArrowLeftIcon,
-  TerminalIcon,
-  BriefcaseIcon,
-  GridIcon,
-  BanknoteIcon,
-  ClockIcon,
-} from './ui';
+import { useRef } from 'react';
+import { motion, useScroll, useSpring, useInView } from 'motion/react';
+import { EASE } from './motion';
+import { SectionHeading } from './ui';
 
-const MODULES = [
-  {
-    icon: TerminalIcon,
-    title: 'صياغة الأوامر (Prompt Engineering)',
-    body: 'كيف تكتب أوامر دقيقة تحصل بها على نتائج قوية من أي أداة ذكاء اصطناعي',
-    highlighted: false,
-  },
-  {
-    icon: BriefcaseIcon,
-    title: 'التوظيف في العمل والدراسة',
-    body: 'كيف تستخدم الذكاء الاصطناعي فعليًا في مهامك اليومية — الكتابة، البحث، التنظيم، التحليل',
-    highlighted: false,
-  },
-  {
-    icon: GridIcon,
-    title: 'الأداة المناسبة لكل مهمة',
-    body: 'تعرّف على أفضل الأدوات المتاحة وكيف تختار الأنسب حسب حاجتك',
-    highlighted: false,
-  },
-  {
-    icon: BanknoteIcon,
-    title: 'كيف تربح من الذكاء الاصطناعي',
-    body: 'طرق عملية لتحويل هذه المهارة إلى دخل حقيقي — العمل الحر، تقديم خدمات، مشاريع صغيرة',
-    highlighted: true,
-  },
-  {
-    icon: ClockIcon,
-    title: 'ساعة كاملة من التطبيق الحر والأسئلة المباشرة',
-    body: 'تطبّق ما تعلمته مباشرة مع المدرب — لتتأكد أنك طبّقت فعلاً قبل ما تخرج',
-    highlighted: false,
-  },
+type Day = {
+  n: number;
+  icon: string;
+  label: string;
+  title: string;
+  result: string;
+  star?: boolean;
+};
+
+const DAYS: Day[] = [
+  { n: 1, icon: '🔍', label: 'اليوم 1: اكتشف', title: 'تعرف على الأدوات وأول تجربة', result: 'النتيجة: تفهم كيفاش تخاطب الذكاء الاصطناعي وتبني بلوكك الأول' },
+  { n: 2, icon: '🏗️', label: 'اليوم 2: ابني', title: 'أول موقع كامل أونلاين', result: 'النتيجة: عندك موقع حقيقي منشور على الأنترنت' },
+  { n: 3, icon: '✨', label: 'اليوم 3: حيّره', title: 'animations واحتراف التفاصيل', result: 'النتيجة: موقعك يولّي يبان احترافي يحيّر في العين' },
+  { n: 4, icon: '⚙️', label: 'اليوم 4: الـ Backend', title: 'وظائف حقيقية (فورم، دفع، Dashboard)', result: 'النتيجة: موقعك يخدم فعلاً ماشي مجرد واجهة', star: true },
+  { n: 5, icon: '💰', label: 'اليوم 5: اربح', title: 'تسعير، عملاء، أول بيع', result: 'النتيجة: تعرف كيفاش تلقى عميل وتبيعلو موقع' },
 ];
 
-export default function CurriculumSection() {
+function DayRow({ day }: { day: Day }) {
+  const ref = useRef<HTMLLIElement>(null);
+  const active = useInView(ref, { once: true, margin: '-45% 0px -45% 0px' });
+
   return (
-    <SectionFrame num="03" label="البرنامج" id="curriculum">
-      <Reveal>
-        <h2 className="text-[#f0ece2] font-black text-3xl sm:text-4xl md:text-5xl leading-[1.3] mb-4">
-          ماذا ستتعلم في هذه الجلسة؟
-        </h2>
-        <p className="text-[#8fa0b8] text-lg leading-relaxed mb-10 md:mb-14">
-          خمس وحدات تطبيقية — من أول أمر تكتبه إلى أول دخل تحققه.
-        </p>
-      </Reveal>
+    <li ref={ref} className="relative ps-16 md:ps-20 pb-10 last:pb-0">
+      {/* node */}
+      <motion.span
+        className="absolute start-[18px] md:start-[26px] top-1 z-10 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full text-lg ring-2 ring-white/12"
+        animate={
+          active
+            ? { backgroundColor: '#D4A843', boxShadow: '0 0 0 6px rgba(212,168,67,0.15)', scale: 1 }
+            : { backgroundColor: '#16324f', boxShadow: '0 0 0 0px rgba(212,168,67,0)', scale: 0.9 }
+        }
+        transition={{ duration: 0.45, ease: EASE }}
+      >
+        <motion.span
+          initial={{ scale: 0, opacity: 0 }}
+          animate={active ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+          transition={{ duration: 0.4, ease: EASE, delay: 0.05 }}
+        >
+          {day.icon}
+        </motion.span>
+      </motion.span>
 
-      <div>
-        {MODULES.map((mod, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, delay: i * 0.08, ease: EASE }}
-            className="group border-t border-[#13203a] last:border-b"
-          >
-            <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 py-7 md:py-9 px-2 md:px-5 transition-colors duration-300 hover:bg-[#0a1424]/70">
-              <div className="flex items-center gap-5 md:gap-8 shrink-0">
-                <span
-                  dir="ltr"
-                  className="font-jetbrains text-2xl md:text-3xl w-12 text-[#39506f] group-hover:text-[#c9a84c] transition-colors duration-300"
-                >
-                  0{i + 1}
-                </span>
-                <span
-                  className={`grid place-items-center w-12 h-12 rounded-xl border transition-colors duration-300 ${
-                    mod.highlighted
-                      ? 'border-[#c9a84c]/60 bg-[#c9a84c]/10 text-[#e8d48b]'
-                      : 'border-[#1a2c48] bg-[#0a1424] text-[#c9a84c] group-hover:border-[#c9a84c]/50'
-                  }`}
-                >
-                  <mod.icon className="w-5 h-5" />
-                </span>
-              </div>
+      {/* card */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+        transition={{ duration: 0.55, ease: EASE }}
+        className={`relative rounded-2xl p-5 ring-1 ${
+          day.star
+            ? 'bg-ac-gold/[0.08] ring-ac-gold/35 shadow-[0_0_30px_rgba(212,168,67,0.15)]'
+            : 'bg-white/[0.04] ring-white/10'
+        }`}
+      >
+        {day.star && (
+          <span className="absolute -top-3 end-4 rounded-full bg-ac-gold px-2.5 py-0.5 text-xs font-bold text-ac-navy-deep">
+            ⭐ الفارق الحقيقي
+          </span>
+        )}
+        <span className="text-ac-gold text-sm font-bold">{day.label}</span>
+        <h3 className="mt-1 font-tajawal font-extrabold text-lg md:text-xl text-white">{day.title}</h3>
+        <p className="mt-2 text-ac-muted text-sm md:text-base leading-relaxed">{day.result}</p>
+      </motion.div>
+    </li>
+  );
+}
 
-              <div className="flex-1">
-                <h3 className="flex flex-wrap items-center gap-3 text-[#f0ece2] font-extrabold text-xl md:text-2xl mb-1.5 leading-snug">
-                  {mod.title}
-                  {mod.highlighted && (
-                    <span className="rounded-full border border-[#c9a84c]/50 bg-[#c9a84c]/10 text-[#e8d48b] text-[11px] font-bold px-3 py-1">
-                      الوحدة الذهبية
-                    </span>
-                  )}
-                </h3>
-                <p className="text-[#8fa0b8] text-base md:text-lg leading-relaxed">{mod.body}</p>
-              </div>
+export default function CurriculumSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 65%', 'end 55%'] });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 90, damping: 26, restDelta: 0.001 });
 
-              <ArrowLeftIcon className="hidden md:block w-6 h-6 shrink-0 text-[#c9a84c] opacity-0 translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-            </div>
-          </motion.div>
-        ))}
+  return (
+    <section id="curriculum" className="relative w-full bg-ac-navy py-[clamp(4rem,10vw,7rem)] px-5">
+      <div className="max-w-3xl mx-auto">
+        <SectionHeading title="برنامج الدورة — 5 أيام" tone="dark" />
+        <div className="mt-5 flex justify-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-ac-gold px-4 py-2 text-sm font-extrabold text-ac-navy-deep shadow-[0_6px_20px_rgba(212,168,67,0.3)]">
+            📅 5 أيام = 5 مشاريع حقيقية
+          </span>
+        </div>
+
+        <div ref={ref} className="relative mt-12">
+          {/* spine track */}
+          <span className="absolute start-[18px] md:start-[26px] top-2 bottom-2 w-[3px] -translate-x-1/2 rounded-full bg-white/10" />
+          {/* drawn spine */}
+          <motion.span
+            aria-hidden
+            style={{ scaleY }}
+            className="absolute start-[18px] md:start-[26px] top-2 bottom-2 w-[3px] -translate-x-1/2 origin-top rounded-full bg-gradient-to-b from-ac-gold-light to-ac-gold"
+          />
+          <ul className="relative">
+            {DAYS.map((d) => (
+              <DayRow key={d.n} day={d} />
+            ))}
+          </ul>
+        </div>
       </div>
-    </SectionFrame>
+    </section>
   );
 }

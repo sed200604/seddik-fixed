@@ -2,8 +2,18 @@
 
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'motion/react';
-import { WHATSAPP_LINK } from './constants';
-import { trackCTAClick } from './tracking';
+import { OFFER_ENDS_AT } from './constants';
+import { trackCTAClick, trackInitiateCheckout } from './tracking';
+
+export type Plan = 'standard' | 'vip';
+
+/** Scroll to the registration form and pre-select a plan (fired from pricing cards). */
+export function selectPlanAndScroll(plan: Plan) {
+  trackInitiateCheckout(plan);
+  window.dispatchEvent(new CustomEvent('ac:selectPlan', { detail: plan }));
+  const el = document.getElementById('register');
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
 
 export const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -311,12 +321,19 @@ export function WhatsAppCTA({
   /** Section id used for Meta Pixel Lead segmentation (e.g. "hero", "offer", "final"). */
   source: string;
 }) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    trackCTAClick(source);
+    const registerEl = document.getElementById('register');
+    if (registerEl) {
+      e.preventDefault();
+      registerEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <motion.a
-      href="https://wa.me/213554218743?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AA%D8%B3%D8%AC%D9%8A%D9%84%20%D9%81%D9%8A%20%D8%AF%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B0%D9%83%D8%A7%D8%A1%20%D8%A7%D9%84%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A%20%E2%9C%85"
-      target="_blank"
-      rel="noopener"
-      onClick={() => trackCTAClick(source)}
+      href="#register"
+      onClick={handleClick}
       data-cta-source={source}
       whileHover={{ y: -3 }}
       whileTap={{ scale: 0.97 }}
@@ -326,9 +343,151 @@ export function WhatsAppCTA({
       } ${className}`}
       style={{ background: 'linear-gradient(120deg, #b3903a 0%, #e8d48b 45%, #c9a84c 100%)' }}
     >
-      <WhatsAppIcon className={big ? 'w-6 h-6' : 'w-5 h-5'} />
       <span className="relative z-10">{children}</span>
       <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-out" />
     </motion.a>
+  );
+}
+
+/* ============================================================
+   SelectPlanButton — pricing-card CTA that pre-selects a plan
+   and smooth-scrolls to the registration form (§ conversion core).
+   ============================================================ */
+
+export function SelectPlanButton({
+  children,
+  plan,
+  big = false,
+  emphasized = false,
+  className = '',
+}: {
+  children: ReactNode;
+  plan: Plan;
+  big?: boolean;
+  emphasized?: boolean;
+  className?: string;
+}) {
+  return (
+    <motion.button
+      type="button"
+      onClick={() => selectPlanAndScroll(plan)}
+      data-cta-source={`pricing_${plan}`}
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+      className={`cta-button group relative inline-flex w-full items-center justify-center gap-2.5 rounded-xl font-extrabold text-ac-navy-deep cursor-pointer overflow-hidden transition-shadow duration-300 ${
+        emphasized
+          ? 'shadow-[0_8px_30px_rgba(212,168,67,0.45)] hover:shadow-[0_12px_42px_rgba(212,168,67,0.6)]'
+          : 'shadow-[0_6px_20px_rgba(212,168,67,0.28)] hover:shadow-[0_10px_32px_rgba(212,168,67,0.42)]'
+      } ${big ? 'text-lg px-8 py-4' : 'text-base px-6 py-3.5'} ${className}`}
+      style={{ background: 'linear-gradient(120deg, #D4A843 0%, #E8C36A 50%, #D4A843 100%)' }}
+    >
+      <span className="relative z-10">{children}</span>
+      <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 ease-out" />
+    </motion.button>
+  );
+}
+
+/* ============================================================
+   SectionHeading — eyebrow + masked title + optional subhead.
+   `tone` adapts colors for navy (dark) vs white (light) sections.
+   ============================================================ */
+
+export function SectionHeading({
+  eyebrow,
+  title,
+  subhead,
+  tone = 'dark',
+  align = 'center',
+  className = '',
+}: {
+  eyebrow?: string;
+  title: string;
+  subhead?: string;
+  tone?: 'dark' | 'light';
+  align?: 'center' | 'start';
+  className?: string;
+}) {
+  const isDark = tone === 'dark';
+  return (
+    <div
+      className={`${align === 'center' ? 'text-center mx-auto' : 'text-start'} max-w-3xl ${className}`}
+    >
+      {eyebrow && (
+        <Reveal>
+          <span
+            className={`inline-flex items-center gap-2 mb-4 text-xs font-bold tracking-wide ${
+              isDark ? 'text-ac-gold' : 'text-ac-gold'
+            }`}
+          >
+            <span className="h-px w-6 bg-ac-gold/60" />
+            {eyebrow}
+          </span>
+        </Reveal>
+      )}
+      <h2
+        className={`font-tajawal font-extrabold leading-[1.15] text-balance ${
+          isDark ? 'text-white' : 'text-ac-navy-deep'
+        }`}
+        style={{ fontSize: 'clamp(1.6rem, 4.5vw, 2.75rem)' }}
+      >
+        <MaskedWords text={title} />
+      </h2>
+      {subhead && (
+        <Reveal delay={0.15}>
+          <p
+            className={`mt-4 text-base md:text-lg leading-[1.8] ${
+              isDark ? 'text-ac-muted' : 'text-ac-ink'
+            }`}
+          >
+            {subhead}
+          </p>
+        </Reveal>
+      )}
+    </div>
+  );
+}
+
+/* ============================================================
+   Countdown — live HH:MM:SS until OFFER_ENDS_AT. Ticks each second.
+   ============================================================ */
+
+function pad(n: number) {
+  return n.toString().padStart(2, '0');
+}
+
+export function Countdown({ className = '' }: { className?: string }) {
+  const target = useRef(new Date(OFFER_ENDS_AT).getTime());
+  const [remaining, setRemaining] = useState<number | null>(null);
+
+  useEffect(() => {
+    const tick = () => setRemaining(Math.max(0, target.current - Date.now()));
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  // Avoid hydration mismatch: render nothing until mounted.
+  if (remaining === null) return <span className={className} dir="ltr" />;
+
+  const totalSec = Math.floor(remaining / 1000);
+  const hours = Math.floor(totalSec / 3600);
+  const mins = Math.floor((totalSec % 3600) / 60);
+  const secs = totalSec % 60;
+
+  const Cell = ({ value }: { value: string }) => (
+    <span className="inline-flex min-w-[2ch] justify-center rounded-md bg-ac-navy-deep/80 px-2 py-1 font-inter-tight font-bold tabular-nums text-ac-gold-light ring-1 ring-ac-gold/25">
+      {value}
+    </span>
+  );
+
+  return (
+    <span dir="ltr" className={`inline-flex items-center gap-1.5 ${className}`}>
+      <Cell value={pad(hours)} />
+      <span className="text-ac-gold/70">:</span>
+      <Cell value={pad(mins)} />
+      <span className="text-ac-gold/70">:</span>
+      <Cell value={pad(secs)} />
+    </span>
   );
 }

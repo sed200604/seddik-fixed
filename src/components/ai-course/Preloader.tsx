@@ -30,7 +30,7 @@ export default function Preloader() {
         </span>
         <span className="block h-px w-24 bg-gradient-to-r from-transparent via-[#c9a84c] to-transparent" />
         <span dir="ltr" className="font-jetbrains text-[10px] tracking-[0.4em] text-[#5d6e85]">
-          AI SESSION — ALGIERS
+          BUILD WITH AI — ALGERIA
         </span>
       </div>
     </div>

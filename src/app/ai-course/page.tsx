@@ -1,76 +1,109 @@
 import type { Metadata } from 'next';
 import PagePixel from '@/components/ai-course/PagePixel';
 import Preloader from '@/components/ai-course/Preloader';
+import SmoothScroll from '@/components/ai-course/SmoothScroll';
 import ScrollProgressBar from '@/components/ai-course/ScrollProgressBar';
+import StickyMobileCTA from '@/components/ai-course/StickyMobileCTA';
 import HeroSection from '@/components/ai-course/HeroSection';
-import ProblemSection from '@/components/ai-course/ProblemSection';
-import SolutionSection from '@/components/ai-course/SolutionSection';
+import ShowcaseSection from '@/components/ai-course/ShowcaseSection';
+import ProblemSolutionSection from '@/components/ai-course/ProblemSolutionSection';
+import AudienceSection from '@/components/ai-course/AudienceSection';
 import CurriculumSection from '@/components/ai-course/CurriculumSection';
-import TrainerSection from '@/components/ai-course/TrainerSection';
-import OfferStackSection from '@/components/ai-course/OfferStackSection';
-import GuaranteeSection from '@/components/ai-course/GuaranteeSection';
-import LogisticsSection from '@/components/ai-course/LogisticsSection';
-import FAQSection from '@/components/ai-course/FAQSection';
+import WhyDifferentSection from '@/components/ai-course/WhyDifferentSection';
+import InstructorSection from '@/components/ai-course/InstructorSection';
+import SocialProofSection from '@/components/ai-course/SocialProofSection';
+import PricingSection from '@/components/ai-course/PricingSection';
 import RegistrationSection from '@/components/ai-course/RegistrationSection';
+import FAQSection from '@/components/ai-course/FAQSection';
 import FinalCTASection from '@/components/ai-course/FinalCTASection';
 import Footer from '@/components/ai-course/Footer';
-import StickyMobileCTA from '@/components/ai-course/StickyMobileCTA';
+import {
+  COURSE_START_DATE,
+  PRICE_STANDARD_NEW,
+} from '@/components/ai-course/constants';
 
 export const metadata: Metadata = {
-  title: 'دورة الذكاء الاصطناعي | GO LLC',
+  title: 'دورة بناء مواقع بالذكاء الاصطناعي | Go LLC',
   description:
-    'تعلّم كيف تستخدم الذكاء الاصطناعي فعليًا في عملك ودراستك وحياتك اليومية — في جلسة تطبيقية واحدة مع بن زغدة محمد في باب الزوار مول، المحمدية، الجزائر العاصمة.',
+    '5 أيام لايف. Frontend + Backend. تعلّم تبني مواقع احترافية بالـ AI وابدا تربح. أول فوج بـ 12,000 دج.',
   keywords: [
-    'دورة الذكاء الاصطناعي',
-    'ChatGPT',
-    'Prompt Engineering',
-    'GO LLC',
-    'بن زغدة محمد',
-    'الجزائر العاصمة',
-    'باب الزوار',
-    'المحمدية',
+    'بناء مواقع بالذكاء الاصطناعي',
+    'دورة مواقع',
+    'AI website',
+    'Go LLC',
+    'CodyX',
+    'ربح من الأنترنت',
+    'فريلانس',
+    'الجزائر',
   ],
   openGraph: {
-    title: 'دورة الذكاء الاصطناعي | GO LLC',
-    description: 'الذكاء الاصطناعي... بالطريقة الصحيحة والقوية',
-    locale: 'ar_AR',
+    title: 'دورة بناء مواقع بالذكاء الاصطناعي | Go LLC',
+    description: '5 أيام لايف — تعلّم تبني مواقع احترافية بالـ AI وابدا تربح منها.',
+    locale: 'ar_DZ',
     type: 'website',
+    // TODO(placeholder): design a dedicated share image for this course.
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'دورة بناء مواقع بالذكاء الاصطناعي — Go LLC' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'دورة بناء مواقع بالذكاء الاصطناعي | Go LLC',
+    description: '5 أيام لايف — Frontend + Backend — أول فوج بـ 12,000 دج.',
+    images: ['/og-image.png'],
   },
 };
 
-export default function AICoursePage() {
+// Course / Event structured data (Google rich results).
+const courseJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'دورة بناء مواقع بالذكاء الاصطناعي',
+  description:
+    '5 أيام لايف تطبيقية لتعلّم بناء مواقع احترافية (Frontend + Backend) بالذكاء الاصطناعي والربح منها.',
+  provider: {
+    '@type': 'Organization',
+    name: 'Go LLC',
+    sameAs: 'https://gollc.dz',
+  },
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    courseMode: 'online',
+    // TODO(placeholder): confirm real start date.
+    startDate: COURSE_START_DATE,
+    offers: {
+      '@type': 'Offer',
+      price: PRICE_STANDARD_NEW,
+      priceCurrency: 'DZD',
+      availability: 'https://schema.org/InStock',
+    },
+  },
+};
+
+export default function AICourseLandingPage() {
   return (
-    <div
-      dir="rtl"
-      lang="ar"
-      className="min-h-screen text-[#f0ece2] selection:bg-[#c9a84c]/30 selection:text-[#f0ece2] relative overflow-x-hidden"
-      style={{
-        background: 'linear-gradient(180deg, #04070c 0%, #071021 30%, #050a14 60%, #081326 100%)',
-      }}
-    >
-      {/* Fixed ambient glows — stay in place while scrolling */}
-      <div aria-hidden="true" className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute -top-[15%] right-[-10%] w-[55vw] h-[55vw] max-w-[800px] max-h-[800px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.07)_0%,transparent_65%)] blur-3xl" />
-        <div className="absolute bottom-[-20%] left-[-12%] w-[60vw] h-[60vw] max-w-[900px] max-h-[900px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(28,70,120,0.14)_0%,transparent_65%)] blur-3xl" />
-        <div className="absolute top-[40%] left-[30%] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.04)_0%,transparent_65%)] blur-3xl" />
-      </div>
+    <div dir="rtl" lang="ar" className="relative w-full overflow-x-hidden bg-ac-navy">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+      />
 
       <PagePixel />
       <Preloader />
+      <SmoothScroll />
       <ScrollProgressBar />
       <StickyMobileCTA />
 
-      <main className="w-full relative z-10">
+      <main className="w-full">
         <HeroSection />
-        <ProblemSection />
-        <SolutionSection />
+        <ShowcaseSection />
+        <ProblemSolutionSection />
+        <AudienceSection />
         <CurriculumSection />
-        <TrainerSection />
-        <OfferStackSection />
-        <GuaranteeSection />
-        <LogisticsSection />
-        <FAQSection />
+        <WhyDifferentSection />
+        <InstructorSection />
+        <SocialProofSection />
+        <PricingSection />
         <RegistrationSection />
+        <FAQSection />
         <FinalCTASection />
       </main>
 

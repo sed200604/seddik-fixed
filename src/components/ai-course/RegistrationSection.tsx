@@ -1,215 +1,255 @@
 'use client';
 
-import { useState } from 'react';
-import { CheckIcon, Reveal, SectionFrame, WhatsAppIcon } from './ui';
-import { trackRegistration } from './tracking';
+import { useEffect, useState } from 'react';
+import { motion } from 'motion/react';
+import { EASE, VIEWPORT } from './motion';
+import { CheckIcon, WhatsAppIcon, type Plan } from './ui';
+import { trackRegistration, newEventId } from './tracking';
+import {
+  WHATSAPP_GROUP_LINK,
+  PRICE_STANDARD_NEW,
+  PRICE_VIP_NEW,
+  COURSE_START_LABEL,
+} from './constants';
 
-const WILAYAS = [
-  'أدرار', 'الشلف', 'الأغواط', 'أم البواقي', 'باتنة', 'بجاية', 'بسكرة', 'بشار', 'البليدة', 'البويرة',
-  'تمنراست', 'تبسة', 'تلمسان', 'تيارت', 'تيزي وزو', 'الجزائر', 'الجلفة', 'جيجل', 'سطيف', 'سعيدة',
-  'سكيكدة', 'سيدي بلعباس', 'عنابة', 'قالمة', 'قسنطينة', 'المدية', 'مستغانم', 'المسيلة', 'معسكر', 'ورقلة',
-  'وهران', 'البيض', 'إليزي', 'برج بوعريريج', 'بومرداس', 'الطارف', 'تندوف', 'تيسمسيلت', 'الوادي', 'خنشلة',
-  'سوق أهراس', 'تيبازة', 'ميلة', 'عين الدفلى', 'النعامة', 'عين تموشنت', 'غرداية', 'غليزان', 'تيميمون',
-  'برج باجي مختار', 'أولاد جلال', 'بني عباس', 'عين صالح', 'عين قزام', 'تقرت', 'جانت', 'المغير', 'المنيعة',
+type Status = 'idle' | 'loading' | 'success' | 'error';
+
+const PLANS: { id: Plan; label: string; price: number; note: string }[] = [
+  { id: 'standard', label: 'العرض العادي', price: PRICE_STANDARD_NEW, note: 'الدورة كاملة + التسجيلات + دعم جماعي' },
+  { id: 'vip', label: 'العرض VIP ⭐', price: PRICE_VIP_NEW, note: 'كل شي + coaching فردي + مرافقة حتى أول عميل' },
 ];
 
-const PHONE_RE = /^0[567]\d{8}$/;
-
-const INPUT_CLASS =
-  'w-full rounded-xl border border-[#1a2c48] bg-[#0a1424] text-[#f0ece2] placeholder-[#39506f] px-4 py-3.5 outline-none transition-colors duration-200 focus:border-[#c9a84c] focus:ring-2 focus:ring-[#c9a84c]/25';
-
 export default function RegistrationSection() {
+  const [plan, setPlan] = useState<Plan>('standard');
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [wilaya, setWilaya] = useState('');
-  const [errors, setErrors] = useState<{ name?: string; phone?: string; wilaya?: string }>({});
-  const [submitted, setSubmitted] = useState(false);
+  const [whatsapp, setWhatsapp] = useState('');
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<Status>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const cleanPhone = phone.replace(/[\s-]/g, '');
-    const next: typeof errors = {};
-    if (name.trim().length < 3) next.name = 'يرجى إدخال الاسم واللقب';
-    if (!PHONE_RE.test(cleanPhone)) next.phone = 'يرجى إدخال رقم هاتف جزائري صحيح (يبدأ بـ 05 / 06 / 07)';
-    if (!wilaya) next.wilaya = 'يرجى اختيار الولاية';
-    setErrors(next);
-    if (Object.keys(next).length > 0) return;
-
-    trackRegistration();
-
-    const emailPayload = {
-      "نوع الطلب": "تسجيل جديد في دورة الذكاء الاصطناعي",
-      "الاسم الكامل": name.trim(),
-      "رقم الهاتف": cleanPhone,
-      "الولاية": wilaya,
-      _subject: "🤖 تسجيل جديد في دورة الذكاء الاصطناعي!",
-      _captcha: "false",
-      _template: "table"
+  // Pricing cards dispatch this to pre-select a plan before scrolling here.
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail as Plan;
+      if (detail === 'standard' || detail === 'vip') setPlan(detail);
     };
+    window.addEventListener('ac:selectPlan', handler);
+    return () => window.removeEventListener('ac:selectPlan', handler);
+  }, []);
 
-    // Direct client-side fetch to FormSubmit (bypasses Cloudflare serverless blocks)
-    fetch("https://formsubmit.co/ajax/sed200604@gmail.com", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(emailPayload)
-    }).catch(console.error);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (status === 'loading') return;
+    setErrorMsg('');
 
-    // Call server route as backup for Supabase & Google Sheets
-    fetch('/api/email-notify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: name.trim(),
-        phone: cleanPhone,
-        wilaya,
-        subject: 'تسجيل جديد في دورة الذكاء الاصطناعي',
-        _subject: '🤖 تسجيل جديد في دورة الذكاء الاصطناعي!',
-      }),
-    }).catch(console.error);
+    // Client-side validation
+    if (!name.trim()) return setErrorMsg('من فضلك دخّل اسمك الكامل');
+    if (whatsapp.replace(/[^\d]/g, '').length < 9) return setErrorMsg('رقم واتساب غير صحيح');
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setErrorMsg('بريد إلكتروني غير صحيح');
 
-    window.open('https://chat.whatsapp.com/FU2ut6JNh9GGEfo5BBRt4F', '_blank', 'noopener');
-    setSubmitted(true);
+    setStatus('loading');
+    const eventId = newEventId();
+
+    try {
+      const res = await fetch('/api/course-register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, whatsapp, email, plan, event_id: eventId }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'تعذّر إرسال التسجيل');
+      }
+      // Fire Meta Pixel Lead + CompleteRegistration (deduped with server CAPI via eventId).
+      trackRegistration(plan, eventId);
+      setStatus('success');
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : 'خطأ غير متوقع، عاود المحاولة');
+      setStatus('error');
+    }
   };
 
+  const inputBase =
+    'w-full rounded-xl bg-white border border-black/10 px-4 py-3 text-ac-navy-deep placeholder:text-ac-ink/40 outline-none transition focus:border-ac-gold focus:ring-2 focus:ring-ac-gold/40';
+
   return (
-    <SectionFrame num="09" label="التسجيل" id="register">
-      <div className="max-w-xl">
-        <Reveal>
-          <h2 className="text-[#f0ece2] font-black text-3xl sm:text-4xl md:text-5xl leading-tight mb-4">
-            سجّل مقعدك الآن
-          </h2>
-          <p className="text-[#8fa0b8] text-lg leading-relaxed mb-10">
-            املأ معلوماتك وسنؤكد حجزك عبر واتساب خلال 24 ساعة.
-          </p>
-        </Reveal>
+    <section
+      id="register"
+      className="relative w-full overflow-hidden py-[clamp(4rem,10vw,7rem)] px-5"
+      style={{ background: 'linear-gradient(180deg,#112440 0%,#14284a 100%)' }}
+      aria-label="التسجيل في الدورة"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="ac-aurora absolute -top-[10%] end-[-8%] w-[40vw] h-[40vw] max-w-[480px] max-h-[480px] rounded-full bg-[radial-gradient(circle_at_center,rgba(212,168,67,0.1),transparent_65%)] blur-3xl" />
+      </div>
 
-        <Reveal delay={0.1}>
-          <form
-            onSubmit={handleSubmit}
-            noValidate
-            className="rounded-2xl border border-[#1a2c48] bg-gradient-to-b from-[#0c1526] to-[#070d18] shadow-[0_20px_60px_rgba(0,0,0,0.35)] overflow-hidden"
+      <div className="relative z-10 max-w-xl mx-auto">
+        <div className="text-center">
+          <span className="inline-flex items-center gap-2 text-ac-gold text-sm font-bold">
+            <span className="h-px w-6 bg-ac-gold/60" /> التسجيل
+          </span>
+          <h2
+            className="mt-3 font-tajawal font-extrabold text-white leading-tight"
+            style={{ fontSize: 'clamp(1.6rem,4.5vw,2.6rem)' }}
           >
-            {/* Form header */}
-            <div className="flex items-center justify-between px-6 sm:px-8 py-4 border-b border-[#13203a]">
-              <span dir="ltr" className="font-jetbrains text-[10px] tracking-[0.3em] text-[#5d6e85]">
-                REGISTRATION — FORM
+            احجز مقعدك في أول فوج
+          </h2>
+          <p className="mt-3 text-ac-muted">
+            دخّل معلوماتك ونتواصلو معاك على الواتساب باش نكملو التسجيل — انطلاق الفوج: {COURSE_START_LABEL}
+          </p>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VIEWPORT}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="mt-8 rounded-3xl bg-white p-6 md:p-8 shadow-[0_30px_70px_-24px_rgba(0,0,0,0.6)] ring-1 ring-black/5"
+        >
+          {status === 'success' ? (
+            <div className="text-center py-4">
+              <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-ac-success/15">
+                <CheckIcon className="h-8 w-8 text-ac-success" />
               </span>
-              <span className="text-[#f0ece2] font-black text-sm">
-                GO <span className="text-[#c9a84c]">LLC</span>
-              </span>
+              <h3 className="mt-5 font-tajawal font-extrabold text-2xl text-ac-navy-deep">
+                تم تسجيلك بنجاح ✅
+              </h3>
+              <p className="mt-3 text-ac-ink leading-relaxed">
+                مبروك! خذينا معلوماتك. آخر خطوة: ادخل لمجموعة الواتساب باش تتوصل بكل التفاصيل ووقت الانطلاق.
+              </p>
+              <a
+                href={WHATSAPP_GROUP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#25D366] px-7 py-3.5 font-extrabold text-white shadow-[0_8px_24px_rgba(37,211,102,0.35)] transition hover:brightness-105"
+              >
+                <WhatsAppIcon className="h-5 w-5" />
+                ادخل لمجموعة الواتساب
+              </a>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} noValidate>
+              {/* plan selector */}
+              <fieldset>
+                <legend className="mb-2.5 text-sm font-bold text-ac-navy-deep">اختر العرض</legend>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {PLANS.map((p) => {
+                    const active = plan === p.id;
+                    return (
+                      <button
+                        type="button"
+                        key={p.id}
+                        onClick={() => setPlan(p.id)}
+                        aria-pressed={active}
+                        className={`text-start rounded-xl border p-3.5 transition ${
+                          active
+                            ? 'border-ac-gold bg-ac-gold/10 ring-2 ring-ac-gold/40'
+                            : 'border-black/10 bg-ac-offwhite hover:border-ac-gold/40'
+                        }`}
+                      >
+                        <span className="flex items-center justify-between">
+                          <span className="font-tajawal font-extrabold text-ac-navy-deep">{p.label}</span>
+                          <span
+                            className={`h-4 w-4 rounded-full border-2 ${
+                              active ? 'border-ac-gold bg-ac-gold' : 'border-black/25'
+                            }`}
+                          />
+                        </span>
+                        <span dir="ltr" className="mt-1 block font-inter-tight font-bold text-ac-gold">
+                          {p.price.toLocaleString('en-US')} دج
+                        </span>
+                        <span className="mt-1 block text-xs text-ac-ink/70 leading-snug">{p.note}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </fieldset>
 
-            <div className="px-6 sm:px-8 py-7 space-y-6">
-              {/* Name */}
-              <div>
-                <label htmlFor="reg-name" className="flex items-center gap-3 mb-2.5">
-                  <span dir="ltr" className="font-jetbrains text-[#c9a84c] text-xs">01</span>
-                  <span className="text-[#f0ece2] font-bold text-sm">الاسم واللقب</span>
-                </label>
-                <input
-                  id="reg-name"
-                  type="text"
-                  autoComplete="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="مثال: محمد بن زغدة"
-                  className={`${INPUT_CLASS} ${errors.name ? 'border-[#ef4444]/70' : ''}`}
-                />
-                {errors.name && <p className="text-[#ef4444] text-sm mt-2">{errors.name}</p>}
-              </div>
-
-              {/* Phone + Wilaya */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* fields */}
+              <div className="mt-5 space-y-4">
                 <div>
-                  <label htmlFor="reg-phone" className="flex items-center gap-3 mb-2.5">
-                    <span dir="ltr" className="font-jetbrains text-[#c9a84c] text-xs">02</span>
-                    <span className="text-[#f0ece2] font-bold text-sm">رقم الهاتف</span>
+                  <label htmlFor="ac-name" className="mb-1.5 block text-sm font-bold text-ac-navy-deep">
+                    الاسم الكامل <span className="text-ac-danger">*</span>
                   </label>
                   <input
-                    id="reg-phone"
+                    id="ac-name"
+                    type="text"
+                    autoComplete="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="مثال: محمد بن أحمد"
+                    className={inputBase}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="ac-wa" className="mb-1.5 block text-sm font-bold text-ac-navy-deep">
+                    رقم الواتساب <span className="text-ac-danger">*</span>
+                  </label>
+                  <input
+                    id="ac-wa"
                     type="tel"
                     inputMode="tel"
                     autoComplete="tel"
                     dir="ltr"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="0555 12 34 56"
-                    className={`${INPUT_CLASS} font-jetbrains text-left ${errors.phone ? 'border-[#ef4444]/70' : ''}`}
+                    value={whatsapp}
+                    onChange={(e) => setWhatsapp(e.target.value)}
+                    placeholder="0X XX XX XX XX"
+                    className={`${inputBase} text-start`}
+                    required
                   />
-                  {errors.phone && <p className="text-[#ef4444] text-sm mt-2">{errors.phone}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="reg-wilaya" className="flex items-center gap-3 mb-2.5">
-                    <span dir="ltr" className="font-jetbrains text-[#c9a84c] text-xs">03</span>
-                    <span className="text-[#f0ece2] font-bold text-sm">الولاية</span>
+                  <label htmlFor="ac-email" className="mb-1.5 block text-sm font-bold text-ac-navy-deep">
+                    البريد الإلكتروني <span className="text-ac-ink/40 font-normal">(اختياري)</span>
                   </label>
-                  <div className="relative">
-                    <select
-                      id="reg-wilaya"
-                      value={wilaya}
-                      onChange={(e) => setWilaya(e.target.value)}
-                      className={`${INPUT_CLASS} appearance-none cursor-pointer pl-10 ${
-                        wilaya ? '' : 'text-[#39506f]'
-                      } ${errors.wilaya ? 'border-[#ef4444]/70' : ''}`}
-                    >
-                      <option value="" disabled>
-                        اختر ولايتك
-                      </option>
-                      {WILAYAS.map((w, i) => (
-                        <option key={w} value={w} className="text-[#f0ece2] bg-[#0a1424]">
-                          {String(i + 1).padStart(2, '0')} — {w}
-                        </option>
-                      ))}
-                    </select>
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="w-4 h-4 text-[#c9a84c] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
-                      aria-hidden="true"
-                    >
-                      <path d="m6 9 6 6 6-6" />
-                    </svg>
-                  </div>
-                  {errors.wilaya && <p className="text-[#ef4444] text-sm mt-2">{errors.wilaya}</p>}
+                  <input
+                    id="ac-email"
+                    type="email"
+                    autoComplete="email"
+                    dir="ltr"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    className={`${inputBase} text-start`}
+                  />
                 </div>
               </div>
 
-              {/* Submit */}
-              <button
-                type="submit"
-                className="cta-button group relative w-full inline-flex items-center justify-center gap-3 rounded-full font-extrabold text-[#071018] text-lg px-8 py-4 cursor-pointer overflow-hidden shadow-[0_6px_24px_rgba(201,168,76,0.28)] hover:shadow-[0_10px_36px_rgba(201,168,76,0.45)] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300"
-                style={{ background: 'linear-gradient(120deg, #b3903a 0%, #e8d48b 45%, #c9a84c 100%)' }}
-              >
-                <WhatsAppIcon className="w-5 h-5" />
-                <span className="relative z-10">أرسل معلوماتي عبر واتساب</span>
-                <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-out" />
-              </button>
-
-              {submitted ? (
-                <div className="flex items-center justify-center gap-2.5 text-[#4ade80] font-bold text-sm">
-                  <span className="grid place-items-center w-5 h-5 rounded-full border border-[#4ade80]/60 bg-[#4ade80]/10">
-                    <CheckIcon className="w-3 h-3" />
-                  </span>
-                  تم فتح واتساب — أكمل الإرسال هناك لتأكيد حجزك
-                </div>
-              ) : (
-                <p className="text-center text-[#5d6e85] text-sm">
-                  بالضغط على الزر سيُفتح واتساب برسالة جاهزة تحتوي معلوماتك — فقط اضغط إرسال.
+              {errorMsg && (
+                <p role="alert" className="mt-4 rounded-lg bg-ac-danger/10 px-3.5 py-2.5 text-sm font-semibold text-ac-danger">
+                  {errorMsg}
                 </p>
               )}
-            </div>
-          </form>
-        </Reveal>
+
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="cta-button group relative mt-6 inline-flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl px-8 py-4 text-lg font-extrabold text-ac-navy-deep shadow-[0_8px_28px_rgba(212,168,67,0.4)] transition hover:shadow-[0_12px_40px_rgba(212,168,67,0.55)] disabled:cursor-not-allowed disabled:opacity-70"
+                style={{ background: 'linear-gradient(120deg,#D4A843 0%,#E8C36A 50%,#D4A843 100%)' }}
+              >
+                {status === 'loading' ? (
+                  <>
+                    <span className="h-5 w-5 animate-spin rounded-full border-2 border-ac-navy-deep/30 border-t-ac-navy-deep" />
+                    جارٍ الإرسال…
+                  </>
+                ) : (
+                  <>
+                    أكّد تسجيلي
+                    <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 ease-out" />
+                  </>
+                )}
+              </button>
+
+              <p className="mt-3 text-center text-xs text-ac-ink/60">
+                🔒 معلوماتك آمنة، نستعملوها فقط باش نتواصلو معاك حول الدورة.
+              </p>
+            </form>
+          )}
+        </motion.div>
       </div>
-    </SectionFrame>
+    </section>
   );
 }

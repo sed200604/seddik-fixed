@@ -1,281 +1,300 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'motion/react';
-import { EASE, MaskedWords, WhatsAppCTA, Barcode, ClockIcon, MapPinIcon, TicketIcon } from './ui';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useReducedMotion, useMotionValue, useSpring } from 'motion/react';
+import { EASE, EASE_BACK } from './motion';
+import { WhatsAppCTA, MaskedWords } from './ui';
 
-const TICKER_ITEMS = [
-  'ChatGPT',
-  'Prompt Engineering',
-  'Gemini',
-  'DeepSeek',
-  'تطبيق عملي مباشر',
-  'الأداة المناسبة لكل مهمة',
-  'الربح من الذكاء الاصطناعي',
-  'جلسة حضورية — الجزائر العاصمة',
-];
-
-function TicketCard() {
+/* ── Magnetic wrapper: primary CTA gently follows the cursor (desktop only) ── */
+function Magnetic({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
-  const rx = useMotionValue(0);
-  const ry = useMotionValue(0);
-  const srx = useSpring(rx, { stiffness: 160, damping: 18 });
-  const sry = useSpring(ry, { stiffness: 160, damping: 18 });
+  const reduce = useReducedMotion();
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 250, damping: 18 });
+  const sy = useSpring(y, { stiffness: 250, damping: 18 });
 
-  const handleMove = (e: React.MouseEvent) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    const px = (e.clientX - rect.left) / rect.width - 0.5;
-    const py = (e.clientY - rect.top) / rect.height - 0.5;
-    rx.set(-py * 10);
-    ry.set(px * 12);
+  const onMove = (e: React.MouseEvent) => {
+    if (reduce) return;
+    const el = ref.current;
+    if (!el || window.matchMedia('(pointer: coarse)').matches) return;
+    const r = el.getBoundingClientRect();
+    const mx = e.clientX - (r.left + r.width / 2);
+    const my = e.clientY - (r.top + r.height / 2);
+    x.set(Math.max(-8, Math.min(8, mx * 0.3)));
+    y.set(Math.max(-8, Math.min(8, my * 0.3)));
   };
-
-  const handleLeave = () => {
-    rx.set(0);
-    ry.set(0);
+  const onLeave = () => {
+    x.set(0);
+    y.set(0);
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, rotate: 0 }}
-      animate={{ opacity: 1, y: 0, rotate: -3 }}
-      transition={{ duration: 1.1, delay: 1.5, ease: EASE }}
-      className="w-full max-w-sm"
-      style={{ perspective: 900 }}
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ x: sx, y: sy }}
+      className="inline-block"
     >
-      <motion.div
-        ref={ref}
-        onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
-        style={{ rotateX: srx, rotateY: sry, transformStyle: 'preserve-3d' }}
-        className="relative rounded-2xl border border-[#c9a84c]/35 bg-gradient-to-b from-[#0e1830] to-[#070d18] shadow-[0_30px_80px_rgba(0,0,0,0.55),0_0_50px_rgba(201,168,76,0.1)] overflow-hidden"
-      >
-        {/* Gold top edge */}
-        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#c9a84c] to-transparent" />
-
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 pt-6 pb-4">
-          <span className="text-[#f0ece2] font-black text-base">
-            GO <span className="text-[#c9a84c]">LLC</span>
-          </span>
-          <span dir="ltr" className="font-jetbrains text-[9px] tracking-[0.35em] text-[#5d6e85]">
-            ADMIT ONE
-          </span>
-        </div>
-
-        {/* Big date */}
-        <div className="px-6 pb-5">
-          <span dir="ltr" className="block font-jetbrains text-[#e8d48b] text-5xl leading-none mb-1">
-            AUG 08
-          </span>
-          <span className="block text-[#8fa0b8] text-sm font-bold">دورة الذكاء الاصطناعي — جلسة تطبيقية</span>
-        </div>
-
-        {/* Details */}
-        <div className="px-6 pb-6 space-y-3">
-          <div className="flex items-center gap-3">
-            <ClockIcon className="w-4 h-4 text-[#c9a84c] shrink-0" />
-            <span className="text-[#f0ece2] font-bold text-sm">10:00 صباحًا — 16:00</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <MapPinIcon className="w-4 h-4 text-[#c9a84c] shrink-0" />
-            <span className="text-[#f0ece2] font-bold text-sm">مول باب الزوار، المحمدية</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <TicketIcon className="w-4 h-4 text-[#c9a84c] shrink-0" />
-            <span className="text-[#f0ece2] font-bold text-sm">20 مقعدًا فقط</span>
-          </div>
-        </div>
-
-        {/* Perforation */}
-        <div className="relative">
-          <div className="border-t-2 border-dashed border-[#1a2c48] mx-4" />
-          <span className="absolute top-1/2 -translate-y-1/2 -right-3.5 w-7 h-7 rounded-full bg-[#060c17] border border-[#1a2c48]" />
-          <span className="absolute top-1/2 -translate-y-1/2 -left-3.5 w-7 h-7 rounded-full bg-[#060c17] border border-[#1a2c48]" />
-        </div>
-
-        {/* Stub */}
-        <div className="flex items-center justify-between px-6 py-5">
-          <Barcode className="w-24 h-8 text-[#39506f]" />
-          <div className="text-left">
-            <span dir="ltr" className="block font-jetbrains text-[9px] tracking-[0.3em] text-[#5d6e85] mb-1">
-              SEAT 01—20
-            </span>
-            <span dir="ltr" className="block font-jetbrains text-[#e8d48b] text-sm">8,000 DZD</span>
-          </div>
-        </div>
-      </motion.div>
+      {children}
     </motion.div>
   );
 }
 
-export default function HeroSection() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const glowY = useTransform(scrollYProgress, [0, 1], [0, 140]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+/* ── Build-timelapse: a website assembles itself inside a browser frame ── */
+function BuildTimelapse() {
+  const reduce = useReducedMotion();
+  const [step, setStep] = useState(reduce ? 99 : 0);
+
+  useEffect(() => {
+    if (reduce) return;
+    let s = 0;
+    const advance = () => {
+      s = s >= 6 ? 0 : s + 1;
+      setStep(s);
+    };
+    const id = window.setInterval(advance, 900);
+    return () => window.clearInterval(id);
+  }, [reduce]);
+
+  const on = (n: number) => step >= n;
+  const done = step >= 5;
+
+  const block = (visible: boolean, delay = 0) => ({
+    initial: false,
+    animate: {
+      opacity: visible ? 1 : 0,
+      y: visible ? 0 : 10,
+      scale: visible ? 1 : 0.98,
+    },
+    transition: { duration: 0.45, ease: EASE, delay },
+  });
 
   return (
-    <section ref={ref} className="relative min-h-[100svh] w-full flex flex-col overflow-hidden">
-      {/* Grid pattern */}
+    <div className="relative w-full max-w-[440px] mx-auto">
+      {/* soft platform glow */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.05]"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #1e3a5f 1px, transparent 1px), linear-gradient(to bottom, #1e3a5f 1px, transparent 1px)',
-          backgroundSize: '72px 72px',
-          maskImage: 'radial-gradient(ellipse 90% 70% at 50% 40%, black 30%, transparent 100%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 90% 70% at 50% 40%, black 30%, transparent 100%)',
-        }}
+        aria-hidden
+        className="absolute -inset-6 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,rgba(212,168,67,0.18),transparent_70%)] blur-2xl"
       />
-
-      {/* Aurora blobs with scroll parallax */}
-      <motion.div style={{ y: glowY }} className="absolute inset-0 pointer-events-none">
-        <div className="ac-aurora absolute top-[8%] right-[12%] w-[420px] h-[420px] md:w-[620px] md:h-[620px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.13)_0%,transparent_65%)] blur-3xl" />
-        <div className="ac-aurora-slow absolute bottom-[5%] left-[5%] w-[380px] h-[380px] md:w-[540px] md:h-[540px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(30,72,120,0.22)_0%,transparent_65%)] blur-3xl" />
-      </motion.div>
-
-      {/* Oversized outlined watermark */}
-      <div
-        dir="ltr"
-        aria-hidden="true"
-        className="ac-stroke absolute -bottom-10 left-0 font-jetbrains font-bold text-[9rem] md:text-[16rem] leading-none opacity-[0.12] pointer-events-none select-none"
+      <motion.div
+        aria-hidden
+        animate={done ? { scale: [1, 1.015, 1] } : { scale: 1 }}
+        transition={{ duration: 0.6, ease: EASE_BACK }}
+        className="relative rounded-2xl bg-[#0d1b30] ring-1 ring-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] overflow-hidden"
       >
-        AI
+        {/* browser chrome */}
+        <div className="flex items-center gap-1.5 px-3.5 py-2.5 border-b border-white/10 bg-white/[0.03]">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+          <div className="ms-3 flex-1 h-5 rounded-md bg-white/[0.06] flex items-center px-2">
+            <span dir="ltr" className="font-inter-tight text-[9px] text-white/40 truncate">
+              {done ? 'https://my-site.dz  ✓' : 'building…'}
+            </span>
+          </div>
+        </div>
+
+        {/* canvas */}
+        <div className="relative p-3 space-y-2.5 h-[248px] bg-gradient-to-b from-[#0f2036] to-[#0b1626]">
+          {/* generating shimmer sweep while assembling */}
+          {!done && !reduce && (
+            <motion.div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 z-20"
+              initial={{ x: '-120%' }}
+              animate={{ x: '120%' }}
+              transition={{ duration: 1.1, ease: 'easeInOut', repeat: Infinity, repeatDelay: 0.4 }}
+              style={{
+                background:
+                  'linear-gradient(105deg, transparent 40%, rgba(212,168,67,0.14) 50%, transparent 60%)',
+              }}
+            />
+          )}
+
+          {/* nav */}
+          <motion.div {...block(on(1))} className="flex items-center justify-between">
+            <div className="w-16 h-3.5 rounded bg-ac-gold/70" />
+            <div className="flex gap-1.5">
+              <div className="w-8 h-2.5 rounded bg-white/20" />
+              <div className="w-8 h-2.5 rounded bg-white/20" />
+              <div className="w-8 h-2.5 rounded bg-white/20" />
+            </div>
+          </motion.div>
+
+          {/* hero block */}
+          <motion.div {...block(on(2))} className="rounded-lg bg-white/[0.06] p-3 space-y-2">
+            <div className="w-3/4 h-3 rounded bg-white/25" />
+            <div className="w-1/2 h-3 rounded bg-white/15" />
+            <div className="w-20 h-5 rounded-md bg-ac-gold/80 mt-1" />
+          </motion.div>
+
+          {/* cards row */}
+          <div className="grid grid-cols-3 gap-2">
+            {[3, 3, 4].map((needed, i) => (
+              <motion.div
+                key={i}
+                {...block(on(needed), i * 0.08)}
+                className="rounded-lg bg-white/[0.05] h-14 p-1.5 space-y-1"
+              >
+                <div className="w-full h-6 rounded bg-white/10" />
+                <div className="w-2/3 h-1.5 rounded bg-white/15" />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* footer */}
+          <motion.div {...block(on(4))} className="rounded-lg bg-white/[0.06] h-8 flex items-center px-2 gap-2">
+            <div className="w-10 h-2 rounded bg-white/20" />
+            <div className="w-10 h-2 rounded bg-white/15" />
+            <div className="ms-auto w-6 h-2 rounded bg-ac-gold/60" />
+          </motion.div>
+
+          {/* fake cursor */}
+          {!reduce && (
+            <motion.div
+              aria-hidden
+              className="absolute z-30 w-4 h-4"
+              animate={{
+                top: ['18%', '42%', '70%', '88%', '50%'][Math.min(step, 4)],
+                left: ['80%', '30%', '20%', '75%', '50%'][Math.min(step, 4)],
+              }}
+              transition={{ duration: 0.6, ease: EASE }}
+            >
+              <svg viewBox="0 0 24 24" className="w-4 h-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                <path d="M4 2l16 8-6.5 1.8L10 20 4 2z" fill="#fff" stroke="#0b1626" strokeWidth="1" />
+              </svg>
+            </motion.div>
+          )}
+
+          {/* finished pop badge */}
+          <motion.div
+            aria-hidden
+            initial={false}
+            animate={done ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.7 }}
+            transition={{ duration: 0.4, ease: EASE_BACK }}
+            className="absolute bottom-2.5 end-2.5 z-30 flex items-center gap-1 rounded-full bg-ac-success/90 px-2.5 py-1 text-[10px] font-bold text-white"
+          >
+            ✓ جاهز
+          </motion.div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+const HERO_H1 = 'تعلّم تبني مواقع احترافية بالذكاء الاصطناعي وابدا تربح منها';
+
+export default function HeroSection() {
+  const reduce = useReducedMotion();
+  const badges = ['🔴 لايف مباشر', '🛠️ تطبيقية 100%', '🤝 مرافقة بعد الدورة'];
+
+  return (
+    <section
+      id="hero"
+      className="relative min-h-[100svh] w-full overflow-hidden bg-ac-navy flex items-center"
+      style={{ background: 'linear-gradient(160deg, #1B3A5C 0%, #16324f 45%, #112440 100%)' }}
+    >
+      {/* ambient gold orbs */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+        <div className="ac-aurora absolute -top-[10%] end-[-8%] w-[45vw] h-[45vw] max-w-[560px] max-h-[560px] rounded-full bg-[radial-gradient(circle_at_center,rgba(212,168,67,0.12),transparent_65%)] blur-3xl" />
+        <div className="ac-aurora-slow absolute bottom-[-15%] start-[-10%] w-[50vw] h-[50vw] max-w-[640px] max-h-[640px] rounded-full bg-[radial-gradient(circle_at_center,rgba(30,80,140,0.28),transparent_65%)] blur-3xl" />
       </div>
 
-      {/* Grain — very subtle film texture */}
-      <div
-        className="absolute inset-0 pointer-events-none z-10 opacity-[0.04] mix-blend-soft-light"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* Top bar */}
-      <motion.header
-        initial={{ opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6, ease: EASE }}
-        className="relative z-20 w-full max-w-6xl mx-auto px-4 md:px-8 pt-6 flex items-center justify-between"
-      >
-        <span className="text-[#f0ece2] font-black text-xl tracking-tight">
-          GO <span className="text-[#c9a84c]">LLC</span>
-        </span>
-        <span dir="ltr" className="hidden sm:block font-jetbrains text-[11px] text-[#5d6e85] tracking-[0.3em]">
-          AI SESSION — ALGIERS &rsquo;26
-        </span>
-      </motion.header>
-
-      {/* Main content */}
+      {/* logo — appears only in Hero & Footer */}
       <motion.div
-        style={{ opacity: contentOpacity }}
-        className="relative z-20 flex-1 flex items-center px-4 md:px-8 py-12"
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: EASE }}
+        className="absolute top-5 start-5 md:top-7 md:start-8 z-20"
       >
-        <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Copy column */}
-          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-right">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.75, ease: EASE }}
-              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#c9a84c]/40 bg-[#0a1424]/70 backdrop-blur-md mb-8"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c9a84c] opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#c9a84c]" />
-              </span>
-              <span className="text-[#e8d48b] text-xs md:text-sm font-bold">دورة حضورية - 20 مقعدًا فقط</span>
-            </motion.div>
+        <span className="font-tajawal font-black text-2xl md:text-3xl tracking-tight text-white">
+          GO <span className="text-ac-gold">LLC</span>
+        </span>
+      </motion.div>
 
-            {/* Headline */}
-            <h1 className="font-black text-[#f4f0e6] text-[2.6rem] leading-[1.16] sm:text-6xl lg:text-7xl tracking-tight mb-7">
-              <MaskedWords text="الذكاء الاصطناعي…" delay={0.9} className="block" />
-              <MaskedWords
-                text="بالطريقة الصحيحة"
-                delay={1.1}
-                className="block mt-1"
-                wordClassName="bg-gradient-to-l from-[#c9a84c] via-[#e8d48b] to-[#b3903a] bg-clip-text text-transparent"
-              />
-              <MaskedWords
-                text="والقوية"
-                delay={1.28}
-                className="block mt-1"
-                wordClassName="bg-gradient-to-l from-[#c9a84c] via-[#e8d48b] to-[#b3903a] bg-clip-text text-transparent"
-              />
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-5 pt-24 pb-16 md:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          {/* copy */}
+          <div className="text-center lg:text-start order-2 lg:order-1">
+            <h1
+              className="font-tajawal font-extrabold text-white leading-[1.18] text-balance"
+              style={{ fontSize: 'clamp(2rem, 6vw, 4.25rem)' }}
+            >
+              <MaskedWords text={HERO_H1} delay={0.35} stagger={0.075} />
             </h1>
 
-            {/* Sub-headline */}
             <motion.p
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.45, ease: EASE }}
-              className="text-[#8fa0b8] text-base md:text-xl leading-[1.8] max-w-xl mb-10"
+              transition={{ duration: 0.7, ease: EASE, delay: 1.15 }}
+              className="mt-5 text-base md:text-xl text-ac-muted font-medium"
             >
-              تعلّم كيف تستخدم الذكاء الاصطناعي فعليًا في عملك ودراستك وحياتك اليومية — في جلسة تطبيقية واحدة مع{' '}
-              <span className="text-[#f0ece2] font-bold border-b-2 border-[#c9a84c]/60 pb-0.5">بن زغدة محمد</span>
+              5 أيام لايف | تطبيقية 100% | مرافقة بعد التأسيس
             </motion.p>
 
-            {/* CTA row */}
+            {/* badges */}
+            <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-2.5">
+              {badges.map((b, i) => (
+                <motion.span
+                  key={b}
+                  initial={{ opacity: 0, scale: 0.8, y: 8 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: EASE_BACK, delay: 1.35 + i * 0.1 }}
+                  className="inline-flex items-center rounded-full border border-ac-gold/25 bg-white/[0.04] px-3.5 py-1.5 text-sm font-semibold text-ac-white backdrop-blur-sm"
+                >
+                  {b}
+                </motion.span>
+              ))}
+            </div>
+
+            {/* CTA */}
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.6, ease: EASE }}
-              className="flex flex-col sm:flex-row items-center gap-4"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, ease: EASE_BACK, delay: 1.75 }}
+              className="mt-8 flex justify-center lg:justify-start"
             >
-              <WhatsAppCTA big source="hero">راسلنا الآن على واتساب</WhatsAppCTA>
-              <a
-                href="#curriculum"
-                className="inline-flex items-center gap-2 rounded-full border border-[#233852] text-[#c3cdd9] font-bold text-base px-8 py-4 hover:border-[#c9a84c]/60 hover:text-[#e8d48b] transition-colors duration-300 cursor-pointer"
-              >
-                اكتشف البرنامج
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
-                  <path d="M12 5v14m7-7-7 7-7-7" />
-                </svg>
-              </a>
+              <Magnetic>
+                <div className={reduce ? '' : 'ac-pulse-glow rounded-full'}>
+                  <WhatsAppCTA source="hero" big>
+                    سجّل الآن — أول فوج
+                  </WhatsAppCTA>
+                </div>
+              </Magnetic>
             </motion.div>
           </div>
 
-          {/* Ticket column */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-start">
-            <TicketCard />
-          </div>
+          {/* visual */}
+          <motion.div
+            initial={reduce ? { opacity: 0 } : { opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+            animate={reduce ? { opacity: 1 } : { opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+            transition={{ duration: 0.9, ease: EASE, delay: 0.9 }}
+            className="order-1 lg:order-2"
+          >
+            <BuildTimelapse />
+          </motion.div>
         </div>
-      </motion.div>
-
-      {/* Scroll cue */}
-      <div className="relative z-20 flex justify-center pb-5">
-        <motion.div
-          animate={{ y: [0, 8, 0], opacity: [0.4, 1, 0.4] }}
-          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-          className="w-px h-10 bg-gradient-to-b from-transparent via-[#c9a84c] to-transparent"
-        />
       </div>
 
-      {/* Topic ticker */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2 }}
-        className="ac-marquee relative z-20 border-y border-[#13203a] bg-[#070d18]/80 backdrop-blur-sm py-3.5"
-      >
-        <div className="ac-marquee-track">
-          {[0, 1].map((dup) => (
-            <span key={dup} className="inline-flex items-center" aria-hidden={dup === 1}>
-              {TICKER_ITEMS.map((item, i) => (
-                <span key={i} className="inline-flex items-center gap-8 mx-4">
-                  <span className="font-jetbrains text-xs tracking-[0.18em] text-[#5d6e85] uppercase whitespace-nowrap">
-                    {item}
-                  </span>
-                  <span className="text-[#c9a84c]/50 text-[9px]">◆</span>
-                </span>
-              ))}
-            </span>
-          ))}
-        </div>
-      </motion.div>
+      {/* scroll cue */}
+      {!reduce && (
+        <motion.div
+          aria-hidden
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 1], y: [0, 6, 0] }}
+          transition={{
+            opacity: { delay: 2.2, duration: 0.6 },
+            y: { delay: 2.2, duration: 1.6, repeat: Infinity },
+          }}
+          className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 text-ac-gold/70"
+        >
+          <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.div>
+      )}
     </section>
   );
 }
