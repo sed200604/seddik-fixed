@@ -10,7 +10,7 @@ import FinalCTASection from '@/components/FinalCTASection';
 import FooterSection from '@/components/FooterSection';
 import StickyCTABar from '@/components/StickyCTABar';
 import FloatingWhatsApp from '@/components/FloatingWhatsAppBtn';
-import { trackCTA, trackSectionView } from '@/lib/pixel';
+import { trackCustom, trackSectionView } from '@/lib/pixel';
 
 /* ─────────────────────────────────────────────
    FLOATING GOLD EMBERS — ambient luxury particles
@@ -133,8 +133,12 @@ export default function GoLLCHero() {
 
   const scrollToBooking = () => {
     if (navigator.vibrate) navigator.vibrate(10);
-    // Meta Pixel conversion event (InitiateCheckout) on pixel 4083068931984643
-    trackCTA('hero_main');
+    // Meta Pixel custom "Prospect" event (top-of-funnel, NOT a conversion) on pixel 4083068931984643
+    trackCustom('Prospect', {
+      content_name: 'free_consultation',
+      content_category: 'booking',
+      button_location: 'hero_main',
+    });
     document.querySelector('#book-consultation')?.scrollIntoView({ behavior: 'smooth' });
   };
 

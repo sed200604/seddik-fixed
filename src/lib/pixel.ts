@@ -166,8 +166,11 @@ export const initMainPixel = () => {
   if (!isBrowser) return;
   if (pixelInitialized) return;
   if (typeof window.fbq === 'function') {
+    // Init + PageView already fire INLINE in the layout base snippet (canonical
+    // install) so Meta Pixel Helper detects the pixel reliably. This re-init is
+    // an idempotent safety net (Meta dedupes duplicate init); we intentionally
+    // do NOT fire another PageView here to avoid double-counting.
     window.fbq('init', MAIN_PIXEL_ID);
-    window.fbq('track', 'PageView');
     pixelInitialized = true;
   }
 };

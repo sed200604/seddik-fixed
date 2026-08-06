@@ -55,7 +55,10 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
-        {/* Meta Pixel base code — loads fbevents.js asynchronously. */}
+        {/* Meta Pixel base code — canonical install: load fbevents.js, then
+            init the main pixel and fire PageView INLINE. Firing here (not in a
+            useEffect) is what makes Meta Pixel Helper reliably detect the pixel
+            on every page. `initMainPixel` no longer fires a second PageView. */}
         <Script id="fb-pixel-base" strategy="afterInteractive">
           {`!function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -64,7 +67,9 @@ export default function RootLayout({
           n.queue=[];t=b.createElement(e);t.async=!0;
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');`}
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init','4083068931984643');
+          fbq('track','PageView');`}
         </Script>
 
         {/* Favicons */}
