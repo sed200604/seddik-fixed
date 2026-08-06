@@ -10,6 +10,7 @@ import FinalCTASection from '@/components/FinalCTASection';
 import FooterSection from '@/components/FooterSection';
 import StickyCTABar from '@/components/StickyCTABar';
 import FloatingWhatsApp from '@/components/FloatingWhatsAppBtn';
+import { trackCTA, trackSectionView } from '@/lib/pixel';
 
 /* ─────────────────────────────────────────────
    FLOATING GOLD EMBERS — ambient luxury particles
@@ -98,6 +99,22 @@ export default function GoLLCHero() {
     };
   }, []);
 
+  /* Meta Pixel (4083068931984643) — fire a landing-page ViewContent once
+     fbq is ready. The pixel itself is initialized site-wide by TrackingProvider,
+     so PageView already fires; this adds a page-specific event. */
+  useEffect(() => {
+    let tries = 0;
+    const id = setInterval(() => {
+      if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+        trackSectionView('new_flow_landing');
+        clearInterval(id);
+      } else if (++tries > 20) {
+        clearInterval(id);
+      }
+    }, 250);
+    return () => clearInterval(id);
+  }, []);
+
   /* Magnetic CTA (desktop / hover-capable pointers only) */
   const handleCtaMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!ctaReady) return;
@@ -116,6 +133,8 @@ export default function GoLLCHero() {
 
   const scrollToBooking = () => {
     if (navigator.vibrate) navigator.vibrate(10);
+    // Meta Pixel conversion event (InitiateCheckout) on pixel 4083068931984643
+    trackCTA('hero_main');
     document.querySelector('#book-consultation')?.scrollIntoView({ behavior: 'smooth' });
   };
 
