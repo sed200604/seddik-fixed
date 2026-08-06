@@ -43,8 +43,43 @@ export async function POST(req: NextRequest) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(entry),
       });
-    } else {
-      console.log('[Workshop Registration]', entry);
+    }
+
+    // Send email notification to sed200604@gmail.com
+    const emailPayload = {
+      "نوع الطلب": "تسجيل جديد في الورشة المجانية",
+      "الاسم الكامل": entry.name,
+      "البريد الإلكتروني": entry.email,
+      "رقم الواتساب": entry.whatsapp || "غير محدد",
+      "نوع النشاط": entry.businessType,
+      "التاريخ": entry.timestamp,
+      _subject: "🎉 تسجيل جديد في الورشة المجانية!",
+      _captcha: "false",
+      _template: "table"
+    };
+
+    try {
+      await Promise.all([
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            access_key: '232d9c49-6e3e-4d40-b6f1-e3740e53a79d',
+            to_email: 'sed200604@gmail.com',
+            email: 'sed200604@gmail.com',
+            subject: emailPayload._subject,
+            from_name: 'GO LLC Workshop',
+            message: `تسجيل جديد في الورشة:\nالاسم: ${entry.name}\nالبريد: ${entry.email}\nالواتساب: ${entry.whatsapp}\nنوع النشاط: ${entry.businessType}`
+          })
+        }),
+        fetch('https://formsubmit.co/ajax/sed200604@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(emailPayload)
+        })
+      ]).catch(console.error);
+    } catch (e) {
+      console.warn('Workshop email notify notice:', e);
     }
 
     return NextResponse.json({ success: true });

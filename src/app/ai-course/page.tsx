@@ -86,6 +86,7 @@ export default function AICourseLandingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
       />
 
+      {/* Single Meta Pixel init + PageView (with retry) lives in PagePixel. */}
       <PagePixel />
       <Preloader />
       <SmoothScroll />

@@ -24,16 +24,12 @@ export default function InstructorSection() {
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity }}
-            className="relative mx-auto max-w-[280px]"
+            className="relative mx-auto max-w-[280px] flex flex-col items-center justify-center gap-3"
           >
-            {/* TODO(placeholder): replace with the real CodyX logo/photo */}
-            <div className="aspect-square rounded-3xl bg-gradient-to-br from-[#16324f] to-[#0d1b30] ring-1 ring-ac-gold/25 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.6)] flex flex-col items-center justify-center gap-3">
-              <span className="font-tajawal font-black text-4xl text-white tracking-tight">
-                Cody<span className="text-ac-gold">X</span>
-              </span>
-              <span className="text-xs text-ac-muted">صورة المدرب — placeholder</span>
-            </div>
-            <span className="absolute -bottom-4 start-1/2 -translate-x-1/2 rounded-full bg-ac-gold px-4 py-1.5 text-sm font-extrabold text-ac-navy-deep shadow-[0_8px_24px_rgba(212,168,67,0.35)] whitespace-nowrap">
+            <span className="font-tajawal font-black text-5xl text-white tracking-tight">
+              Cody<span className="text-ac-gold">X</span>
+            </span>
+            <span className="rounded-full bg-ac-gold px-4 py-1.5 text-sm font-extrabold text-ac-navy-deep shadow-[0_8px_24px_rgba(212,168,67,0.35)] whitespace-nowrap">
               المدرب
             </span>
           </motion.div>

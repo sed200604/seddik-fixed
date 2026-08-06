@@ -24,10 +24,10 @@ type Showcase = {
 const SHOWCASES: Showcase[] = [
   {
     id: 1,
-    type: 'وكالة تسويق رقمي',
-    price: 'يتباع بـ 50,000 - 100,000 دج',
-    built: 'تبنى في 3 ساعات',
-    href: SHOWCASE_LINKS.agency,
+    type: 'Landing Page متجر إلكتروني',
+    price: 'يتباع بـ 10,000 - 20,000 دج',
+    built: 'تبنى في ساعتين',
+    href: 'https://lovia-dz.com',
     vibe: { frame: 'linear-gradient(160deg,#0b1020,#141c3a)', bar: '#7c5cff', block: 'rgba(124,92,255,0.35)' },
   },
   {
@@ -48,7 +48,7 @@ const SHOWCASES: Showcase[] = [
   },
   {
     id: 4,
-    type: 'Portfolio فريلانسر',
+    type: 'موقع استراد و تصدير',
     price: 'يتباع بـ 20,000 - 40,000 دج',
     built: 'تبنى في ساعتين',
     href: SHOWCASE_LINKS.portfolio,

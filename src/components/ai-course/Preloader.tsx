@@ -7,8 +7,8 @@ export default function Preloader() {
   const [gone, setGone] = useState(false);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setLeaving(true), 900);
-    const t2 = setTimeout(() => setGone(true), 1750);
+    const t1 = setTimeout(() => setLeaving(true), 150);
+    const t2 = setTimeout(() => setGone(true), 450);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);

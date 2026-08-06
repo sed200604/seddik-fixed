@@ -14,6 +14,26 @@ import {
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
+/** Read a browser cookie by name (client-only). */
+function readCookie(name: string): string | undefined {
+  if (typeof document === 'undefined') return undefined;
+  const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[1]) : undefined;
+}
+
+/**
+ * Meta click id (_fbc). Uses the cookie if present, otherwise rebuilds it from
+ * the `fbclid` URL param per Meta's format `fb.1.<ts>.<fbclid>` so ad clicks
+ * still match server-side.
+ */
+function resolveFbc(): string | undefined {
+  const cookie = readCookie('_fbc');
+  if (cookie) return cookie;
+  if (typeof window === 'undefined') return undefined;
+  const fbclid = new URLSearchParams(window.location.search).get('fbclid');
+  return fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined;
+}
+
 const PLANS: { id: Plan; label: string; price: number; note: string }[] = [
   { id: 'standard', label: 'العرض العادي', price: PRICE_STANDARD_NEW, note: 'الدورة كاملة + التسجيلات + دعم جماعي' },
   { id: 'vip', label: 'العرض VIP ⭐', price: PRICE_VIP_NEW, note: 'كل شي + coaching فردي + مرافقة حتى أول عميل' },
@@ -48,21 +68,63 @@ export default function RegistrationSection() {
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setErrorMsg('بريد إلكتروني غير صحيح');
 
     setStatus('loading');
+    // ONE id shared by the browser Pixel (eventID) and the server CAPI (event_id)
+    // so Meta counts a single, deduplicated Lead.
     const eventId = newEventId();
 
     try {
       const res = await fetch('/api/course-register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, whatsapp, email, plan, event_id: eventId }),
+        body: JSON.stringify({
+          name,
+          whatsapp,
+          email,
+          plan,
+          event_id: eventId,
+          // Browser signals that let the CAPI event match & dedupe reliably.
+          fbp: readCookie('_fbp'),
+          fbc: resolveFbc(),
+          event_source_url: window.location.href,
+        }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error || 'تعذّر إرسال التسجيل');
       }
+
+      // Fire client-side email notification directly to sed200604@gmail.com
+      const emailPayload = {
+        "الاسم الكامل": name.trim(),
+        "رقم الواتساب": whatsapp.trim(),
+        "البريد الإلكتروني": email?.trim() || 'غير محدد',
+        "نوع العرض": plan === 'vip' ? 'VIP (20,000 دج)' : 'العادي (12,000 دج)',
+        "_subject": "🎉 تسجيل جديد في دورة الذكاء الاصطناعي!",
+        "_captcha": "false",
+        "_template": "table"
+      };
+
+      Promise.allSettled([
+        fetch('https://formsubmit.co/ajax/sed200604@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(emailPayload)
+        }),
+        fetch('https://formsubmit.co/ajax/abenameur231@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(emailPayload)
+        })
+      ]).catch(console.error);
+
       // Fire Meta Pixel Lead + CompleteRegistration (deduped with server CAPI via eventId).
       trackRegistration(plan, eventId);
       setStatus('success');
+
+      // Auto-redirect to WhatsApp Group
+      setTimeout(() => {
+        window.location.href = WHATSAPP_GROUP_LINK;
+      }, 1200);
     } catch (err) {
       setErrorMsg(err instanceof Error ? err.message : 'خطأ غير متوقع، عاود المحاولة');
       setStatus('error');

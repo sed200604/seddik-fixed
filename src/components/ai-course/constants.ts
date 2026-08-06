@@ -12,7 +12,7 @@ export const COURSE_START_DATE = '2026-08-15'; // ISO — first cohort start
 export const COURSE_START_LABEL = '15 أوت 2026'; // human-readable (Arabic)
 export const SEATS_LEFT = 12; // TODO: real remaining seats
 export const REGISTERED_COUNT = 47; // TODO: real "signed up so far" count
-export const PROJECTS_BUILT = 30; // TODO: real "+XX موقع مبني" number
+export const PROJECTS_BUILT = 100;
 
 // Prices (DZD)
 export const PRICE_STANDARD_OLD = 20000;
@@ -28,5 +28,5 @@ export const SHOWCASE_LINKS = {
   agency: '#',
   restaurant: 'https://neon-creative-studio.vercel.app',
   store: 'https://luliyane-paris.vercel.app',
-  portfolio: '#',
+  portfolio: 'https://globex-international-trade.com',
 } as const;
